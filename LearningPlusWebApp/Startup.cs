@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using LearningPlusWebApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using LearningPlusWebApp.Models;
+using LearningPlusWebApp.Infrastructure.Extensions;
 
 namespace LearningPlusWebApp
 {
@@ -34,11 +36,26 @@ namespace LearningPlusWebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<LearningPlusDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<LearningPlusDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
+
+            services.AddIdentity<LearningPlusUser, IdentityRole>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<LearningPlusDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -62,6 +79,8 @@ namespace LearningPlusWebApp
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            app.UseDatabaseMigration();
 
             app.UseMvc(routes =>
             {

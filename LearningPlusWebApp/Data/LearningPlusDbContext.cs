@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LearningPlusWebApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LearningPlusWebApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class LearningPlusDbContext : IdentityDbContext<LearningPlusUser, IdentityRole, string>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public LearningPlusDbContext(DbContextOptions<LearningPlusDbContext> options)
             : base(options)
         {
         }
+
     }
+
 }
+
