@@ -16,6 +16,7 @@ using LearningPlusWebApp.Models;
 using LearningPlusWebApp.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using LearningPlusWebApp.Services.EmailSender;
+using AutoMapper;
 
 namespace LearningPlusWebApp
 {
@@ -58,6 +59,8 @@ namespace LearningPlusWebApp
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<LearningPlusDbContext>();
+
+            services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

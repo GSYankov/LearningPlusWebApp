@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<hr class="quad-width" />
+<form class="mx-auto quad-width text-center" method="post" asp-controller="Users" asp-action="Login">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="Username...">
+    </div>
+    <div class="form-group">
+        <lebel for="username">Password</lebel>
+        <input type="password" class="form-control" name="password" placeholder="Password" />
+    </div>
+    <hr class="hr-login" />
+    <div class="checkbox">
+        <label><input type="checkbox" name="RememberMe" value="true"> Remember me</label>
+    </div>
+    <hr class="hr-login" />
+    <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn eventures-bg-colour">Login</button>
+    </div>
+</form>
+<div class="text-center"><a href="">Forgot your password?</a></div>
+<div class="text-center"><a href="">Register as a new user</a></div>
+<hr class="hr-login quad-width" />
+<div class="text-center">
+    <form asp-action="FacebookLogin" method="post">
+        <button type="submit" class="btn eventures-bg-colour" name="provider" value="Facebook" title="Log in using your Facebook account">Facebook</button>
+    </form>
+</div>
+<hr class="hr-login quad-width" />
