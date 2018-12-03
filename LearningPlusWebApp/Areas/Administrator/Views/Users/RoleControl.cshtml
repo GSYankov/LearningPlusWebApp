@@ -1,0 +1,72 @@
+﻿@model IEnumerable<LearningPlusWebApp.Areas.Administrator.ViewModels.UsersListViewModel>
+@{
+    ViewData["Title"] = "Управление на ролите";
+}
+
+@section Head{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Направи Администратор</a></li>
+        <li><a href="#tabs-2">Направи Учител</a></li>
+        <li><a href="#tabs-3">Направи Родител</a></li>
+        <li><a href="#tabs-4">Направи Дете</a></li>
+    </ul>
+    @foreach (var tab in ViewBag.Tabs as Dictionary<string, string>)
+    {
+        <div id="@tab.Key">
+            <table class="table w-75 mb-0 mx-auto table-hover">
+                <thead>
+                    <tr>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Role)
+                        </th>
+                        <th class="font-weight-bold">Направи</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        @if (user.Role != tab.Value)
+                        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.Role)
+                        </td>
+                        <td>
+                            <form method="post" asp-area="Administrator" asp-controller="Users" asp-action="ChangeRole">
+                                <input name="userid" value="@user.Id" hidden />
+                                <input name="currentrole" value="@user.Role" hidden />
+                                <input name="targetrole" value="@tab.Value" hidden />
+
+                                <button type="submit" class="btn btn-primary">Направи</button>
+                            </form>
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <hr class="w-75 mt-0" />
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <partial name="_JsTabs" />
+}

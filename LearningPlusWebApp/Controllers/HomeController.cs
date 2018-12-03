@@ -12,6 +12,11 @@ namespace LearningPlusWebApp.Controllers
     {
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("IndexLoggedIn");
+            }
+
             return View();
         }
 

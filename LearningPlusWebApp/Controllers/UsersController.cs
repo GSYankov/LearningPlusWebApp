@@ -117,7 +117,6 @@ namespace Eventures.Controllers
                 IdentityResult identResult = await userManager.CreateAsync(user);
                 if (identResult.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, "User");
                     identResult = await userManager.AddLoginAsync(user, info);
                     if (identResult.Succeeded)
                     {
