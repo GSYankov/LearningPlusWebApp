@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LearningPlusWebApp.Models;
 using LearningPlusWebApp.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using LearningPlusWebApp.Services.EmailSender;
 
 namespace LearningPlusWebApp
 {
@@ -58,6 +60,8 @@ namespace LearningPlusWebApp
                 .AddEntityFrameworkStores<LearningPlusDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<IEmailSender, SmtpEmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
