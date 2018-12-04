@@ -54,6 +54,61 @@ namespace Eventures.Controllers
             return View(model);
         }
 
+        public IActionResult RegisterStudent()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterStudent(RegisterStudentViewModel model)
+        {
+            //TODO: Set Username tobe only in latin chars
+            var IsParentUserNameTacken = await this.userManager.FindByNameAsync(model.ParentUserName);
+            if (IsParentUserNameTacken != null)
+            {
+                ModelState.AddModelError(nameof(RegisterStudentViewModel.ParentUserName), "Потребителското име е вече заето.");
+            }
+
+            var IsChaildUserNameTacken = await this.userManager.FindByNameAsync(model.ParentUserName);
+            if (IsChaildUserNameTacken != null)
+            {
+                ModelState.AddModelError(nameof(RegisterStudentViewModel.ChildUserName), "Потребителското име е вече заето.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var child = new LearningPlusUser
+                {
+                    FirstName = model.ChildFirstName,
+                    LastName = model.ChildLastName,
+                    PhoneNumber = model.ChildPhoneNumber,
+                    Email = model.ChildEmail,
+                    UserName = model.ChildUserName
+                };
+
+                await this.userManager.CreateAsync(child, model.ChaildPassword);
+                await this.userManager.AddToRoleAsync(child, "Child");
+
+                var parent = new LearningPlusUser
+                {
+                    FirstName = model.ParentFirstName,
+                    LastName = model.ParentLastName,
+                    PhoneNumber = model.ParentPhoneNumber,
+                    Email = model.ParentEmail,
+                    UserName = model.ParentUserName
+                };
+
+                parent.Children.Add(child);
+
+                await this.userManager.CreateAsync(parent, model.ParentPassword);
+                await this.userManager.AddToRoleAsync(parent, "Parent");
+
+                return RedirectToAction("Login", "Users");
+            }
+
+            return this.View(model);
+        }
+
         public IActionResult Register()
         {
 

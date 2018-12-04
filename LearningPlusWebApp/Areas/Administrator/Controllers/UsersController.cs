@@ -72,23 +72,5 @@ namespace Eventures.Areas.Administrator.Controllers
             await this.userManager.AddToRoleAsync(user, targetRole);
             return RedirectToAction("RoleControl");
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Promote(string userId)
-        //{
-        //    var user = await this.userManager.FindByIdAsync(userId);
-        //    await this.userManager.RemoveFromRoleAsync(user, "User");
-        //    await this.userManager.AddToRoleAsync(user, "Admin");
-        //    return RedirectToAction("UsersList");
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Demote(string userId)
-        //{
-        //    var user = await this.userManager.FindByIdAsync(userId);
-        //    await this.userManager.RemoveFromRoleAsync(user, "Admin");
-        //    await this.userManager.AddToRoleAsync(user, "User");
-        //    return RedirectToAction("UsersList");
-        //}
     }
 }

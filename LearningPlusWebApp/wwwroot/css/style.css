@@ -146,9 +146,10 @@ h6 {
   display: inline-block;
 }
 
-#header #logo h1 a span {
+#header #logo h1 a span{
   color: #50d8af;
 }
+
 
 #header #logo img {
   padding: 0;

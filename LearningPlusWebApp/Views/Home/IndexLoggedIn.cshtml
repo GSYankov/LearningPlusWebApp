@@ -8,7 +8,22 @@
 <section id="intro">
 
     <div class="intro-content">
-        <h2>Здравей, <span>@User.Identity.Name!</span><br>По какво ще учиш днес?</h2>
+        @if (User.IsInRole("Admin"))
+        {
+            <h2>Здравей, <span>@User.Identity.Name!</span><br>Какви ще ги къдриш днес?</h2>
+        }
+        else if (User.IsInRole("Teacher"))
+        {
+            <h2>Здравей, <span>@User.Identity.Name!</span><br>Какво си подготвил на своите ученици днес?</h2>
+        }
+        else if (User.IsInRole("Parent"))
+        {
+            <h2>Здравей, <span>@User.Identity.Name!</span><br>Проследи успеха му от близо!</h2>
+        }
+        else if (User.IsInRole("Child"))
+        {
+            <h2>Здравей, <span>@User.Identity.Name!</span><br>По какво ще учиш днес?</h2>
+        }
         <div>
             <a href="#about" class="btn-get-started scrollto">Get Started</a>
             <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>

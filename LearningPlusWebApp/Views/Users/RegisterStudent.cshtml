@@ -1,0 +1,107 @@
+﻿@model LearningPlusWebApp.ViewModels.Users.RegisterStudentViewModel
+
+@{
+    ViewData["Title"] = "Регистриране на ученик";
+}
+
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
+
+<h4 class="text-center">@ViewData["Title"]</h4>
+<hr />
+<div class="container-fluid">
+    <form asp-action="RegisterStudent">
+        <div class="d-flex justify-content-center container">
+            <div class="form-row col-md-6">
+                <div class="col">
+                    <h5 class="text-center">Родител</h5>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ParentUserName" class="control-label required"></label>
+                        <input asp-for="ParentUserName" class="form-control" />
+                        <span asp-validation-for="ParentUserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentFirstName" class="control-label required"></label>
+                        <input asp-for="ParentFirstName" class="form-control" />
+                        <span asp-validation-for="ParentFirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentLastName" class="control-label required"></label>
+                        <input asp-for="ParentLastName" class="form-control" />
+                        <span asp-validation-for="ParentLastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentPhoneNumber" class="control-label required"></label>
+                        <input asp-for="ParentPhoneNumber" class="form-control" />
+                        <span asp-validation-for="ParentPhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentEmail" class="control-label"></label>
+                        <input asp-for="ParentEmail" class="form-control" />
+                        <span asp-validation-for="ParentEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentPassword" class="control-label required"></label>
+                        <input asp-for="ParentPassword" class="form-control" type="password" />
+                        <span asp-validation-for="ParentPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentConfirmPassword" class="control-label required"></label>
+                        <input asp-for="ParentConfirmPassword" class="form-control" type="password" />
+                        <span asp-validation-for="ParentConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row col-md-6">
+                <div class="col">
+                    <h5 class="text-center">Ученик</h5>
+                    <div class="form-group">
+                        <label asp-for="ChildUserName" class="control-label pull-right required"></label>
+                        <input asp-for="ChildUserName" class="form-control" />
+                        <span asp-validation-for="ChildUserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChildFirstName" class="control-label pull-right required"></label>
+                        <input asp-for="ChildFirstName" class="form-control" />
+                        <span asp-validation-for="ChildFirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChildLastName" class="control-label pull-right required"></label>
+                        <input asp-for="ChildLastName" class="form-control" />
+                        <span asp-validation-for="ChildLastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChildPhoneNumber" class="control-label pull-right"></label>
+                        <input asp-for="ChildPhoneNumber" class="form-control" />
+                        <span asp-validation-for="ChildPhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChildEmail" class="control-label pull-right"></label>
+                        <input asp-for="ChildEmail" class="form-control" />
+                        <span asp-validation-for="ChildEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChaildPassword" class="control-label pull-right required"></label>
+                        <input asp-for="ChaildPassword" class="form-control" type="password" />
+                        <span asp-validation-for="ChaildPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChaildConfirmPassword" class="control-label pull-right required"></label>
+                        <input asp-for="ChaildConfirmPassword" class="form-control" type="password" />
+                        <span asp-validation-for="ChaildConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Create" class="btn logo-btn" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

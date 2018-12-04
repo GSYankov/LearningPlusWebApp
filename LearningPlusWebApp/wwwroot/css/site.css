@@ -23,6 +23,17 @@ body {
     width: 100%;
 }
 
+/* Makes the required field star red */
+.required:after {
+    content: "*";
+    font-weight: bold;
+    color: red;
+}
+
+.logo-btn {
+    background-color: #50d8af;
+}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
