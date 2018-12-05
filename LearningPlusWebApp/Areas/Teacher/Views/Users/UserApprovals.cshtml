@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LearningPlusWebApp.Areas.Teacher.ViewModels.UserApprovalViewModel>
+@{
+    ViewData["Title"] = "Одобрение на потребители";
+}
+
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="d-flex justify-content-center">
+    <div class="half-width">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Родител</th>
+                    <th scope="col">Ученик</th>
+                    <th scope="col">Одобри</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{var i = 1;
+                    foreach (var couple in Model)
+                    {
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td>@couple.ParentName</td>
+                            <td>@couple.ChildName</td>
+                            <td>
+                                <form method="post" asp-area="Teacher" asp-controller="Users" asp-action="ApproveUsers">
+                                    <input name="parentid" value="@couple.ParentId" hidden />
+                                    <input name="childid" value="@couple.ChildId" hidden />
+                                    <button type="submit" class="btn logo-btn">Одобри</button>
+                                </form>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+        <hr class="mt-0" />
+    </div>
+</div>

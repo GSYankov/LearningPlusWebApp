@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LearningPlusWebApp.Views.Home
+namespace LearningPlusWebApp.ViewModels.Home
 {
     public class EmailHomeViewModel
     {

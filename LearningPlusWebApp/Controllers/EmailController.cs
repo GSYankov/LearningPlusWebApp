@@ -1,9 +1,7 @@
-﻿using LearningPlusWebApp.Views.Home;
+﻿using LearningPlusWebApp.ViewModels.Home;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LearningPlusWebApp.Controllers

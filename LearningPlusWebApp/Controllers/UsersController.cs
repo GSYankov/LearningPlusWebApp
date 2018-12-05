@@ -87,7 +87,11 @@ namespace Eventures.Controllers
                 };
 
                 await this.userManager.CreateAsync(child, model.ChaildPassword);
-                await this.userManager.AddToRoleAsync(child, "Child");
+                if (this.User.IsInRole("Teacher"))
+                {
+                    await this.userManager.AddToRoleAsync(child, "Child");
+                }
+
 
                 var parent = new LearningPlusUser
                 {
@@ -101,7 +105,11 @@ namespace Eventures.Controllers
                 parent.Children.Add(child);
 
                 await this.userManager.CreateAsync(parent, model.ParentPassword);
-                await this.userManager.AddToRoleAsync(parent, "Parent");
+                if (this.User.IsInRole("Teacher"))
+                {
+                    await this.userManager.AddToRoleAsync(parent, "Parent");
+                    return Redirect("/");
+                }
 
                 return RedirectToAction("Login", "Users");
             }

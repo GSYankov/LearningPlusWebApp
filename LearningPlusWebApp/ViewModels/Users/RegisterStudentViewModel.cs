@@ -4,12 +4,13 @@ namespace LearningPlusWebApp.ViewModels.Users
 {
     public class RegisterStudentViewModel
     {
-        [Display(Name = "Потребителско име")]
+        [RegularExpression("[A-Za-z0-9]+")]
+        [Display(Name = "Потребителско име на латиница")]
         [Required(ErrorMessage = "Полето 'Потребителско име' е задължително")]
         public string ParentUserName { get; set; }
 
         [Display(Name = "Име")]
-        [Required(ErrorMessage ="Полето 'Име' е задължително")]
+        [Required(ErrorMessage = "Полето 'Име' е задължително")]
         public string ParentFirstName { get; set; }
 
         [Display(Name = "Фамилия")]
@@ -20,6 +21,7 @@ namespace LearningPlusWebApp.ViewModels.Users
         [Required(ErrorMessage = "Полето 'Телефон' е задължително")]
         public string ParentPhoneNumber { get; set; }
 
+        [EmailAddress]
         [Display(Name = "Имейл")]
         public string ParentEmail { get; set; }
 
@@ -32,7 +34,8 @@ namespace LearningPlusWebApp.ViewModels.Users
         [Compare("ParentPassword", ErrorMessage = "Паролите на родителя не съвпадат")]
         public string ParentConfirmPassword { get; set; }
 
-        [Display(Name = "Потребителско име")]
+        [RegularExpression("[A-Za-z0-9]+")]
+        [Display(Name = "Потребителско име на латиница")]
         [Required(ErrorMessage = "Полето 'Потребителско име' е задължително")]
         public string ChildUserName { get; set; }
 
@@ -47,6 +50,7 @@ namespace LearningPlusWebApp.ViewModels.Users
         [Display(Name = "Телефон")]
         public string ChildPhoneNumber { get; set; }
 
+        [EmailAddress]
         [Display(Name = "Имейл")]
         public string ChildEmail { get; set; }
 
