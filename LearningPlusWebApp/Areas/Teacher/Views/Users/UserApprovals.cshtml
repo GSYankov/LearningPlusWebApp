@@ -25,8 +25,8 @@
                     {
                         <tr>
                             <th scope="row">@i</th>
-                            <td>@couple.ParentName</td>
-                            <td>@couple.ChildName</td>
+                            <td><a asp-area="Teacher" asp-controller="Users" asp-action="UserDetails" asp-route-id="@couple.ParentId">@couple.ParentName</a></td>
+                            <td><a asp-area="Teacher" asp-controller="Users" asp-action="UserDetails" asp-route-id="@couple.ChildId">@couple.ChildName</a></td>
                             <td>
                                 <form method="post" asp-area="Teacher" asp-controller="Users" asp-action="ApproveUsers">
                                     <input name="parentid" value="@couple.ParentId" hidden />

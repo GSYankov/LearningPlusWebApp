@@ -123,23 +123,6 @@ namespace Eventures.Controllers
             return View();
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Register(DoRegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = mapper.Map<LearningPlusUser>(model);
-                await this.userManager.CreateAsync(user, model.Password);
-                await this.userManager.AddToRoleAsync(user, "User");
-                return RedirectToAction("Login", "Users");
-            };
-
-
-            return View(model);
-        }
-
         [Authorize]
         public async Task<IActionResult> Logout()
         {

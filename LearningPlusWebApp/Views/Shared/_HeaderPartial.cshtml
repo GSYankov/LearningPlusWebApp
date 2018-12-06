@@ -55,7 +55,7 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li><a asp-controller="Users" asp-action="Logout">Изход</a></li>
+                    <li><a asp-area="" asp-controller="Users" asp-action="Logout">Изход</a></li>
                 }
                 else
                 {
