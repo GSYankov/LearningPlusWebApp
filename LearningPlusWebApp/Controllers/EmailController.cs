@@ -1,10 +1,10 @@
-﻿using LearningPlusWebApp.ViewModels.Home;
+﻿using LearningPlus.Web.ViewModels.Home;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace LearningPlusWebApp.Controllers
+namespace LearningPlus.Web.Controllers
 {
     public class EmailController : Controller
     {

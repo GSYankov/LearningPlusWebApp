@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LearningPlusWebApp.Migrations
+namespace LearningPlus.Web.Migrations
 {
     public partial class InitialCreate : Migration
     {

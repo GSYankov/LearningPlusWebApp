@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LearningPlusWebApp.Areas.Teacher.ViewModels
+namespace LearningPlus.Web.Areas.Teacher.ViewModels
 {
     public class UserApprovalViewModel
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LearningPlusWebApp.Models.Enums
+namespace LearningPlus.Web.Models.Enums
 {
     public enum UserRoles
     {

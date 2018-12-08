@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LearningPlusWebApp.ViewModels.Users
+namespace LearningPlus.Web.ViewModels.Users
 {
     public class RegisterStudentViewModel
     {

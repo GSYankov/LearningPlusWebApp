@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LearningPlusWebApp.Areas.Teacher.Controllers
+namespace LearningPlus.Web.Areas.Teacher.Controllers
 {
     public class HomeController : Controller
     {

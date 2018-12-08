@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace LearningPlusWebApp.Services.EmailSender
+namespace LearningPlus.Web.Services.EmailSender
 {
     public class SmtpEmailSender : IEmailSender
     {

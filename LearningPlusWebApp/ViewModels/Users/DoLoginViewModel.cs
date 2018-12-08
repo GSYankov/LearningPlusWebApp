@@ -1,4 +1,4 @@
-﻿namespace LearningPlusWebApp.ViewModels
+﻿namespace LearningPlus.Web.ViewModels
 {
     public class DoLoginViewModel
     {

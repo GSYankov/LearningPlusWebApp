@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using LearningPlusWebApp.Areas.Teacher.ViewModels;
-using LearningPlusWebApp.Models;
+using LearningPlus.Web.Areas.Teacher.ViewModels;
+using LearningPlus.Web.Models;
 
-namespace LearningPlusWebApp.Infrastructure
+namespace LearningPlus.Web.Infrastructure
 {
     public class AuromapperConfiguration : Profile
     {

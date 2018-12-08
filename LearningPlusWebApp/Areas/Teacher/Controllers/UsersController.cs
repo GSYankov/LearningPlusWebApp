@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using LearningPlusWebApp.Areas.Teacher.ViewModels;
-using LearningPlusWebApp.Data;
-using LearningPlusWebApp.Models;
+using LearningPlus.Web.Areas.Teacher.ViewModels;
+using LearningPlus.Data;
+using LearningPlus.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using LearningPlusWebApp.Models;
+using LearningPlus.Web.Models;
 using AutoMapper;
-using LearningPlusWebApp.ViewModels;
-using LearningPlusWebApp.ViewModels.Users;
+using LearningPlus.Web.ViewModels;
+using LearningPlus.Web.ViewModels.Users;
 
 namespace Eventures.Controllers
 {

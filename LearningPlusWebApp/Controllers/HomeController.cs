@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using LearningPlusWebApp.Models;
+using LearningPlus.Web.Models;
 
-namespace LearningPlusWebApp.Controllers
+namespace LearningPlus.Web.Controllers
 {
     public class HomeController : Controller
     {

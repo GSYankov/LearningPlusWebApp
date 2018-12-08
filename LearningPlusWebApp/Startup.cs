@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LearningPlusWebApp.Data;
+using LearningPlus.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using LearningPlusWebApp.Models;
-using LearningPlusWebApp.Infrastructure.Extensions;
+using LearningPlus.Web.Models;
+using LearningPlus.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using LearningPlusWebApp.Services.EmailSender;
+using LearningPlus.Web.Services.EmailSender;
 using AutoMapper;
 
-namespace LearningPlusWebApp
+namespace LearningPlus.Web
 {
     public class Startup
     {

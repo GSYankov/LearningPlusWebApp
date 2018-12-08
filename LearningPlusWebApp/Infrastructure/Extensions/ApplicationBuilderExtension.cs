@@ -1,5 +1,5 @@
-﻿using LearningPlusWebApp.Data;
-using LearningPlusWebApp.Models;
+﻿using LearningPlus.Data;
+using LearningPlus.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LearningPlusWebApp.Infrastructure.Extensions
+namespace LearningPlus.Web.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtension
     {
