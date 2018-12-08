@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9D7FF3DB-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlus.Data", "Data\LearningPlus.Data\LearningPlus.Data.csproj", "{7D8E44F4-CACE-4474-90EC-06E685BE66A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlus.Models", "LearningPlus.Models\LearningPlus.Models.csproj", "{3116BB3F-A41A-409A-BCE2-4DFCE8AFBCB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlus.Models", "Data\LearningPlus.Models\LearningPlus.Models.csproj", "{3116BB3F-A41A-409A-BCE2-4DFCE8AFBCB9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{8444C45A-B774-439A-871B-6F4EE02E1803}"
 EndProject
