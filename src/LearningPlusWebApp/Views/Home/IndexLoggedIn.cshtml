@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<NewsLoggedInViewModel>
+
+@{
     ViewData["Title"] = "LoggedIn";
 }
 
@@ -12,26 +14,7 @@
 <section id="intro">
 
     <div class="intro-content">
-        @if (User.IsInRole("Admin"))
-        {
-            <h2>Здравей, <span>@User.Identity.Name!</span><br>Какви ще ги къдриш днес?</h2>
-        }
-        else if (User.IsInRole("Teacher"))
-        {
-            <h2>Здравей, <span>@User.Identity.Name!</span><br>Какво си подготвил на своите ученици днес?</h2>
-        }
-        else if (User.IsInRole("Parent"))
-        {
-            <h2>Здравей, <span>@User.Identity.Name!</span><br>Проследи успеха му от близо!</h2>
-        }
-        else if (User.IsInRole("Child"))
-        {
-            <h2>Здравей, <span>@User.Identity.Name!</span><br>По какво ще учиш днес?</h2>
-        }
-        <div>
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
-            <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
-        </div>
+        <partial name="Partial/_LoggedInGreatingPartial" />
     </div>
 
     <div id="intro-carousel" class="owl-carousel">
@@ -49,6 +32,10 @@
 <div class="d-flex justify-content-center">
     <div class="holder">
         <ul id="ticker01">
+            @foreach (var news in Model)
+            {
+                <li><span>@news.CreatedOn</span><a href="#">@news.Message</a></li>
+            }
             <li><span>10/10/2007</span><a href="#">The first thing that most Javascript programmers</a></li>
             <li><span>10/10/2007</span><a href="#">End up doing is adding some code</a></li>
             <li><span>10/10/2007</span><a href="#">The code that you want to run</a></li>

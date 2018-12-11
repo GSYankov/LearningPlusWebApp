@@ -4,14 +4,16 @@ using LearningPlus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningPlus.Web.Migrations
 {
     [DbContext(typeof(LearningPlusDbContext))]
-    partial class LearningPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181211155124_AddEntityNews")]
+    partial class AddEntityNews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,11 +43,15 @@ namespace LearningPlus.Web.Migrations
 
             modelBuilder.Entity("LearningPlus.Models.LearningPlusNewsTargetRole", b =>
                 {
-                    b.Property<Guid>("NewsId");
+                    b.Property<string>("LearningPlusNewsId");
 
                     b.Property<int>("TargetRole");
 
-                    b.HasKey("NewsId", "TargetRole");
+                    b.Property<Guid?>("NewsId");
+
+                    b.HasKey("LearningPlusNewsId", "TargetRole");
+
+                    b.HasIndex("NewsId");
 
                     b.ToTable("NewsTargetRole");
                 });
@@ -232,8 +238,7 @@ namespace LearningPlus.Web.Migrations
                 {
                     b.HasOne("LearningPlus.Models.LearningPlusNews", "News")
                         .WithMany("TargetRoles")
-                        .HasForeignKey("NewsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("NewsId");
                 });
 
             modelBuilder.Entity("LearningPlus.Web.Models.LearningPlusUser", b =>
