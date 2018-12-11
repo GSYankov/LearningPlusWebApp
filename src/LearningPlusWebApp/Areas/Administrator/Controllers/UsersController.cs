@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using LearningPlus.Web.Areas.Administrator.ViewModels;
-using LearningPlus.Data;
 using LearningPlus.Web.Models;
 using LearningPlus.Web.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LearningPlus.Data.DbRepository.Contract;
 
 namespace Eventures.Areas.Administrator.Controllers
 {
@@ -17,15 +17,13 @@ namespace Eventures.Areas.Administrator.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
-        private readonly LearningPlusDbContext db;
         private readonly IMapper mapper;
+        private readonly IRepository<LearningPlusUser> repository;
         private readonly UserManager<LearningPlusUser> userManager;
 
-        public UsersController(LearningPlusDbContext db, IMapper mapper, UserManager<LearningPlusUser> userManager)
+        public UsersController(IRepository<LearningPlusUser> repository, IMapper mapper, UserManager<LearningPlusUser> userManager)
         {
-            //TODO: Use the Db as repository through service
-
-            this.db = db;
+            this.repository = repository;
             this.mapper = mapper;
             this.userManager = userManager;
         }
@@ -35,7 +33,7 @@ namespace Eventures.Areas.Administrator.Controllers
             //TODO implement automapper
 
             var currentUser = await GetCurrentUserAsync();
-            var model = this.db.Users.Where(u => u != currentUser).Select(u => new UsersListViewModel
+            var model = this.repository.All().Where(u => u != currentUser).Select(u => new UsersListViewModel
             {
                 Id = u.Id,
                 Email = u.Email,

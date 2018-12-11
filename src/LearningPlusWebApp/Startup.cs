@@ -9,9 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LearningPlus.Web.Models;
 using LearningPlus.Web.Infrastructure.Extensions;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using LearningPlus.Web.Services.EmailSender;
 using AutoMapper;
+using LearningPlus.Data.DbRepository.Contract;
+using LearningPlus.Data.DbRepository;
 
 namespace LearningPlus.Web
 {
@@ -44,7 +45,7 @@ namespace LearningPlus.Web
             {
                 options.SignIn.RequireConfirmedEmail = false;
                 options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 5;
+                options.Password.RequiredLength = 3;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
@@ -57,9 +58,11 @@ namespace LearningPlus.Web
 
             services.AddAutoMapper();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddScoped<IEmailSender, SmtpEmailSender>();
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+            services.AddTransient<IEmailService, SmtpEmailService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

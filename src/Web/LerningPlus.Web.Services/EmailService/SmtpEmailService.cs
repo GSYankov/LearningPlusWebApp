@@ -1,18 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Extensions.Configuration;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace LearningPlus.Web.Services.EmailSender
 {
-    public class SmtpEmailSender : IEmailSender
+    public class SmtpEmailService : IEmailService
     {
         private readonly IConfiguration configuration;
 
-        public SmtpEmailSender(IConfiguration configuration)
+        public SmtpEmailService(IConfiguration configuration)
         {
             this.configuration = configuration;
         }

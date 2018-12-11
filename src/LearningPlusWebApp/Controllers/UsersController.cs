@@ -62,7 +62,10 @@ namespace Eventures.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterStudent(RegisterStudentViewModel model)
         {
-            //TODO: Set Username tobe only in latin chars
+            //TODO: Set Username to be only in latin chars
+
+            //TODO: To implemrnt return URL
+
             var IsParentUserNameTacken = await this.userManager.FindByNameAsync(model.ParentUserName);
             if (IsParentUserNameTacken != null)
             {

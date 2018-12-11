@@ -26,10 +26,12 @@ namespace LearningPlus.Web.ViewModels.Users
         public string ParentEmail { get; set; }
 
         [Display(Name = "Парола")]
+        [MinLength(3, ErrorMessage = "Паролата трябва да бъде поне три символа!")]
         [Required(ErrorMessage = "Полето 'Парола' е задължително")]
         public string ParentPassword { get; set; }
 
         [Display(Name = "Потвърди парола")]
+        [MinLength(3, ErrorMessage = "Паролата трябва да бъде поне три символа!")]
         [Required(ErrorMessage = "Полето 'Потвърди парола' е задължително")]
         [Compare("ParentPassword", ErrorMessage = "Паролите на родителя не съвпадат")]
         public string ParentConfirmPassword { get; set; }
@@ -55,10 +57,12 @@ namespace LearningPlus.Web.ViewModels.Users
         public string ChildEmail { get; set; }
 
         [Display(Name = "Парола")]
+        [MinLength(3, ErrorMessage = "Паролата трябва да бъде поне три символа!")]
         [Required(ErrorMessage = "Полето 'Парола' е задължително")]
         public string ChaildPassword { get; set; }
 
         [Display(Name = "Потвърди парола")]
+        [MinLength(3, ErrorMessage = "Паролата трябва да бъде поне три символа!")]
         [Required(ErrorMessage = "Полето 'Потвърди парола' е задължително")]
         [Compare("ChaildPassword", ErrorMessage = "Паролите на ученика не съвпадат")]
         public string ChaildConfirmPassword { get; set; }

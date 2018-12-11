@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using LearningPlus.Web.Areas.Teacher.ViewModels;
-using LearningPlus.Data;
 using LearningPlus.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using LearningPlus.Data.DbRepository.Contract;
 
 namespace Eventures.Areas.Teacher.Controllers
 {
@@ -14,16 +14,20 @@ namespace Eventures.Areas.Teacher.Controllers
     [Authorize(Roles = "Teacher")]
     public class UsersController : Controller
     {
-        private readonly LearningPlusDbContext db;
         private readonly IMapper mapper;
+        private readonly IRepository<LearningPlusUser> repository;
+        private readonly IRepository<IdentityUserRole<string>> usersRolesRepository;
         private readonly UserManager<LearningPlusUser> userManager;
 
-        public UsersController(LearningPlusDbContext db, IMapper mapper, UserManager<LearningPlusUser> userManager)
+        public UsersController(
+            IMapper mapper,
+            IRepository<LearningPlusUser> repository,
+            IRepository<IdentityUserRole<string>> usersRolesRepository,
+            UserManager<LearningPlusUser> userManager)
         {
-            //TODO: Use the Db as repository through service
-
-            this.db = db;
             this.mapper = mapper;
+            this.repository = repository;
+            this.usersRolesRepository = usersRolesRepository;
             this.userManager = userManager;
         }
 
@@ -31,8 +35,8 @@ namespace Eventures.Areas.Teacher.Controllers
         {
             //TODO implement automapper
 
-            var userIdsWithRole = this.db.UserRoles.Select(ur => ur.UserId).ToList();
-            var model = db.Users
+            var userIdsWithRole = usersRolesRepository.All().Select(ur => ur.UserId).ToList();
+            var model = this.repository.All()
                 .Where(u => !userIdsWithRole.Contains(u.Id) && u.Children.Count > 0)
                 .Select(u => new UserApprovalViewModel
                 {
@@ -85,7 +89,7 @@ namespace Eventures.Areas.Teacher.Controllers
             user.PhoneNumber = model.PhoneNumber;
             user.Email = model.Email;
 
-            this.db.SaveChanges();
+            await this.repository.SaveChangesAsync();
 
             return Redirect("/");
         }
