@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using LearningPlus.Web.Models;
-using LearningPlus.Web.ViewModels.Home;
+﻿using System.Diagnostics;
 using AutoMapper;
-using LearningPlus.Data.DbRepository;
-using LearningPlus.Data.DbRepository.Contract;
-using LearningPlus.Models;
-using LearningPlus.Web.ViewModels;
+using LearningPlus.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using LerningPlus.Web.Services.NewsService.Contract;
 
 namespace LearningPlus.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMapper mapper;
-        private readonly IRepository<LearningPlusNews> newsRepo;
+        private readonly ILearningPlusNewsService newsService;
 
-        public HomeController(IMapper mapper, IRepository<LearningPlusNews> repository)
+        public HomeController(ILearningPlusNewsService newsService)
         {
-            this.mapper = mapper;
-            this.newsRepo = repository;
+            this.newsService = newsService;
         }
 
         public IActionResult Index()
@@ -32,36 +22,21 @@ namespace LearningPlus.Web.Controllers
             {
                 if (this.User.IsInRole("Admin"))
                 {
-                    var model = this.newsRepo.All()
-                        .Where(n => n.ExpiresOn > DateTime.UtcNow)
-                        .Take(3)
-                        .Select(n => this.mapper.Map<NewsLoggedInViewModel>(n))
-                        .ToList();
+                    var model = this.newsService.GetAdminNews();
 
                     return View("IndexLoggedIn", model);
                 }
 
                 if (this.User.IsInRole("Teacher"))
                 {
-                    var model = this.newsRepo.All()
-                        .Where(n => n.ExpiresOn > DateTime.UtcNow
-                                && n.TargetRoles.Any(tr => tr.TargetRole.ToString() != "Admin"))
-                        .Take(3)
-                        .Select(n => this.mapper.Map<NewsLoggedInViewModel>(n))
-                        .ToList();
+                    var model = this.newsService.GetTeacherNews();
 
                     return View("IndexLoggedIn", model);
                 }
 
-                if (this.User.IsInRole("Teacher"))
+                if (this.User.IsInRole("Parent") || this.User.IsInRole("Child"))
                 {
-                    var model = this.newsRepo.All()
-                        .Where(n => n.ExpiresOn > DateTime.UtcNow
-                                && n.TargetRoles.Any(tr => tr.TargetRole.ToString() != "Admin"
-                                                        && tr.TargetRole.ToString() != "Teacher"))
-                        .Take(3)
-                        .Select(n => this.mapper.Map<NewsLoggedInViewModel>(n))
-                        .ToList();
+                    var model = this.newsService.GetParentChildNews();
 
                     return View("IndexLoggedIn", model);
                 }

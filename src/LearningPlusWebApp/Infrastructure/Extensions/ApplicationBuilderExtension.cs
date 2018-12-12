@@ -1,5 +1,7 @@
 ﻿using LearningPlus.Data;
+using LearningPlus.Models;
 using LearningPlus.Web.Models;
+using LearningPlus.Web.Models.Enums;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +15,7 @@ namespace LearningPlus.Web.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtension
     {
-        public static IApplicationBuilder UseDatabaseMigration(this IApplicationBuilder app)
+        public static IApplicationBuilder UseDatabaseSeedingAndMigration(this IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -23,9 +25,79 @@ namespace LearningPlus.Web.Infrastructure.Extensions
                 var db = serviceScope.ServiceProvider.GetService<LearningPlusDbContext>();
 
                 CreateUsersAndRoles(userManager, roleManager, db);
+                CreateNews(db);
+
             }
 
             return app;
+        }
+
+        private static void CreateNews(LearningPlusDbContext db)
+        {
+
+
+            if (db.News.Count() == 0)
+            {
+                var holidays = new string[] {
+                "3rd of March",
+                "1st of June",
+            };
+
+                var newsRange = new List<LearningPlusNews>();
+
+                foreach (var day in holidays)
+                {
+                    var news = new LearningPlusNews
+                    {
+                        Creator = db.Users.FirstOrDefault(u => u.UserName == "Admin"),
+                        Message = $"{day} will be vacation for all in the center!",
+                        TargetRoles = new List<LearningPlusNewsTargetRole>()
+                                    {
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Admin},
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Teacher},
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Parent},
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Child}
+                                    }
+                    };
+                    newsRange.Add(news);
+                }
+
+                var adminNews = new LearningPlusNews
+                {
+                    Creator = db.Users.FirstOrDefault(u => u.UserName == "Admin"),
+                    Message = $"Admins work from home today.",
+                    TargetRoles = new List<LearningPlusNewsTargetRole>()
+                                    {
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Admin}
+                                    }
+                };
+
+                var teacherNews = new LearningPlusNews
+                {
+                    Creator = db.Users.FirstOrDefault(u => u.UserName == "Teacher"),
+                    Message = $"Teachers work till noon today.",
+                    TargetRoles = new List<LearningPlusNewsTargetRole>()
+                                    {
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Teacher}
+                                    }
+                };
+
+                var childParentNews = new LearningPlusNews
+                {
+                    Creator = db.Users.FirstOrDefault(u => u.UserName == "Admin"),
+                    Message = $"Kids will attend origami workshop today.",
+                    TargetRoles = new List<LearningPlusNewsTargetRole>()
+                                    {
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Parent},
+                                     new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Child}                                     }
+                };
+                newsRange.Add(adminNews);
+                newsRange.Add(teacherNews);
+                newsRange.Add(childParentNews);
+
+                db.News.AddRange(newsRange);
+                db.SaveChanges();
+            }
         }
 
         private static void CreateUsersAndRoles(UserManager<LearningPlusUser> userManager,

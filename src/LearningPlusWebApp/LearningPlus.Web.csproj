@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Data\LearningPlus.Data\LearningPlus.Data.csproj" />
     <ProjectReference Include="..\Data\LearningPlus.Models\LearningPlus.Models.csproj" />
+    <ProjectReference Include="..\LearningPlus.Web.ViewModels\LearningPlus.Web.ViewModels.csproj" />
     <ProjectReference Include="..\Web\LerningPlus.Web.Services\LerningPlus.Web.Services.csproj" />
   </ItemGroup>
 

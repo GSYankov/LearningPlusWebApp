@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
   </ItemGroup>
@@ -12,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\LearningPlus.Data\LearningPlus.Data.csproj" />
     <ProjectReference Include="..\..\Data\LearningPlus.Models\LearningPlus.Models.csproj" />
+    <ProjectReference Include="..\..\LearningPlus.Web.ViewModels\LearningPlus.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

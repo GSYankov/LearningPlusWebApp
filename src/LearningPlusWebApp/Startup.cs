@@ -13,6 +13,8 @@ using LearningPlus.Web.Services.EmailSender;
 using AutoMapper;
 using LearningPlus.Data.DbRepository.Contract;
 using LearningPlus.Data.DbRepository;
+using LerningPlus.Web.Services.NewsService.Contract;
+using LerningPlus.Web.Services.NewsService;
 
 namespace LearningPlus.Web
 {
@@ -62,6 +64,7 @@ namespace LearningPlus.Web
 
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddTransient<IEmailService, SmtpEmailService>();
+            services.AddScoped<ILearningPlusNewsService, LearningPlusNewsService>();
 
         }
 
@@ -85,7 +88,7 @@ namespace LearningPlus.Web
 
             app.UseAuthentication();
 
-            app.UseDatabaseMigration();
+            app.UseDatabaseSeedingAndMigration();
 
             app.UseMvc(routes =>
             {
