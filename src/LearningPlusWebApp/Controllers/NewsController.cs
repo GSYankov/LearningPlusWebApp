@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LearningPlus.Data.DbRepository.Contract;
+using LearningPlus.Models;
 using LearningPlus.Web.Models;
 using LearningPlus.Web.ViewModels.News;
 using LerningPlus.Web.Services.NewsService.Contract;
@@ -15,12 +16,12 @@ namespace LearningPlus.Web.Controllers
     {
         private readonly ILearningPlusNewsService newsService;
         private readonly UserManager<LearningPlusUser> userManager;
-        private readonly IRepository<LerningPlusNews> repository;
+        private readonly IRepository<LearningPlusNews> repository;
         private readonly IMapper mapper;
 
         public NewsController(ILearningPlusNewsService newsService, 
             UserManager<LearningPlusUser> userManager, 
-            IRepository<LerningPlusNews> repository,
+            IRepository<LearningPlusNews> repository,
             IMapper mapper)
         {
             this.newsService = newsService;
@@ -68,6 +69,15 @@ namespace LearningPlus.Web.Controllers
         {
             var creator = userManager.GetUserAsync(HttpContext.User).GetAwaiter().GetResult();
             this.newsService.CreateNews(model, creator);
+
+            return Redirect("/");
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
+        [HttpPost]
+        public  IActionResult Delete (string id)
+        {
+            this.newsService.FakeDelete(id);
 
             return Redirect("/");
         }

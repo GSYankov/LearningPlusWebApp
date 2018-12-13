@@ -19,5 +19,6 @@ namespace LerningPlus.Web.Services.NewsService.Contract
 
         void EditNews(NewsCreateEditPostViewModel model, LearningPlusUser creator);
         void CreateNews(NewsCreateEditPostViewModel model, LearningPlusUser creator);
+        void FakeDelete(string id);
     }
 }

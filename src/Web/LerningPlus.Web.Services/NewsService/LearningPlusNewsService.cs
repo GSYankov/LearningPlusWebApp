@@ -94,7 +94,7 @@ namespace LerningPlus.Web.Services.NewsService
         private static List<LearningPlusNewsTargetRole> AddTargetRolesToANews(NewsCreateEditPostViewModel model)
         {
             var targetRoles = new List<LearningPlusNewsTargetRole>();
-            if (model.roleAdmin)
+            if (model.RoleAdmin)
             {
                 var targetRole = new LearningPlusNewsTargetRole
                 {
@@ -103,7 +103,7 @@ namespace LerningPlus.Web.Services.NewsService
                 targetRoles.Add(targetRole);
             }
 
-            if (model.roleTeacher)
+            if (model.RoleTeacher)
             {
                 var targetRole = new LearningPlusNewsTargetRole
                 {
@@ -112,7 +112,7 @@ namespace LerningPlus.Web.Services.NewsService
                 targetRoles.Add(targetRole);
             }
 
-            if (model.roleChildrenParents)
+            if (model.RoleChildrenParents)
             {
                 var targetRole = new LearningPlusNewsTargetRole
                 {
@@ -128,6 +128,13 @@ namespace LerningPlus.Web.Services.NewsService
             }
 
             return targetRoles;
+        }
+
+        public void FakeDelete(string id)
+        {
+            var news = this.GetById(id).FirstOrDefault();
+            news.ExpiresOn = DateTime.UtcNow.AddDays(-1);
+            this.newsRepo.SaveChangesAsync().GetAwaiter().GetResult();
         }
     }
 }

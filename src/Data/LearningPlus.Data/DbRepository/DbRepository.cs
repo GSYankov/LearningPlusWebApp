@@ -12,7 +12,7 @@ namespace LearningPlus.Data.DbRepository
     where TEntity : class
     {
         private readonly LearningPlusDbContext context;
-        private DbSet<TEntity> dbSet;
+        private readonly DbSet<TEntity> dbSet;
 
         public DbRepository(LearningPlusDbContext context)
         {

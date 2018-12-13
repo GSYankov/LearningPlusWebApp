@@ -4,6 +4,10 @@
     ViewData["Title"] = "Новини подробно";
 }
 
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
+
 <h1 class="text-center">Детайли за новина</h1>
 
 <div class="d-flex justify-content-center">
@@ -29,10 +33,16 @@
         </dd>
     </dl>
 </div>
-<div class="text-center">
+<div class="row d-flex justify-content-center">
     @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
     {
         <a asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id">Промени</a> <span>|</span>
+        <form method="post" asp-controller="News" asp-action="Delete">
+            <input type="text" name="id" value="@Model.Id" hidden />
+            <button type="submit" id="btnaslink">Изтрий</button>  <span>|</span>
+
+            @*<a asp-controller="News" asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a> <span>|</span>*@
+        </form>
     }
     <a href="/">Назад</a>
 </div>

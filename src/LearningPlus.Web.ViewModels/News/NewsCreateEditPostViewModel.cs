@@ -10,11 +10,11 @@ namespace LearningPlus.Web.ViewModels.News
 
         public string Message { get; set; }
 
-        public bool roleAdmin { get; set; }
+        public bool RoleAdmin { get; set; }
 
-        public bool roleTeacher { get; set; }
+        public bool RoleTeacher { get; set; }
 
-        public bool roleChildrenParents { get; set; }
+        public bool RoleChildrenParents { get; set; }
 
         public DateTime ExpiresOn { get; set; }
     }
