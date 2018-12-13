@@ -1,0 +1,38 @@
+﻿@model LearningPlus.Web.ViewModels.News.NewsDetailsViewModel
+
+@{
+    ViewData["Title"] = "Новини подробно";
+}
+
+<h1 class="text-center">Детайли за новина</h1>
+
+<div class="d-flex justify-content-center">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Creator)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+    </dl>
+</div>
+<div class="text-center">
+    @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+    {
+        <a asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id">Промени</a> <span>|</span>
+    }
+    <a href="/">Назад</a>
+</div>

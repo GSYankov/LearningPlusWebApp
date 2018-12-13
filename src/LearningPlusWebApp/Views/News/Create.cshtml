@@ -1,0 +1,56 @@
+﻿@model LearningPlus.Web.ViewModels.News.NewsEditViewModel
+
+@{
+    ViewData["Title"] = "Създаване на новина";
+}
+
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
+
+<h4 class="text-center">@ViewData["Title"]</h4>
+<hr />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <input asp-for="Message" class="form-control" />
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetRoles" class="control-label"></label><br />
+                <input type="checkbox" name="roleadmin" value="true"
+                       @if (User.IsInRole("Admin")) { <text> checked</text> } /> Администратори<br>
+                <input type="checkbox" name="roleteacher" value="true"
+                       @if (User.IsInRole("Teacher")) { <text> checked</text> }> Учители<br>
+                <input type="checkbox" name="rolechildrenparents" value="true"
+                       @if (User.IsInRole("Teacher")) { <text> checked</text> }> Деца и Родители<br>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiresOn" class="control-label"></label>
+                <input asp-for="ExpiresOn" type="date" id="mydate" class="form-control" />
+                <span asp-validation-for="ExpiresOn" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="text-center">
+                    <a href="/">Откажи</a>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Създай" class="btn logo-btn" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("mydate").value = "@DateTime.Now.AddDays(14).ToString("yyyy-MM-dd")";
+    </script>
+}
+
