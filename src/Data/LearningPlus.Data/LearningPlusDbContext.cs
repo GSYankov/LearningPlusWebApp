@@ -17,10 +17,15 @@ namespace LearningPlus.Data
 
         public virtual DbSet<LearningPlusNewsTargetRole> NewsTargetRole { get; set; }
 
+        public virtual DbSet<LearningPlusClass> Classes { get; set; }
+
+        public virtual DbSet<LearningPlusStudentsClasses> StudentsClasses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<LearningPlusNewsTargetRole>(e => e.HasKey(n => new { n.NewsId, n.TargetRole}));
+            modelBuilder.Entity<LearningPlusNewsTargetRole>(e => e.HasKey(n => new { n.NewsId, n.TargetRole }));
+            modelBuilder.Entity<LearningPlusStudentsClasses>(e => e.HasKey(n => new { n.StudentId, n.ClassId }));
         }
 
     }
