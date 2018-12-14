@@ -1,0 +1,81 @@
+﻿@model IEnumerable<LearningPlus.Web.ViewModels.News.NewsArchiveViewModel>
+
+@{
+    ViewData["Title"] = "Архив новини";
+}
+
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+
+
+<div class="width-90 d-flex justify-content-center">
+
+    <div>
+        <p>
+            <a asp-controller="News" asp-action="Create">Създай Новина</a>
+        </p>
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Creator)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TargetRoles)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ExpiresOn)
+                    </th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{var i = 1;
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => i)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedOn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Creator)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Message)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TargetRoles)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpiresOn)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Промени", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Детайли", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Изтрий", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+            <hr class="mt-0" />
+    </div>
+</div>
