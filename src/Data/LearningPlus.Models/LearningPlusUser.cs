@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LearningPlus.Web.Models
+namespace LearningPlus.Models
 {
     public class LearningPlusUser : IdentityUser
     {

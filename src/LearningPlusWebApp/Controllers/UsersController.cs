@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using LearningPlus.Web.Models;
+using LearningPlus.Models;
 using AutoMapper;
 using LearningPlus.Web.ViewModels;
 using LearningPlus.Web.ViewModels.Users;

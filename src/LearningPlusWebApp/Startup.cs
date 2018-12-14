@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using LearningPlus.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using LearningPlus.Web.Models;
+using LearningPlus.Models;
 using LearningPlus.Web.Infrastructure.Extensions;
 using LearningPlus.Web.Services.EmailSender;
 using AutoMapper;

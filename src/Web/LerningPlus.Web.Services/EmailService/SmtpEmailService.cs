@@ -39,16 +39,18 @@ namespace LearningPlus.Web.Services.EmailSender
             msg.Body = htmlMessage;
             msg.IsBodyHtml = true;
 
-            SmtpClient client = new SmtpClient();
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential(
+            SmtpClient client = new SmtpClient
+            {
+                UseDefaultCredentials = false,
+                Credentials = new System.Net.NetworkCredential(
                 this.configuration["Email:Sender"],
-                this.configuration["Email:Password"]);
+                this.configuration["Email:Password"]),
 
-            client.Port = 587; // Use Port 25 if 587 is blocked.
-            client.Host = this.configuration["Email:Server"];
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.EnableSsl = true;
+                Port = 587, // Use Port 25 if 587 is blocked.
+                Host = this.configuration["Email:Server"],
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                EnableSsl = true
+            };
             client.Send(msg);
 
             return;

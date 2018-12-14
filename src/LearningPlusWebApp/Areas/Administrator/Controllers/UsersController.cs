@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using LearningPlus.Web.Areas.Administrator.ViewModels;
-using LearningPlus.Web.Models;
+using LearningPlus.Models;
 using LearningPlus.Web.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
