@@ -81,5 +81,14 @@ namespace LearningPlus.Web.Controllers
 
             return Redirect("/");
         }
+
+        [Authorize(Roles = "Admin, Teacher")]
+        public IActionResult Archive()
+        {
+            //TODO: Improve news delete. Insert Pagination
+            var model = this.newsService.GetArchivedNews();
+
+            return View(model);
+        }
     }
 }

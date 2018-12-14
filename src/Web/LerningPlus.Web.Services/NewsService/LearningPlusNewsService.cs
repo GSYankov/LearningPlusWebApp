@@ -11,6 +11,7 @@ using System.Text;
 using LearningPlus.Web.Models;
 using LearningPlus.Web.ViewModels.News;
 using LearningPlus.Web.Models.Enums;
+using LearningPlus.Web.Services;
 
 namespace LerningPlus.Web.Services.NewsService
 {
@@ -23,7 +24,13 @@ namespace LerningPlus.Web.Services.NewsService
 
         public LearningPlusNewsService(IMapper mapper, IRepository<LearningPlusNews> repository)
         {
-            this.mapper = mapper;
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<LearningPlusNews, NewsArchiveViewModel>()
+             .ForMember(dest => dest.Creator, opt => opt.MapFrom(src => src.Creator.UserName))
+             .ForMember(dest => dest.TargetRoles,
+            opt => opt.MapFrom(src => 
+                                    string.Join(' ', src.TargetRoles.Select(tr => tr.TargetRole.ToString()[0])))));
+
+            this.mapper = new Mapper(config);
             this.newsRepo = repository;
         }
 
@@ -135,6 +142,17 @@ namespace LerningPlus.Web.Services.NewsService
             var news = this.GetById(id).FirstOrDefault();
             news.ExpiresOn = DateTime.UtcNow.AddDays(-1);
             this.newsRepo.SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public ICollection<NewsArchiveViewModel> GetArchivedNews()
+        {
+            var allExpiredNews = this.newsRepo.All()
+                .Include(n => n.Creator).Include(n => n.TargetRoles)
+                .Where(n => n.ExpiresOn < DateTime.UtcNow).ToList();
+
+            var result = allExpiredNews.Select(n => this.mapper.Map<NewsArchiveViewModel>(n)).ToList();
+
+            return result;
         }
     }
 }

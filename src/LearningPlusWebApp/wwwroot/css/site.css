@@ -30,6 +30,11 @@ body {
     color: red;
 }
 
+.width-90 {
+    width: 90%
+}
+
+/* Makes a btn looks like a link */
 #btnaslink {
     color: #50d8af;
     transition: 0.5s;
