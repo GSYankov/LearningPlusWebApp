@@ -1,20 +1,18 @@
 ﻿using LearningPlus.Models.Enums;
-using LearningPlus.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace LearningPlus.Models
 {
-   public class LearningPlusClass
+    public class LearningPlusClass
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public DayOfWeek DayOfWeek { get; set; }
+        public DaysOfWeek DayOfWeek { get; set; }
 
         public TimeOfDay TimeOfDay { get; set; }
 

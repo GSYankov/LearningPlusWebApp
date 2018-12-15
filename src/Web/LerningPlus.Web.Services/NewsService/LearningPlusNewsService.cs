@@ -7,11 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
-using LearningPlus.Web.Models;
 using LearningPlus.Web.ViewModels.News;
 using LearningPlus.Web.Models.Enums;
-using LearningPlus.Web.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace LerningPlus.Web.Services.NewsService
 {
@@ -22,12 +20,13 @@ namespace LerningPlus.Web.Services.NewsService
         private readonly IMapper mapper;
         private readonly IRepository<LearningPlusNews> newsRepo;
 
-        public LearningPlusNewsService(IMapper mapper, IRepository<LearningPlusNews> repository)
+        public LearningPlusNewsService(IMapper mapper,
+            IRepository<LearningPlusNews> repository)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<LearningPlusNews, NewsArchiveViewModel>()
              .ForMember(dest => dest.Creator, opt => opt.MapFrom(src => src.Creator.UserName))
              .ForMember(dest => dest.TargetRoles,
-            opt => opt.MapFrom(src => 
+            opt => opt.MapFrom(src =>
                                     string.Join(' ', src.TargetRoles.Select(tr => tr.TargetRole.ToString()[0])))));
 
             this.mapper = new Mapper(config);

@@ -15,6 +15,10 @@ using LearningPlus.Data.DbRepository.Contract;
 using LearningPlus.Data.DbRepository;
 using LerningPlus.Web.Services.NewsService.Contract;
 using LerningPlus.Web.Services.NewsService;
+using LerningPlus.Web.Services.UsersService;
+using LerningPlus.Web.Services.UsersService.Contract;
+using LerningPlus.Web.Services.ClassesService.Contract;
+using LerningPlus.Web.Services.ClassesService;
 
 namespace LearningPlus.Web
 {
@@ -65,6 +69,8 @@ namespace LearningPlus.Web
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddTransient<IEmailService, SmtpEmailService>();
             services.AddScoped<ILearningPlusNewsService, LearningPlusNewsService>();
+            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IClassesService, ClassesService>();
 
         }
 
