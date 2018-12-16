@@ -4,14 +4,16 @@ using LearningPlus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningPlus.Web.Migrations
 {
     [DbContext(typeof(LearningPlusDbContext))]
-    partial class LearningPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181216083651_ClassesRestrucure")]
+    partial class ClassesRestrucure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

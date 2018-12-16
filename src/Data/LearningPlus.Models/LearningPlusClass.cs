@@ -18,7 +18,7 @@ namespace LearningPlus.Models
 
         public Disciplines Discipline{ get; set; }
 
-        public ICollection<LearningPlusStudentsClasses> Students { get; set; }
+        public ICollection<LearningPlusUser> Students { get; set; }
 
         public LearningPlusUser Teacher { get; set; }
 

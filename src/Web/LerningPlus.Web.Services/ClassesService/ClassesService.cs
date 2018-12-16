@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using LearningPlus.Data;
 using LearningPlus.Data.DbRepository.Contract;
 using LearningPlus.Models;
 using LearningPlus.Models.Enums;
 using LearningPlus.Web.ViewModels.Classes;
 using LerningPlus.Web.Services.ClassesService.Contract;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +24,23 @@ namespace LerningPlus.Web.Services.ClassesService
         {
             this.userManager = userManager;
             this.classRepo = classRepo;
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ClassesCreateViewModel, LearningPlusClass>()
-            .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => Enum.Parse<LearningPlus.Models.Enums.DaysOfWeek>(src.DayOfWeek)))
-            .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => Enum.Parse<Disciplines>(src.Discipline)))
-            .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => Enum.Parse<TimeOfDay>($"H{src.TimeOfDay.Substring(0, 5).Remove(2, 1)}")))
-            .ForMember(dest => dest.Room, opt => opt.MapFrom(src => Enum.Parse<Room>(src.Room)))
-            .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => this.userManager.FindByIdAsync(src.TeacherId).GetAwaiter().GetResult()))
-            .ForMember(dest => dest.Students, opt => opt
-                                                .MapFrom(src => src.StudentIds.Select(id => new LearningPlusStudentsClasses() { StudentId = id }))));
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ClassesCreateViewModel, LearningPlusClass>()
+                .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => Enum.Parse<LearningPlus.Models.Enums.DaysOfWeek>(src.DayOfWeek)))
+                .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => Enum.Parse<Disciplines>(src.Discipline)))
+                .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => Enum.Parse<TimeOfDay>($"H{src.TimeOfDay.Substring(0, 5).Remove(2, 1)}")))
+                .ForMember(dest => dest.Room, opt => opt.MapFrom(src => Enum.Parse<Room>(src.Room)))
+                .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => this.userManager.FindByIdAsync(src.TeacherId).GetAwaiter().GetResult()))
+                .ForMember(dest => dest.Students, opt =>
+                    opt.MapFrom(src => src.StudentIds.Select(id => this.userManager.FindByIdAsync(id).GetAwaiter().GetResult())));
+
+                cfg.CreateMap<LearningPlusClass, ClassesScheduleViewModel>()
+                .ForMember(dest => dest.StudentNamesShort, opt =>
+                    opt.MapFrom(src => string.Join(", ", src.Students.Select(s => s.FirstName)))
+                );
+            });
 
 
             this.mapper = new Mapper(config);
@@ -45,6 +56,14 @@ namespace LerningPlus.Web.Services.ClassesService
             this.classRepo.SaveChangesAsync().GetAwaiter().GetResult();
 
             return newClass;
+        }
+
+        public ICollection<ClassesScheduleViewModel> GetScheduleClasses()
+        {
+            var classes = this.classRepo.All().Include(src => src.Students).Where(c => c.Active).ToList();
+            var model = classes.Select(c => this.mapper.Map<ClassesScheduleViewModel>(c)).ToList();
+
+            return model;
         }
     }
 }

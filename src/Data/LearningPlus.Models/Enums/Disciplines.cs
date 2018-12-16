@@ -6,9 +6,9 @@ namespace LearningPlus.Models.Enums
 {
     public enum Disciplines
     {
-        Bulgarian = 1,
-        English = 2,
-        Mathematics = 3,
-        History = 4
+        Български_език = 1,
+        Английски_език = 2,
+        Математика = 3,
+        История = 4
     }
 }

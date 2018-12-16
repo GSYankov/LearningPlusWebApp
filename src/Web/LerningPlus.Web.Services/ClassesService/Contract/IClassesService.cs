@@ -9,5 +9,6 @@ namespace LerningPlus.Web.Services.ClassesService.Contract
    public interface IClassesService
     {
         LearningPlusClass Create(ClassesCreateViewModel model);
+        ICollection<ClassesScheduleViewModel> GetScheduleClasses();
     }
 }

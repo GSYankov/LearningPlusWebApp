@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LearningPlus.Web.Controllers
 {
@@ -33,6 +31,8 @@ namespace LearningPlus.Web.Controllers
         {
             ViewBag.Days = GlobalConstants.DaysOfWeek;
             ViewBag.Hours = GlobalConstants.StartHours;
+
+            var model = classesService.GetScheduleClasses();
 
             return View();
         }

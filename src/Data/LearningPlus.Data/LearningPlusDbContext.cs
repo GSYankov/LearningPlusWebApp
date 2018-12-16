@@ -1,5 +1,4 @@
 ﻿using LearningPlus.Models;
-using LearningPlus.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +18,10 @@ namespace LearningPlus.Data
 
         public virtual DbSet<LearningPlusClass> Classes { get; set; }
 
-        public virtual DbSet<LearningPlusStudentsClasses> StudentsClasses { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<LearningPlusNewsTargetRole>(e => e.HasKey(n => new { n.NewsId, n.TargetRole }));
-            modelBuilder.Entity<LearningPlusStudentsClasses>(e => e.HasKey(n => new { n.StudentId, n.ClassId }));
         }
 
     }
