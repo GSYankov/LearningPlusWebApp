@@ -34,7 +34,7 @@ namespace LearningPlus.Web.Controllers
 
             var model = classesService.GetScheduleClasses();
 
-            return View();
+            return View(model);
         }
 
         [Authorize(Roles = "Admin, Teacher")]

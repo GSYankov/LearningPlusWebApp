@@ -9,15 +9,15 @@ namespace LearningPlus.Web.ViewModels.Classes
     {
         public string Id { get; set; }
 
-        public DaysOfWeek DayOfWeek { get; set; }
+        public string DayOfWeek { get; set; }
 
-        public TimeOfDay TimeOfDay { get; set; }
+        public string TimeOfDay { get; set; }
 
-        public Disciplines Discipline { get; set; }
+        public string Discipline { get; set; }
 
         public string StudentNamesShort { get; set; }
 
-        public Room Room { get; set; }
+        public string Room { get; set; }
 
     }
 }

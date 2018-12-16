@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<LearningPlus.Web.ViewModels.Classes.ClassesScheduleViewModel>
+
 @{
     ViewData["Title"] = "График";
 }
@@ -14,10 +15,33 @@
             <hr />
             @for (int i = 0; i < 7; i++)
             {
-                <div class="row ml-1 mr-1 justify-content-between">
-                    <div>@ViewBag.Hours[i]</div>
-                    <div><b>М A</b></div>
-                    <div>Иван5678906666</div>
+                <div class="row ml-1 mr-1">
+                    <div class="col col-md-2 pl-0">@ViewBag.Hours[i]</div>
+
+                    @{ var lpClass = Model.Where(c => c.DayOfWeek == ViewBag.Days[d]
+                                  && c.TimeOfDay == ViewBag.Hours[i]);
+                        @if (lpClass.Count() != 0)
+                        {
+                            var room1 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_1");
+                            var room2 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_2");
+                            var students = room1?.StudentNamesShort.Length + room2?.StudentNamesShort.Length > 12 ?
+                                string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Substring(0, 12) + "..." :
+                                string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort);
+                            <div class="col col-md-1">
+                                <b>@room1?.Discipline</b>
+                            </div>
+                            <div class="col col-md-1 ">
+                                <b>@room2?.Discipline</b>
+                            </div>
+                            <div class="col col-md-7 pr-0 text-right">@students</div>
+                        }
+                        else
+                        {
+                            <div class="col col-md-10 pr-0 text-right">
+                                <a asp-controller="Classes" asp-action="Create">Свободен час</a>
+                            </div>
+                        }
+                    }
                 </div>
                 <hr class="mt-1 mb-1" />
             }

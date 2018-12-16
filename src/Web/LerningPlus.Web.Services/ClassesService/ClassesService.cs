@@ -38,7 +38,9 @@ namespace LerningPlus.Web.Services.ClassesService
 
                 cfg.CreateMap<LearningPlusClass, ClassesScheduleViewModel>()
                 .ForMember(dest => dest.StudentNamesShort, opt =>
-                    opt.MapFrom(src => string.Join(", ", src.Students.Select(s => s.FirstName)))
+                    opt.MapFrom(src => string.Join(", ", src.Students.Select(s => s.FirstName))))
+                    .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => src.Discipline.ToString().Substring(0, 1)))
+                    .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":"))
                 );
             });
 
