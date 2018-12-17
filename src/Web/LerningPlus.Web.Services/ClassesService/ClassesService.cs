@@ -40,10 +40,11 @@ namespace LerningPlus.Web.Services.ClassesService
                 .ForMember(dest => dest.StudentNamesShort, opt =>
                     opt.MapFrom(src => string.Join(", ", src.Students.Select(s => s.FirstName))))
                     .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => src.Discipline.ToString().Substring(0, 1)))
-                    .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":"))
-                );
-            });
+                    .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":")));
 
+                cfg.CreateMap<LearningPlusClass, ClassesDetailsViewModel>()
+                .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => $"{src.Teacher.FirstName} {src.Teacher.LastName}"));
+            });
 
             this.mapper = new Mapper(config);
 
@@ -58,6 +59,14 @@ namespace LerningPlus.Web.Services.ClassesService
             this.classRepo.SaveChangesAsync().GetAwaiter().GetResult();
 
             return newClass;
+        }
+
+        public ClassesDetailsViewModel GetDetailsById(string id)
+        {
+            var lpClass = this.classRepo.All().Include(c=>c.Teacher).FirstOrDefault(c => c.Id.ToString() == id);
+            var model = this.mapper.Map<ClassesDetailsViewModel>(lpClass);
+
+            return model;
         }
 
         public ICollection<ClassesScheduleViewModel> GetScheduleClasses()

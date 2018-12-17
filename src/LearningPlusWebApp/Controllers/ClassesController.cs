@@ -40,14 +40,19 @@ namespace LearningPlus.Web.Controllers
         [Authorize(Roles = "Admin, Teacher")]
         public IActionResult Create()
         {
+            CreateEditViewBag();
+
+            return View();
+        }
+
+        private void CreateEditViewBag()
+        {
             ViewBag.Days = GlobalConstants.DaysOfWeek;
             ViewBag.FullHours = GlobalConstants.FullHours;
             ViewBag.Disciplines = (Disciplines[])Enum.GetValues(typeof(Disciplines));
             ViewBag.Rooms = (Room[])Enum.GetValues(typeof(Room));
             ViewBag.Teachers = GetUserIdsAndFullName("Teacher");
             ViewBag.Children = GetUserIdsAndFullName("Child");
-
-            return View();
         }
 
         private Dictionary<string, string> GetUserIdsAndFullName(string role)
@@ -70,6 +75,23 @@ namespace LearningPlus.Web.Controllers
         {
             this.classesService.Create(model);
             return RedirectToAction("Schedule", "Classes");
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
+        public IActionResult Details(string id)
+        {
+            var model = this.classesService.GetDetailsById(id);
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
+        public IActionResult Edit(ClassesCreateViewModel model)
+        {
+            CreateEditViewBag();
+
+
+            return View();
         }
     }
 }

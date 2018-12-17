@@ -1,0 +1,84 @@
+﻿@model LearningPlus.Web.ViewModels.Classes.ClassesCreateViewModel
+
+@{
+    ViewData["Title"] = "Запиши час";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<hr />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8 text-center">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DayOfWeek" class="control-label col-md-3 text-left"></label>
+                <select class="col-md-3 text-right" name="dayofweek">
+                    @foreach (var day in ViewBag.Days)
+                    {
+                        <option value="@day">@day</option>
+                    }
+                </select>
+                <span asp-validation-for="DayOfWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeOfDay" class="control-label col-md-3 text-left"></label>
+                <select class="col-md-3" name="timeofday">
+                    @foreach (var hour in ViewBag.FullHours)
+                    {
+                        <option value="@hour">@hour</option>
+                    }
+                </select>
+                <span asp-validation-for="TimeOfDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discipline" class="control-label col-md-3 text-left"></label>
+                <select class="col-md-3" name="discipline">
+                    @foreach (var discp in ViewBag.Disciplines)
+                    {
+                        <option value="@discp">@discp.ToString().Replace("_"," ")</option>
+                    }
+                </select>
+                <span asp-validation-for="Discipline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentIds" class="control-label  col-md-3 text-left"></label>
+                <select class="col-md-3" multiple name="studentids" size="6">
+                    @foreach (var student in ViewBag.Children)
+                    {
+                        <option class="text-center" value="@student.Key">@student.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="StudentIds" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TeacherId" class="control-label col-md-3 text-left"></label>
+                <select class="col-md-3" name="teacherid">
+                    @foreach (var teacher in ViewBag.Teachers)
+                    {
+                        <option value="@teacher.Key">@teacher.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Room" class="control-label col-md-3 text-left"></label>
+                <select class="col-md-3" name="room">
+                    @foreach (var room in ViewBag.Rooms)
+                    {
+                        <option value="@room">@room.ToString().Replace('_', ' ')</option>
+                    }
+                </select>
+                <span asp-validation-for="Room" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

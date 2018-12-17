@@ -19,7 +19,7 @@
                     <div class="col col-md-2 pl-0">@ViewBag.Hours[i]</div>
 
                     @{ var lpClass = Model.Where(c => c.DayOfWeek == ViewBag.Days[d]
-                                  && c.TimeOfDay == ViewBag.Hours[i]);
+                                   && c.TimeOfDay == ViewBag.Hours[i]);
                         @if (lpClass.Count() != 0)
                         {
                             var room1 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_1");
@@ -28,10 +28,10 @@
                                 string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Substring(0, 12) + "..." :
                                 string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort);
                             <div class="col col-md-1">
-                                <b>@room1?.Discipline</b>
+                                <a asp-controller="Classes" asp-action="Details" asp-route-id="@room1?.Id" class="text-dark"><b>@room1?.Discipline</b></a>
                             </div>
                             <div class="col col-md-1 ">
-                                <b>@room2?.Discipline</b>
+                                <a asp-controller="Classes" asp-action="Details" asp-route-id="@room2?.Id" class="text-dark"><b>@room2?.Discipline</b></a>
                             </div>
                             <div class="col col-md-7 pr-0 text-right">@students</div>
                         }
