@@ -19,6 +19,7 @@ using LerningPlus.Web.Services.UsersService;
 using LerningPlus.Web.Services.UsersService.Contract;
 using LerningPlus.Web.Services.ClassesService.Contract;
 using LerningPlus.Web.Services.ClassesService;
+using LearningPlus.Web.Hubs;
 
 namespace LearningPlus.Web
 {
@@ -63,6 +64,7 @@ namespace LearningPlus.Web
                 .AddEntityFrameworkStores<LearningPlusDbContext>();
 
             services.AddAutoMapper();
+            services.AddSignalR();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -93,6 +95,11 @@ namespace LearningPlus.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseSignalR(
+                route =>
+                {
+                    route.MapHub<ChatHub>("/chat");
+                });
 
             app.UseDatabaseSeedingAndMigration();
 

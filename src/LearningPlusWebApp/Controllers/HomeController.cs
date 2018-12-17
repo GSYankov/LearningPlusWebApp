@@ -17,7 +17,6 @@ namespace LearningPlus.Web.Controllers
 
         public IActionResult Index()
         {
-            //TODO: Create NewsService, Tests, CRUD on News
             if (this.User.Identity.IsAuthenticated)
             {
                 if (this.User.IsInRole("Admin"))
@@ -62,6 +61,11 @@ namespace LearningPlus.Web.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Chat()
         {
             return View();
         }

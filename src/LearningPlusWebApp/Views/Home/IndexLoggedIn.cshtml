@@ -38,7 +38,10 @@
             <ul id="ticker01">
                 @foreach (var news in Model)
                 {
-                    <li><span>@news.CreatedOn.ToString("MM/dd/yyyy hh:mm")</span><a asp-controller="News" asp-action="Details" asp-route-id="@news.Id.ToString()"> @news.Message</a></li>
+                    <li>
+                        <span>@news.CreatedOn.ToString("MM/dd/yyyy hh:mm")</span>
+                        <a asp-controller="News" asp-action="Details" asp-route-id="@news.Id.ToString()"> @news.Message</a>
+                    </li>
                 }
             </ul>
         </div>
