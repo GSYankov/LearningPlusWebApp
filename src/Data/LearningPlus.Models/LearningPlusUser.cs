@@ -12,6 +12,7 @@ namespace LearningPlus.Models
         public LearningPlusUser()
         {
             this.Children = new HashSet<LearningPlusUser>();
+            this.ClassesEnrolled = new HashSet<LearningPlusClassesStudents>();
         }
 
         [Required]
@@ -21,5 +22,8 @@ namespace LearningPlus.Models
         public string LastName { get; set; }
 
         public virtual ICollection<LearningPlusUser> Children { get; set; }
+
+        public virtual ICollection<LearningPlusClassesStudents> ClassesEnrolled { get; set; }
+
     }
 }

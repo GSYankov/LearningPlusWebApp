@@ -79,14 +79,18 @@
                 </select>
                 <span asp-validation-for="Room" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="row d-flex justify-content-between mb-3">
+                <div class="col-1"></div>
+                <div class="col-5">
+                    <input type="submit" value="Запиши" class="btn btn-primary" />
+                </div>
+                <div class="col-6">
+                    <a asp-controller="Classes" asp-action="Schedule">Откажи</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 

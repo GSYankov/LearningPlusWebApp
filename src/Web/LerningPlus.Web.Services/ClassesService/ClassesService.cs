@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using LearningPlus.Data;
 using LearningPlus.Data.DbRepository.Contract;
 using LearningPlus.Models;
 using LearningPlus.Models.Enums;
@@ -10,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LerningPlus.Web.Services.ClassesService
 {
@@ -33,12 +31,13 @@ namespace LerningPlus.Web.Services.ClassesService
                 .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => Enum.Parse<TimeOfDay>($"H{src.TimeOfDay.Substring(0, 5).Remove(2, 1)}")))
                 .ForMember(dest => dest.Room, opt => opt.MapFrom(src => Enum.Parse<Room>(src.Room)))
                 .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => this.userManager.FindByIdAsync(src.TeacherId).GetAwaiter().GetResult()))
-                .ForMember(dest => dest.Students, opt =>
-                    opt.MapFrom(src => src.StudentIds.Select(id => this.userManager.FindByIdAsync(id).GetAwaiter().GetResult())));
+                .ForMember(dest => dest.StudentsEnrolled, opt =>
+                    opt.MapFrom(src => src.StudentIds.Select(id => new LearningPlusClassesStudents { StudentId = id })));
 
                 cfg.CreateMap<LearningPlusClass, ClassesScheduleViewModel>()
                 .ForMember(dest => dest.StudentNamesShort, opt =>
-                    opt.MapFrom(src => string.Join(", ", src.Students.Select(s => s.FirstName))))
+                    opt.MapFrom(src => string.Join(", ", src.StudentsEnrolled.Select(s =>
+                   this.userManager.FindByIdAsync(s.StudentId).GetAwaiter().GetResult().FirstName))))
                     .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => src.Discipline.ToString().Substring(0, 1)))
                     .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":")));
 
@@ -46,6 +45,8 @@ namespace LerningPlus.Web.Services.ClassesService
                 .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => $"{src.Teacher.FirstName} {src.Teacher.LastName}"))
                 .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => src.Discipline.ToString().Replace('_', ' ')))
                 .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.ToString().Replace('_', ' ')))
+                .ForMember(dest => dest.Students, opt => opt.MapFrom(src => src.StudentsEnrolled.Select(s =>
+                  this.userManager.FindByIdAsync(s.StudentId).GetAwaiter().GetResult())))
                 .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":") + " ч."));
 
             });
@@ -67,7 +68,7 @@ namespace LerningPlus.Web.Services.ClassesService
 
         public LearningPlusClass DeleteById(string id)
         {
-            var lpclass = this.classRepo.All().SingleOrDefault(c=>c.Id.ToString()==id);
+            var lpclass = this.classRepo.All().SingleOrDefault(c => c.Id.ToString() == id);
             lpclass.Active = false;
             this.classRepo.SaveChangesAsync().GetAwaiter().GetResult();
 
@@ -76,7 +77,7 @@ namespace LerningPlus.Web.Services.ClassesService
 
         public ClassesDetailsViewModel GetDetailsById(string id)
         {
-            var lpClass = this.classRepo.All().Include(c => c.Teacher).Include(c=>c.Students).FirstOrDefault(c => c.Id.ToString() == id);
+            var lpClass = this.classRepo.All().Include(c => c.Teacher).Include(c => c.StudentsEnrolled).FirstOrDefault(c => c.Id.ToString() == id);
             var model = this.mapper.Map<ClassesDetailsViewModel>(lpClass);
 
             return model;
@@ -84,7 +85,7 @@ namespace LerningPlus.Web.Services.ClassesService
 
         public ICollection<ClassesScheduleViewModel> GetScheduleClasses()
         {
-            var classes = this.classRepo.All().Include(src => src.Students).Where(c => c.Active).ToList();
+            var classes = this.classRepo.All().Include(s => s.StudentsEnrolled).Where(c => c.Active).ToList();
             var model = classes.Select(c => this.mapper.Map<ClassesScheduleViewModel>(c)).ToList();
 
             return model;

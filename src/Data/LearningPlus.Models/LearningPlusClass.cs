@@ -8,6 +8,11 @@ namespace LearningPlus.Models
 {
     public class LearningPlusClass
     {
+        public LearningPlusClass()
+        {
+            this.StudentsEnrolled = new HashSet<LearningPlusClassesStudents>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -18,7 +23,7 @@ namespace LearningPlus.Models
 
         public Disciplines Discipline{ get; set; }
 
-        public ICollection<LearningPlusUser> Students { get; set; }
+        public ICollection<LearningPlusClassesStudents> StudentsEnrolled { get; set; }
 
         public LearningPlusUser Teacher { get; set; }
 

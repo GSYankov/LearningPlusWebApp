@@ -18,10 +18,13 @@ namespace LearningPlus.Data
 
         public virtual DbSet<LearningPlusClass> Classes { get; set; }
 
+        public virtual DbSet<LearningPlusClassesStudents> ClassesStudents { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<LearningPlusNewsTargetRole>(e => e.HasKey(n => new { n.NewsId, n.TargetRole }));
+            modelBuilder.Entity<LearningPlusClassesStudents>(e => e.HasKey(cs => new { cs.ClassId, cs.StudentId }));
         }
 
     }

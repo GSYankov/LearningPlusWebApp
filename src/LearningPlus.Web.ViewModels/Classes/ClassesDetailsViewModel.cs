@@ -20,6 +20,7 @@ namespace LearningPlus.Web.ViewModels.Classes
         [DisplayName("Предмет")]
         public string Discipline { get; set; }
 
+        [DisplayName("Ученици")]
         public ICollection<LearningPlusUser> Students { get; set; }
 
         [DisplayName("Преподавател")]
