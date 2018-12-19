@@ -93,5 +93,15 @@ namespace LearningPlus.Web.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, Teacher")]
+        public IActionResult Delete(string id)
+        {
+            this.classesService.DeleteById(id);
+
+            return RedirectToAction("Schedule", "Classes");
+        }
+
     }
 }

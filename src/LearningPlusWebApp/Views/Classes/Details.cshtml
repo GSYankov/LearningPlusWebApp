@@ -1,48 +1,69 @@
 ﻿@model LearningPlus.Web.ViewModels.Classes.ClassesDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детайли за час";
 }
 
-<h1>Details</h1>
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
 
-<div>
-    <h4>ClassesDetailsViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DayOfWeek)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DayOfWeek)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TimeOfDay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TimeOfDay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Discipline)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Discipline)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Teacher)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Teacher)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room)
-        </dd>
-    </dl>
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="row d-flex justify-content-center">
+    <div class="quad-width">
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-6 text-right">
+                @Html.DisplayNameFor(model => model.DayOfWeek)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.DayOfWeek)
+            </dd>
+            <dt class="col-sm-6 text-right">
+                @Html.DisplayNameFor(model => model.TimeOfDay)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TimeOfDay)
+            </dd>
+            <dt class="col-sm-6 text-right">
+                @Html.DisplayNameFor(model => model.Discipline)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Discipline)
+            </dd>
+            <dt class="col-sm-6 text-right">
+                @Html.DisplayNameFor(model => model.Teacher)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Teacher)
+            </dd>
+            <dt class="col-sm-6 text-right">
+                @Html.DisplayNameFor(model => model.Room)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Room)
+            </dd>
+            <dt class="col-sm-6 text-right">
+                @Html.DisplayNameFor(model => model.Students)
+            </dt>
+            <dd class="col-sm-6">
+                @foreach (var student in Model.Students)
+                {
+                    <div class="col-12 pl-0">
+                        <a asp-area="Teacher" asp-controller="Users" asp-action="UserDetails" asp-route-id="@student.Id">@student.UserName</a>
+                    </div>
+                }
+            </dd>
+        </dl>
+        <div class="row justify-content-center">
+            @Html.ActionLink("Промени", "Edit", new { id = Model.Id }) |
+            <form asp-controller="Classes" asp-action="Delete" method="post">
+                <input name="id" value="@Model.Id" hidden />
+                <button type="submit" id="btnaslink">Изтрий</button>
+            </form> |
+            <a asp-controller="Classes" asp-action="Schedule">Към график</a>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Промени", "Edit", new {id = Model.Id}) |
-    <a asp-action="Index">Back to List</a>
-</div>
+

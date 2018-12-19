@@ -11,5 +11,7 @@ namespace LerningPlus.Web.Services.ClassesService.Contract
         ICollection<ClassesScheduleViewModel> GetScheduleClasses();
 
         ClassesDetailsViewModel GetDetailsById(string id);
+
+        LearningPlusClass DeleteById(string id);
     }
 }

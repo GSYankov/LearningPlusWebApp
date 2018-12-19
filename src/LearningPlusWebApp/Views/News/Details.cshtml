@@ -40,8 +40,6 @@
         <form method="post" asp-controller="News" asp-action="Delete">
             <input type="text" name="id" value="@Model.Id" hidden />
             <button type="submit" id="btnaslink">Изтрий</button>  <span>|</span>
-
-            @*<a asp-controller="News" asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a> <span>|</span>*@
         </form>
     }
     <a href="/">Назад</a>

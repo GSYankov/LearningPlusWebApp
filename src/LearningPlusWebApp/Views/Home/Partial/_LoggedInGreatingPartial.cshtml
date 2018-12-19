@@ -9,7 +9,7 @@
 }
 else if (User.IsInRole("Teacher"))
 {
-    <h2>Здравей, <span>@User.Identity.Name!</span><br>Какво си подготвил на своите ученици днес?</h2>
+    <h2>Здравей, <span>@User.Identity.Name!</span><br>Покажи им важните неща!</h2>
 }
 else if (User.IsInRole("Parent"))
 {
@@ -17,7 +17,7 @@ else if (User.IsInRole("Parent"))
 }
 else if (User.IsInRole("Child"))
 {
-    <h2>Здравей, <span>@User.Identity.Name!</span><br>По какво ще учиш днес?</h2>
+    <h2>Здравей, <span>@User.Identity.Name!</span><br>Подготви се за днес!</h2>
 }
 <div>
     <a href="#about" class="btn-get-started scrollto">Get Started</a>

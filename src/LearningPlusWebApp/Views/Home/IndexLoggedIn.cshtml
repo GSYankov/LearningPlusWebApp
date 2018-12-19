@@ -6,6 +6,7 @@
 
 @section Head{
     <link rel="stylesheet" href="~/css/news.css">
+    <link href="~/css/site.css" rel="stylesheet" />
 }
 
 <!--==========================
@@ -29,36 +30,8 @@
 <!--==========================
      News box
    ============================-->
-<div class="col col-md-4 ">
-    <div class="text-center">
-        <h3>Новини</h3>
-    </div>
-    <div class="border border-success">
-        <div class="holder half-width">
-            <ul id="ticker01">
-                @foreach (var news in Model)
-                {
-                    <li>
-                        <span>@news.CreatedOn.ToString("MM/dd/yyyy hh:mm")</span>
-                        <a asp-controller="News" asp-action="Details" asp-route-id="@news.Id.ToString()"> @news.Message</a>
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
-    @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
-    {
-        <div class="d-flex justify-content-between">
-            <div class="col col-md-2">
-                <a asp-controller="News" asp-action="Create">Създай</a>
-            </div>
 
-            <div class="col col-md-2">
-                <a asp-controller="News" asp-action="Archive">Архив</a>
-            </div>
-        </div>
-    }
-</div>
+<partial name="Partial/_NewsPartial" />
 
 @section Scripts{
     <script src="~/js/news.js"></script>

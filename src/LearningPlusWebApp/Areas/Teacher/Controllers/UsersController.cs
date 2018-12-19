@@ -11,7 +11,7 @@ using LearningPlus.Data.DbRepository.Contract;
 namespace Eventures.Areas.Teacher.Controllers
 {
     [Area("Teacher")]
-    [Authorize(Roles = "Teacher")]
+    [Authorize(Roles = "Admin, Teacher")]
     public class UsersController : Controller
     {
         private readonly IMapper mapper;

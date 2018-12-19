@@ -24,8 +24,8 @@
                         {
                             var room1 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_1");
                             var room2 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_2");
-                            var students = room1?.StudentNamesShort.Length + room2?.StudentNamesShort.Length > 12 ?
-                                string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Substring(0, 12) + "..." :
+                            var students = string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Length > 8 ?
+                                string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Substring(0, 8) + "..." :
                                 string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort);
                             <div class="col col-md-1">
                                 <a asp-controller="Classes" asp-action="Details" asp-route-id="@room1?.Id" class="text-dark"><b>@room1?.Discipline</b></a>
@@ -33,7 +33,7 @@
                             <div class="col col-md-1 ">
                                 <a asp-controller="Classes" asp-action="Details" asp-route-id="@room2?.Id" class="text-dark"><b>@room2?.Discipline</b></a>
                             </div>
-                            <div class="col col-md-7 pr-0 text-right">@students</div>
+                            <div class="col col-md-5 pr-0 text-right">@students</div>
                         }
                         else
                         {

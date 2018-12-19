@@ -43,7 +43,11 @@ namespace LerningPlus.Web.Services.ClassesService
                     .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":")));
 
                 cfg.CreateMap<LearningPlusClass, ClassesDetailsViewModel>()
-                .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => $"{src.Teacher.FirstName} {src.Teacher.LastName}"));
+                .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => $"{src.Teacher.FirstName} {src.Teacher.LastName}"))
+                .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => src.Discipline.ToString().Replace('_', ' ')))
+                .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.ToString().Replace('_', ' ')))
+                .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":") + " ч."));
+
             });
 
             this.mapper = new Mapper(config);
@@ -61,9 +65,18 @@ namespace LerningPlus.Web.Services.ClassesService
             return newClass;
         }
 
+        public LearningPlusClass DeleteById(string id)
+        {
+            var lpclass = this.classRepo.All().SingleOrDefault(c=>c.Id.ToString()==id);
+            lpclass.Active = false;
+            this.classRepo.SaveChangesAsync().GetAwaiter().GetResult();
+
+            return lpclass;
+        }
+
         public ClassesDetailsViewModel GetDetailsById(string id)
         {
-            var lpClass = this.classRepo.All().Include(c=>c.Teacher).FirstOrDefault(c => c.Id.ToString() == id);
+            var lpClass = this.classRepo.All().Include(c => c.Teacher).Include(c=>c.Students).FirstOrDefault(c => c.Id.ToString() == id);
             var model = this.mapper.Map<ClassesDetailsViewModel>(lpClass);
 
             return model;

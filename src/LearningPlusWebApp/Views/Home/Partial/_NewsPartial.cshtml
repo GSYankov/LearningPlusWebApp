@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="col col-md-4 ">
+    <div class="text-center pt-2">
+        <h3 class="mb-0">Моите новини</h3>
+    </div>
+    <div class="border border-success">
+        <div class="holder width-75">
+            <ul id="ticker01">
+                @foreach (var news in Model)
+                {
+                    <li>
+                        <span>@news.CreatedOn.ToString("MM/dd/yyyy hh:mm")</span>
+                        <a asp-controller="News" asp-action="Details" asp-route-id="@news.Id.ToString()"> @news.Message</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+    {
+        <div class="d-flex justify-content-between">
+            <div class="col col-md-2">
+                <a asp-controller="News" asp-action="Create">Създай</a>
+            </div>
+
+            <div class="col col-md-2">
+                <a asp-controller="News" asp-action="Archive">Архив</a>
+            </div>
+        </div>
+    }
+</div>
