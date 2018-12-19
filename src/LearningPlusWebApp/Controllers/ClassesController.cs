@@ -38,9 +38,11 @@ namespace LearningPlus.Web.Controllers
         }
 
         [Authorize(Roles = "Admin, Teacher")]
-        public IActionResult Create()
+        public IActionResult Create(string day = null, string hour = null)
         {
             CreateEditViewBag();
+            ViewBag.SelectedDay = day;
+            ViewBag.SelectedHour = hour;
 
             return View();
         }

@@ -19,7 +19,7 @@
                     <div class="col col-md-2 pl-0">@ViewBag.Hours[i]</div>
 
                     @{ var lpClass = Model.Where(c => c.DayOfWeek == ViewBag.Days[d]
-                                   && c.TimeOfDay == ViewBag.Hours[i]);
+                                    && c.TimeOfDay == ViewBag.Hours[i]);
                         @if (lpClass.Count() != 0)
                         {
                             var room1 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_1");
@@ -38,7 +38,7 @@
                         else
                         {
                             <div class="col col-md-10 pr-0 text-right">
-                                <a asp-controller="Classes" asp-action="Create">Свободен час</a>
+                                <a asp-controller="Classes" asp-action="Create" asp-route-day="@ViewBag.Days[d]" asp-route-hour="@ViewBag.Hours[i]">Свободен час</a>
                             </div>
                         }
                     }

@@ -15,6 +15,10 @@
                 <select class="col-md-3 text-right" name="dayofweek">
                     @foreach (var day in ViewBag.Days)
                     {
+                        if (ViewBag.SelectedDay == day)
+                        {
+                            <option value="@day" selected>@day</option>
+                        }
                         <option value="@day">@day</option>
                     }
                 </select>
@@ -25,6 +29,10 @@
                 <select class="col-md-3" name="timeofday">
                     @foreach (var hour in ViewBag.FullHours)
                     {
+                        if (ViewBag.SelectedHour == hour.Substring(0, 5))
+                        {
+                            <option value="@hour" selected>@hour</option>
+                        }
                         <option value="@hour">@hour</option>
                     }
                 </select>
@@ -35,7 +43,7 @@
                 <select class="col-md-3" name="discipline">
                     @foreach (var discp in ViewBag.Disciplines)
                     {
-                        <option value="@discp">@discp.ToString().Replace("_"," ")</option>
+                        <option value="@discp">@discp.ToString().Replace("_", " ")</option>
                     }
                 </select>
                 <span asp-validation-for="Discipline" class="text-danger"></span>
