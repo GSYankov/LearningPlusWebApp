@@ -20,6 +20,13 @@ else if (User.IsInRole("Child"))
     <h2>Здравей, <span>@User.Identity.Name!</span><br>Подготви се за днес!</h2>
 }
 <div>
-    <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    @if (User.IsInRole("Parent") || User.IsInRole("Child"))
+    {
+        <a asp-controller="Homeworks" asp-action="Upload" class="btn-get-started scrollto">Предай домашно</a>
+    }
+    else
+    {
+        <a href="#about" class="btn-get-started scrollto">Get Strated</a>
+    }
     <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
 </div>

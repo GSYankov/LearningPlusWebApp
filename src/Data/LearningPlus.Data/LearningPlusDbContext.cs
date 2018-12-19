@@ -20,6 +20,8 @@ namespace LearningPlus.Data
 
         public virtual DbSet<LearningPlusClassesStudents> ClassesStudents { get; set; }
 
+        public virtual DbSet<LearningPlusHomeWork> HomeWorks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

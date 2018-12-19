@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using LerningPlus.Web.Services.BlobService.Contract;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace LerningPlus.Web.Services.BlobService
 {
-    public class BlobService
+    public class BlobService : IBlobService
     {
         private readonly IConfiguration configuration;
 
@@ -13,18 +16,20 @@ namespace LerningPlus.Web.Services.BlobService
         {
             this.configuration = configuration;
         }
-        public void BlobUpload()
+        public string BlobUpload(IFormFile file)
         {
             string connectionString = this.configuration["ConnectionStrings:AzureBlobConnection"];
             CloudStorageAccount cloudStorage = CloudStorageAccount.Parse(connectionString);
             CloudBlobClient cloudBlobClient = cloudStorage.CreateCloudBlobClient();
-            CloudBlobContainer blobContainer = cloudBlobClient.GetContainerReference("webappblobs");
-            CloudBlockBlob blockBlob = blobContainer.GetBlockBlobReference("csBlobTest.jpg");
-            blockBlob.Properties.ContentType = "image/png";
-            using (var fileStream = System.IO.File.OpenRead(@"C:\Users\gyankov2\Desktop\AzureTest.jpg"))
+            CloudBlobContainer blobContainer = cloudBlobClient.GetContainerReference("lpblobs");
+            CloudBlockBlob blockBlob = blobContainer.GetBlockBlobReference(file.FileName);
+            blockBlob.Properties.ContentType = file.ContentType;
+            using (var stream = file.OpenReadStream())
             {
-                Task.Run(() => blockBlob.UploadFromStreamAsync(fileStream)).Wait();
+                Task.Run(() => blockBlob.UploadFromStreamAsync(stream)).Wait();
             }
+
+            return file.FileName;
         }
     }
 }

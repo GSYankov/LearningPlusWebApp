@@ -1,0 +1,37 @@
+﻿@model LearningPlus.Web.ViewModels.Homework.HomeworkUploadViewModel
+
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<h1>Upload</h1>
+
+<h4>HomeworkUploadViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Upload" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label col-md-3 text-left"></label>
+                <select class="col-md-3" name="courseid">
+                    @foreach (var course in ViewBag.Classes)
+                    {
+                        <option value="@course.Id">@course.Discipline @course.DayOfWeek @course.TimeOfDay</option>
+                    }
+                </select>
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Homework"></label>
+                <input type="file" asp-for="Homework" />
+            </div>
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

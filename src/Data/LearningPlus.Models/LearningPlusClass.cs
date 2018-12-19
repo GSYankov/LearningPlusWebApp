@@ -31,7 +31,7 @@ namespace LearningPlus.Models
 
         public bool Active { get; set; } = true;
 
-        // public ICollection>Homework Homeworks { get; set; }
+        public ICollection<LearningPlusHomeWork> Homeworks { get; set; }
 
         // public ICollection>Homework LearningMaterials { get; set; }
     }
