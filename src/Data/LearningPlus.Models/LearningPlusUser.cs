@@ -26,5 +26,7 @@ namespace LearningPlus.Models
         public virtual ICollection<LearningPlusClassesStudents> ClassesEnrolled { get; set; }
 
         public virtual ICollection<LearningPlusHomeWork> SubmittedHomeworks { get; set; }
+
+        public virtual ICollection<LearningPlusChat> ChatPosts { get; set; }
     }
 }

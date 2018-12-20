@@ -2,49 +2,51 @@
 using LearningPlus.Models;
 using LearningPlus.Web.ViewModels.Homework;
 using LerningPlus.Web.Services.BlobService.Contract;
+using LerningPlus.Web.Services.ClassesService.Contract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LearningPlus.Web.Controllers
 {
     public class HomeworksController : Controller
     {
         private readonly IBlobService blobService;
-        private readonly IRepository<LearningPlusClass> classesRepo;
-        private readonly IRepository<LearningPlusUser> usersRepo;
         private readonly IRepository<LearningPlusHomeWork> homeworkRepo;
-        private readonly Microsoft.AspNetCore.Identity.UserManager<LearningPlusUser> userManager;
+        private readonly IRepository<LearningPlusClass> classesRepo;
+        private readonly UserManager<LearningPlusUser> userManager;
+        private readonly IClassesService classesService;
 
         public HomeworksController(IBlobService blobService,
-            IRepository<LearningPlusClass> classesRepo,
-            IRepository<LearningPlusUser> usersRepo,
             IRepository<LearningPlusHomeWork> homeworkRepo,
-            UserManager<LearningPlusUser> userManager)
+            IRepository<LearningPlusClass> classesRepo,
+            UserManager<LearningPlusUser> userManager,
+            IClassesService classesService)
         {
             this.blobService = blobService;
-            this.classesRepo = classesRepo;
-            this.usersRepo = usersRepo;
             this.homeworkRepo = homeworkRepo;
+            this.classesRepo = classesRepo;
             this.userManager = userManager;
+            this.classesService = classesService;
         }
 
-        public IActionResult Upload()
+        [Authorize(Roles = "Child, Parent")]
+        public IActionResult UploadHomework()
         {
-            var users = usersRepo.All().Include(u => u.ClassesEnrolled).ToList();
-            var currUserClasses = userManager.GetUserAsync(HttpContext.User).GetAwaiter().GetResult().ClassesEnrolled.ToList();
-            ViewBag.Classes = currUserClasses.Select(c => this.classesRepo.All().SingleOrDefault(x => x.Id == c.ClassId)).ToList();
+            ViewBag.Classes = this.classesService.GetStudentClasses(HttpContext.User);
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Upload(HomeworkUploadViewModel model)
+        [Authorize(Roles = "Child, Parent")]
+        public IActionResult UploadHomework(HomeworkUploadViewModel model)
         {
-            var blobLink = GlobalConstants.BlobStorageUrl + this.blobService.BlobUpload(model.Homework);
             var course = this.classesRepo.All().SingleOrDefault(c => c.Id.ToString() == model.CourseId);
+            var fileName = $"HW_{course.Discipline}_{course.DayOfWeek}_{course.TimeOfDay}_{User.Identity.Name}_{DateTime.UtcNow}";
+            var blobLink = GlobalConstants.BlobStorageUrl + this.blobService.BlobUpload(model.Homework, fileName);
             var student = userManager.GetUserAsync(HttpContext.User).GetAwaiter().GetResult();
 
             var homework = new LearningPlusHomeWork
@@ -57,7 +59,7 @@ namespace LearningPlus.Web.Controllers
             this.homeworkRepo.AddAsync(homework).GetAwaiter().GetResult();
             this.homeworkRepo.SaveChangesAsync().GetAwaiter().GetResult();
 
-            return RedirectToAction("Upload");
+            return RedirectToAction("UploadHomework");
         }
     }
 }

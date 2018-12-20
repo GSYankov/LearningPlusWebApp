@@ -4,14 +4,16 @@ using LearningPlus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningPlus.Web.Migrations
 {
     [DbContext(typeof(LearningPlusDbContext))]
-    partial class LearningPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181220095859_ChatRepository")]
+    partial class ChatRepository
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,8 +88,6 @@ namespace LearningPlus.Web.Migrations
                     b.Property<string>("Resolutions");
 
                     b.Property<string>("StudentId");
-
-                    b.Property<DateTime>("UploadedOn");
 
                     b.HasKey("Id");
 

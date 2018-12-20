@@ -6,20 +6,16 @@ using System.Text;
 
 namespace LearningPlus.Models
 {
-    public class LearningPlusHomeWork
+    public class LearningPlusChat
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public DateTime UploadedOn { get; set; } = DateTime.UtcNow;
+        public LearningPlusUser Sender { get; set; }
 
-        public string BlobLink { get; set; }
+        public DateTime Time { get; set; } = DateTime.UtcNow;
 
-        public LearningPlusUser Student { get; set; }
-
-        public LearningPlusClass Course { get; set; }
-
-        public string Resolutions { get; set; }
+        public string Message { get; set; }
     }
 }

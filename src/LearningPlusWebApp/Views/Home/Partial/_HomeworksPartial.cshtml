@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LearningPlus.Web.ViewModels.Home.HomeworkLoggedInViewModel>
+
+@{
+    Layout = null;
+}
+
+<div class="col col-md-4 ">
+    <div class="text-center pt-2">
+        @if (User.IsInRole("Parent") || User.IsInRole("Child"))
+        {
+        <h3 class="mb-0">Моите проверени домашни</h3>
+        }
+        else if (User.IsInRole("Teacher"))
+        {
+        <h3 class="mb-0">Моите домашни за проверка</h3>
+        }
+    </div>
+    <div class="border border-success">
+        <ul>
+            @foreach (var homework in Model)
+            {
+            <li>
+                <span>@homework.UploadedOn</span>
+                @if (User.IsInRole("Parent") || User.IsInRole("Child"))
+                {
+                    <a asp-controller="Homeworks" asp-action="UploadHomework" asp-route-id="@homework.Id.ToString()">@homework.Student</a>
+                }
+                else if (User.IsInRole("Teacher"))
+                {
+                    <a asp-controller="Homeworks" asp-action="UploadHomework" asp-route-id="@homework.Id.ToString()">@homework.Student</a>
+                }
+            </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -22,6 +22,8 @@ using LerningPlus.Web.Services.ClassesService;
 using LearningPlus.Web.Hubs;
 using LerningPlus.Web.Services.BlobService.Contract;
 using LerningPlus.Web.Services.BlobService;
+using LerningPlus.Web.Services.HomeworkService.Contract;
+using LerningPlus.Web.Services.HomeworkService;
 
 namespace LearningPlus.Web
 {
@@ -76,6 +78,7 @@ namespace LearningPlus.Web
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IClassesService, ClassesService>();
             services.AddScoped<IBlobService, BlobService>();
+            services.AddScoped<IHomeworkService, HomeworkService>();
 
         }
 

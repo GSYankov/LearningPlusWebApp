@@ -22,6 +22,8 @@ namespace LearningPlus.Data
 
         public virtual DbSet<LearningPlusHomeWork> HomeWorks { get; set; }
 
+        public virtual DbSet<LearningPlusChat> ChatRepository { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

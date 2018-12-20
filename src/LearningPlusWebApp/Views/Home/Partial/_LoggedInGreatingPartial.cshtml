@@ -22,7 +22,7 @@ else if (User.IsInRole("Child"))
 <div>
     @if (User.IsInRole("Parent") || User.IsInRole("Child"))
     {
-        <a asp-controller="Homeworks" asp-action="Upload" class="btn-get-started scrollto">Предай домашно</a>
+        <a asp-controller="Homeworks" asp-action="UploadHomework" class="btn-get-started scrollto">Предай домашно</a>
     }
     else
     {

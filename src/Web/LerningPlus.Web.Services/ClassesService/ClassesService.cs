@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace LerningPlus.Web.Services.ClassesService
 {
@@ -16,13 +17,17 @@ namespace LerningPlus.Web.Services.ClassesService
     {
         private readonly IMapper mapper;
         private readonly UserManager<LearningPlusUser> userManager;
-        private readonly IRepository<LearningPlusClass> classRepo;
+        private readonly IRepository<LearningPlusClass> classesRepo;
+        private readonly IRepository<LearningPlusUser> usersRepo;
 
-        public ClassesService(IMapper mapper, UserManager<LearningPlusUser> userManager, IRepository<LearningPlusClass> classRepo)
+        public ClassesService(IMapper mapper,
+            UserManager<LearningPlusUser> userManager,
+            IRepository<LearningPlusClass> classRepo,
+            IRepository<LearningPlusUser> usersRepo)
         {
             this.userManager = userManager;
-            this.classRepo = classRepo;
-
+            this.classesRepo = classRepo;
+            this.usersRepo = usersRepo;
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<ClassesCreateViewModel, LearningPlusClass>()
@@ -60,24 +65,24 @@ namespace LerningPlus.Web.Services.ClassesService
 
             var newClass = this.mapper.Map<LearningPlusClass>(model);
 
-            this.classRepo.AddAsync(newClass).GetAwaiter().GetResult();
-            this.classRepo.SaveChangesAsync().GetAwaiter().GetResult();
+            this.classesRepo.AddAsync(newClass).GetAwaiter().GetResult();
+            this.classesRepo.SaveChangesAsync().GetAwaiter().GetResult();
 
             return newClass;
         }
 
         public LearningPlusClass DeleteById(string id)
         {
-            var lpclass = this.classRepo.All().SingleOrDefault(c => c.Id.ToString() == id);
+            var lpclass = this.classesRepo.All().SingleOrDefault(c => c.Id.ToString() == id);
             lpclass.Active = false;
-            this.classRepo.SaveChangesAsync().GetAwaiter().GetResult();
+            this.classesRepo.SaveChangesAsync().GetAwaiter().GetResult();
 
             return lpclass;
         }
 
         public ClassesDetailsViewModel GetDetailsById(string id)
         {
-            var lpClass = this.classRepo.All().Include(c => c.Teacher).Include(c => c.StudentsEnrolled).FirstOrDefault(c => c.Id.ToString() == id);
+            var lpClass = this.classesRepo.All().Include(c => c.Teacher).Include(c => c.StudentsEnrolled).FirstOrDefault(c => c.Id.ToString() == id);
             var model = this.mapper.Map<ClassesDetailsViewModel>(lpClass);
 
             return model;
@@ -85,10 +90,30 @@ namespace LerningPlus.Web.Services.ClassesService
 
         public ICollection<ClassesScheduleViewModel> GetScheduleClasses()
         {
-            var classes = this.classRepo.All().Include(s => s.StudentsEnrolled).Where(c => c.Active).ToList();
+            var classes = this.classesRepo.All().Include(s => s.StudentsEnrolled).Where(c => c.Active).ToList();
             var model = classes.Select(c => this.mapper.Map<ClassesScheduleViewModel>(c)).ToList();
 
             return model;
         }
+
+        public ICollection<LearningPlusClass> GetStudentClasses(ClaimsPrincipal user)
+        {
+            var users = usersRepo.All().Include(u => u.ClassesEnrolled).ToList();
+            var userClasses = userManager.GetUserAsync(user).GetAwaiter().GetResult().ClassesEnrolled.ToList();
+            var classes  = userClasses.Select(c => this.classesRepo.All().SingleOrDefault(x => x.Id == c.ClassId)).ToList();
+
+            return classes;
+        }
+
+        public ICollection<LearningPlusClass> GetTeacherClasses(ClaimsPrincipal user)
+        {
+            var lpUser = userManager.GetUserAsync(user).GetAwaiter().GetResult();
+            var classes = classesRepo.All().Where(c=>c.Teacher==lpUser).ToList();
+
+            return classes;
+        }
+
+
     }
 }
+

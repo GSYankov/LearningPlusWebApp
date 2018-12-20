@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NewsLoggedInViewModel>
+﻿@model LearningPlus.Web.ViewModels.Home.LoggedInViewModel
 
 @{
     ViewData["Title"] = "Добре дошли!";
@@ -27,13 +27,27 @@
     </div>
 
 </section><!-- #intro -->
-<!--==========================
-     News box
-   ============================-->
 
-<partial name="Partial/_NewsPartial" />
+<div class="row ml-1 mr-1 mb-3">
+    <!--==========================
+         News box
+       ============================-->
 
+    <partial name="Partial/_NewsPartial" model="Model.NewsViewModel" />
+
+    <!--==========================
+         Classes box
+       ============================-->
+    <partial name="Partial/_ClassesPartial" model="Model.ClassesViewModel" />
+
+    <!--==========================
+      Homeworks box
+    ============================-->
+    <partial name="Partial/_HomeworksPartial" model="Model.HomeworksViewModel" />
+
+</div>
 
 @section Scripts{
     <script src="~/js/news.js"></script>
 }
+
