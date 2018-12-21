@@ -27,7 +27,7 @@
                 }
                 else if (User.IsInRole("Teacher"))
                 {
-                    <a asp-controller="Homeworks" asp-action="UploadHomework" asp-route-id="@homework.Id.ToString()">@homework.Student</a>
+                    <a asp-controller="Homeworks" asp-action="Assessment" asp-route-id="@homework.Id.ToString()">@homework.Student</a>
                 }
             </li>
             }
