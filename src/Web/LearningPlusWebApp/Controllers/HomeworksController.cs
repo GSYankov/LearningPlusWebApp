@@ -76,7 +76,7 @@ namespace LearningPlus.Web.Controllers
 
             var model = this.mapper.Map<HomeworkAssessmentViewModel>(homework);
 
-            return View(model);
+            return View("AssessmentHomework", model);
         }
 
         [HttpPost]
