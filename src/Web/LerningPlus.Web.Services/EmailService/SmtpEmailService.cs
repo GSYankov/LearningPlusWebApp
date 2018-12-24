@@ -2,7 +2,7 @@
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace LearningPlus.Web.Services.EmailSender
+namespace LearningPlus.Web.Services.EmailService
 {
     public class SmtpEmailService : IEmailService
     {
@@ -13,19 +13,19 @@ namespace LearningPlus.Web.Services.EmailSender
             this.configuration = configuration;
         }
 
-        public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+        public async Task<MailMessage> SendEmailAsync(string email, string subject, string htmlMessage)
         {
 
-            await Task.Run(() => this.SendSmtpClient(email, subject, htmlMessage));
+            return await Task.Run(() => this.SendSmtpClient(email, subject, htmlMessage));
         }
 
-        public async Task SendEmailAsync(string email, string subject, string htmlMessage, string sender)
+        public async Task<MailMessage> SendEmailAsync(string email, string subject, string htmlMessage, string sender)
         {
 
-            await Task.Run(() => this.SendSmtpClient(email, subject, htmlMessage));
+            return await Task.Run(() => this.SendSmtpClient(email, subject, htmlMessage));
         }
 
-        private void SendSmtpClient(string email, string subject, string htmlMessage, string sender = null)
+        private MailMessage SendSmtpClient(string email, string subject, string htmlMessage, string sender = null)
         {
             if (sender == null)
             {
@@ -53,7 +53,7 @@ namespace LearningPlus.Web.Services.EmailSender
             };
             client.Send(msg);
 
-            return;
+            return msg;
         }
     }
 }

@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xunit;
 
 namespace LearningPlus.Web.DataServices.Tests
@@ -30,12 +27,7 @@ namespace LearningPlus.Web.DataServices.Tests
             fileMock.Setup(_ => _.FileName).Returns(fileName);
             fileMock.Setup(_ => _.Length).Returns(ms.Length);
 
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            // Duplicate here any configuration sources you use.
-            var path = Directory.GetCurrentDirectory();
-            path = path.Substring(0, path.LastIndexOf(@"\src\"))+ @"\src\Web\LearningPlusWebApp\appsettings.json";
-            configurationBuilder.AddJsonFile(path);
-            IConfiguration configuration = configurationBuilder.Build();
+            IConfiguration configuration = TestsPrerequisites.GetConfiguration();
 
             var sut = new BlobService(configuration);
             var file = fileMock.Object;
@@ -45,7 +37,7 @@ namespace LearningPlus.Web.DataServices.Tests
 
             //Assert
             Assert.IsType<string>(result);
-
+            Assert.Equal("test.file", result);
         }
     }
 }

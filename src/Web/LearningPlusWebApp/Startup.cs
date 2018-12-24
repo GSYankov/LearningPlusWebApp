@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LearningPlus.Models;
 using LearningPlus.Web.Infrastructure.Extensions;
-using LearningPlus.Web.Services.EmailSender;
 using AutoMapper;
 using LearningPlus.Data.DbRepository.Contract;
 using LearningPlus.Data.DbRepository;
@@ -24,6 +23,7 @@ using LerningPlus.Web.Services.BlobService.Contract;
 using LerningPlus.Web.Services.BlobService;
 using LerningPlus.Web.Services.HomeworkService.Contract;
 using LerningPlus.Web.Services.HomeworkService;
+using LearningPlus.Web.Services.EmailService;
 
 namespace LearningPlus.Web
 {

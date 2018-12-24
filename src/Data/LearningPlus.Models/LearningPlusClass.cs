@@ -25,7 +25,7 @@ namespace LearningPlus.Models
 
         public ICollection<LearningPlusClassesStudents> StudentsEnrolled { get; set; }
 
-        public LearningPlusUser Teacher { get; set; }
+        public virtual LearningPlusUser Teacher { get; set; }
 
         public Room Room { get; set; }
 

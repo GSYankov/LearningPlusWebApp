@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace LearningPlus.Web.Services.EmailSender
+namespace LearningPlus.Web.Services.EmailService
 {
-   public interface IEmailService
+    public interface IEmailService
     {
-        Task SendEmailAsync(string email, string subject, string htmlMessage, string sender);
+        Task<MailMessage> SendEmailAsync(string email, string subject, string htmlMessage, string sender);
+
+        Task<MailMessage> SendEmailAsync(string email, string subject, string htmlMessage);
     }
 }

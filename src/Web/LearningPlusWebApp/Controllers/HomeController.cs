@@ -9,6 +9,7 @@ using LearningPlus.Web.ViewModels;
 using LerningPlus.Web.Services.ClassesService.Contract;
 using System.Linq;
 using LerningPlus.Web.Services.HomeworkService.Contract;
+using System.Security.Claims;
 
 namespace LearningPlus.Web.Controllers
 {
@@ -37,6 +38,7 @@ namespace LearningPlus.Web.Controllers
                 var news = new List<NewsLoggedInViewModel>();
                 var classes = new List<ClassesLoggedInViewModel>();
                 var homeworks = new List<HomeworkLoggedInViewModel>();
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 if (this.User.IsInRole("Admin"))
                 {
@@ -53,7 +55,7 @@ namespace LearningPlus.Web.Controllers
 
                     classes = teacherClasses.Select(uc => this.mapper.Map<ClassesLoggedInViewModel>(uc)).ToList();
 
-                    var teacherHomeworks = this.homeworkService.GetTeacherHomeworks(HttpContext.User).Where(h => h.Resolutions is null).ToList();
+                    var teacherHomeworks = this.homeworkService.GetTeacherHomeworksWithoutResolutions(userId);
                     homeworks = teacherHomeworks.Select(hw => this.mapper.Map<HomeworkLoggedInViewModel>(hw)).ToList();
                 }
 
@@ -67,8 +69,8 @@ namespace LearningPlus.Web.Controllers
 
                     classes = studentClasses.Select(uc => this.mapper.Map<ClassesLoggedInViewModel>(uc)).ToList();
 
-                    var teacherHomeworks = this.homeworkService.GetStudentHomeworks(HttpContext.User).Where(h => h.Resolutions != null).ToList();
-                    homeworks = teacherHomeworks.Select(hw => this.mapper.Map<HomeworkLoggedInViewModel>(hw)).ToList();
+                    var studentHomeworks = this.homeworkService.GetStudentHomeworksWithResolutions(userId);
+                    homeworks = studentHomeworks.Select(hw => this.mapper.Map<HomeworkLoggedInViewModel>(hw)).ToList();
                 }
 
                 var model = new LoggedInViewModel

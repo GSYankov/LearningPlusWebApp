@@ -100,7 +100,7 @@ namespace LerningPlus.Web.Services.ClassesService
         {
             var users = usersRepo.All().Include(u => u.ClassesEnrolled).ToList();
             var userClasses = userManager.GetUserAsync(user).GetAwaiter().GetResult().ClassesEnrolled.ToList();
-            var classes  = userClasses.Select(c => this.classesRepo.All().SingleOrDefault(x => x.Id == c.ClassId)).ToList();
+            var classes = userClasses.Select(c => this.classesRepo.All().SingleOrDefault(x => x.Id == c.ClassId)).ToList();
 
             return classes;
         }
@@ -108,7 +108,7 @@ namespace LerningPlus.Web.Services.ClassesService
         public ICollection<LearningPlusClass> GetTeacherClasses(ClaimsPrincipal user)
         {
             var lpUser = userManager.GetUserAsync(user).GetAwaiter().GetResult();
-            var classes = classesRepo.All().Where(c=>c.Teacher==lpUser).ToList();
+            var classes = classesRepo.All().Where(c => c.Teacher == lpUser).ToList();
 
             return classes;
         }
