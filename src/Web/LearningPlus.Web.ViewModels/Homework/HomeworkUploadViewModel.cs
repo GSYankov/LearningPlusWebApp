@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace LearningPlus.Web.ViewModels.Homework
 {
     public class HomeworkUploadViewModel
     {
+        public ICollection<HomeworkUploadGetViewModel> Courses { get; set; }
+
         [Required(ErrorMessage = "Не е избран курс!")]
         [DisplayName("Курс")]
         public string CourseId { get; set; }

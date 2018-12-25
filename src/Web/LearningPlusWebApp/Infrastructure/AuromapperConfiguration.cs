@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using LearningPlus.Models;
 using LearningPlus.Web.Areas.Teacher.ViewModels;
-using LearningPlus.Web.Models;
 using LearningPlus.Web.ViewModels;
 using LearningPlus.Web.ViewModels.Home;
 using LearningPlus.Web.ViewModels.Homework;
 using LearningPlus.Web.ViewModels.News;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace LearningPlus.Web.Infrastructure
@@ -39,6 +37,11 @@ namespace LearningPlus.Web.Infrastructure
             .ForMember(dest => dest.Course, opt =>
             opt.MapFrom(src =>
             $"{src.Course.Discipline.ToString().Replace('_', ' ')} {src.Course.TimeOfDay.ToString().Substring(1).Insert(2, ":") + " ч."}"));
+
+            this.CreateMap<LearningPlusClass, HomeworkUploadGetViewModel>()
+                            .ForMember(dest => dest.Discipline, opt =>
+            opt.MapFrom(src =>
+            $"{src.Discipline.ToString().Replace('_', ' ')} {src.DayOfWeek} {src.TimeOfDay.ToString().Substring(1).Insert(2, ":") + " ч."}"));
         }
     }
 }

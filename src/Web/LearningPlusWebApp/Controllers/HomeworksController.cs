@@ -40,9 +40,13 @@ namespace LearningPlus.Web.Controllers
         [Authorize(Roles = "Child, Parent")]
         public IActionResult UploadHomework()
         {
-            ViewBag.Classes = this.classesService.GetStudentClasses(HttpContext.User);
+            var classes = this.classesService.GetStudentClasses(HttpContext.User);
+            var model = new HomeworkUploadViewModel
+            {
+                Courses = classes.Select(c => this.mapper.Map<HomeworkUploadGetViewModel>(c)).ToList()
+            };
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]

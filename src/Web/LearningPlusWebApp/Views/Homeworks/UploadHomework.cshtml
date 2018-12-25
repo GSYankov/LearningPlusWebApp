@@ -18,9 +18,9 @@
             <div class="form-group">
                 <label asp-for="CourseId" class="control-label col-md-4 text-right"></label>
                 <select class="col-md-3 text-center" name="courseid">
-                    @foreach (var course in ViewBag.Classes)
+                    @foreach (var course in Model.Courses)
                     {
-                        <option value="@course.Id">@course.Discipline @course.DayOfWeek @course.TimeOfDay</option>
+                        <option value="@course.Id">@course.Discipline</option>
                     }
                 </select>
                 <span asp-validation-for="CourseId" class="text-danger"></span>
