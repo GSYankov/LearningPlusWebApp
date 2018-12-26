@@ -5,10 +5,8 @@ using Moq;
 using Newtonsoft.Json;
 using Shouldly;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace LearningPlus.Web.DataServices.Tests

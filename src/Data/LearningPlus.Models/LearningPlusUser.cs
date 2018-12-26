@@ -16,10 +16,10 @@ namespace LearningPlus.Models
         }
 
         [Required]
-        public string FirstName { get; set; }
+        public virtual string FirstName { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public virtual string LastName { get; set; }
 
         public virtual ICollection<LearningPlusUser> Children { get; set; }
 

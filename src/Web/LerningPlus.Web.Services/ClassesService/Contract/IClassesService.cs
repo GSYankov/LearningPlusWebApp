@@ -17,6 +17,6 @@ namespace LerningPlus.Web.Services.ClassesService.Contract
 
         ICollection<LearningPlusClass> GetStudentClasses(ClaimsPrincipal user);
 
-        ICollection<LearningPlusClass> GetTeacherClasses(ClaimsPrincipal user);
+        ICollection<LearningPlusClass> GetTeacherClasses(string userId);
     }
 }

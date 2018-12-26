@@ -28,14 +28,23 @@ namespace LerningPlus.Web.Services.ClassesService
             this.userManager = userManager;
             this.classesRepo = classRepo;
             this.usersRepo = usersRepo;
-            var config = new MapperConfiguration(cfg =>
+            MapperConfiguration config = MapperConfiguration();
+
+            this.mapper = new Mapper(config);
+
+        }
+
+        private MapperConfiguration MapperConfiguration()
+        {
+            return new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<ClassesCreateViewModel, LearningPlusClass>()
-                .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => Enum.Parse<LearningPlus.Models.Enums.DaysOfWeek>(src.DayOfWeek)))
+                .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => Enum.Parse<DaysOfWeek>(src.DayOfWeek)))
                 .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => Enum.Parse<Disciplines>(src.Discipline)))
                 .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => Enum.Parse<TimeOfDay>($"H{src.TimeOfDay.Substring(0, 5).Remove(2, 1)}")))
                 .ForMember(dest => dest.Room, opt => opt.MapFrom(src => Enum.Parse<Room>(src.Room)))
-                .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => this.userManager.FindByIdAsync(src.TeacherId).GetAwaiter().GetResult()))
+                // .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => this.userManager.FindByIdAsync(src.TeacherId).GetAwaiter().GetResult()))
+                .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => this.usersRepo.All().SingleOrDefault(u => u.Id == src.TeacherId)))
                 .ForMember(dest => dest.StudentsEnrolled, opt =>
                     opt.MapFrom(src => src.StudentIds.Select(id => new LearningPlusClassesStudents { StudentId = id })));
 
@@ -53,11 +62,7 @@ namespace LerningPlus.Web.Services.ClassesService
                 .ForMember(dest => dest.Students, opt => opt.MapFrom(src => src.StudentsEnrolled.Select(s =>
                   this.userManager.FindByIdAsync(s.StudentId).GetAwaiter().GetResult())))
                 .ForMember(dest => dest.TimeOfDay, opt => opt.MapFrom(src => src.TimeOfDay.ToString().Substring(1).Insert(2, ":") + " ч."));
-
             });
-
-            this.mapper = new Mapper(config);
-
         }
 
         public LearningPlusClass Create(ClassesCreateViewModel model)
@@ -105,15 +110,12 @@ namespace LerningPlus.Web.Services.ClassesService
             return classes;
         }
 
-        public ICollection<LearningPlusClass> GetTeacherClasses(ClaimsPrincipal user)
+        public ICollection<LearningPlusClass> GetTeacherClasses(string userId)
         {
-            var lpUser = userManager.GetUserAsync(user).GetAwaiter().GetResult();
-            var classes = classesRepo.All().Where(c => c.Teacher == lpUser).ToList();
+            var classes = classesRepo.All().Where(c => c.Teacher.Id == userId).ToList();
 
             return classes;
         }
-
-
     }
 }
 

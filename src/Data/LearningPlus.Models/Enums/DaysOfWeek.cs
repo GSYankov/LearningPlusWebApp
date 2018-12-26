@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LearningPlus.Models.Enums
+﻿namespace LearningPlus.Models.Enums
 {
     public enum DaysOfWeek
     {

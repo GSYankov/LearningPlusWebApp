@@ -49,7 +49,7 @@ namespace LearningPlus.Web.Controllers
                 {
                     news = this.newsService.GetTeacherNews();
                     var teacherClasses = this.classesService
-                        .GetTeacherClasses(HttpContext.User)
+                        .GetTeacherClasses(userId)
                         .OrderBy(c => c.DayOfWeek)
                         .ThenBy(c => c.TimeOfDay);
 
