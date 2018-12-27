@@ -160,8 +160,9 @@ namespace Eventures.Controllers
                 LearningPlusUser user = new LearningPlusUser
                 {
                     Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
-                    UserName =
-                        info.Principal.FindFirst(ClaimTypes.Email).Value
+                    UserName = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                    FirstName = info.Principal.FindFirst(ClaimTypes.GivenName).Value,
+                    LastName = info.Principal.FindFirst(ClaimTypes.Name).Value,
                 };
                 IdentityResult identResult = await userManager.CreateAsync(user);
                 if (identResult.Succeeded)

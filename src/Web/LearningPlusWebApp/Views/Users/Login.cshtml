@@ -1,33 +1,42 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Вписване";
+}
+
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+    <link href="~/css/bootstrap-social.css" rel="stylesheet" />
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 <hr class="quad-width" />
 <form class="mx-auto quad-width text-center" method="post" asp-controller="Users" asp-action="Login">
     <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Username...">
+        <label for="username">Поребителско име</label>
+        <input type="text" class="form-control" name="username" placeholder="Портебителско име...">
     </div>
     <div class="form-group">
-        <lebel for="username">Password</lebel>
-        <input type="password" class="form-control" name="password" placeholder="Password" />
+        <lebel for="username">Парола</lebel>
+        <input type="password" class="form-control" name="password" placeholder="Парола" />
     </div>
     <hr class="hr-login" />
     <div class="checkbox">
-        <label><input type="checkbox" name="RememberMe" value="true"> Remember me</label>
+        <label><input type="checkbox" name="RememberMe" value="true">Запомни ме</label>
     </div>
     <hr class="hr-login" />
     <div class="button-holder d-flex justify-content-center">
-        <button type="submit" class="btn eventures-bg-colour">Login</button>
+        <button type="submit" class="btn logo-btn">Вход</button>
     </div>
 </form>
-<div class="text-center"><a href="">Forgot your password?</a></div>
-<div class="text-center"><a asp-controller="Users" asp-action="RegisterStudent">Register as a new user</a></div>
+<div class="text-center"><a href="/#contact">Забравена парола</a></div>
+<div class="text-center"><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></div>
 <hr class="hr-login quad-width" />
 <div class="text-center">
     <form asp-action="FacebookLogin" method="post">
-        <button type="submit" class="btn eventures-bg-colour" name="provider" value="Facebook" title="Log in using your Facebook account">Facebook</button>
+        <button type="submit" class="btn btn-facebook" name="provider" value="Facebook" title="Влез с Facebook">Facebook</button>
     </form>
 </div>
 <hr class="hr-login quad-width" />
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

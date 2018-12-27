@@ -29,21 +29,34 @@
 </section><!-- #intro -->
 
 <div class="row ml-1 mr-1 mb-3">
-    <!--==========================
-         News box
-       ============================-->
 
-    <partial name="Partial/_NewsPartial" model="Model.NewsViewModel" />
+    @if (User.IsInRole("Admin") ||
+ User.IsInRole("Teacher") ||
+ User.IsInRole("Parent") ||
+ User.IsInRole("Child"))
+    {
 
-    <!--==========================
-         Classes box
-       ============================-->
-    <partial name="Partial/_ClassesPartial" model="Model.ClassesViewModel" />
+        <!--==========================
+             News box
+           ============================-->
 
-    <!--==========================
-      Homeworks box
-    ============================-->
-    <partial name="Partial/_HomeworksPartial" model="Model.HomeworksViewModel" />
+        <partial name="Partial/_NewsPartial" model="Model.NewsViewModel" />
+
+        <!--==========================
+             Classes box
+           ============================-->
+        <partial name="Partial/_ClassesPartial" model="Model.ClassesViewModel" />
+
+        <!--==========================
+          Homeworks box
+        ============================-->
+        <partial name="Partial/_HomeworksPartial" model="Model.HomeworksViewModel" />
+
+    }
+    else
+    {
+        <partial name="Partial/_AwaitingForRole" />
+    }
 
 </div>
 
