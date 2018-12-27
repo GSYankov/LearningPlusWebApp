@@ -66,7 +66,10 @@ namespace Eventures.Areas.Administrator.Controllers
         public async Task<IActionResult> ChangeRole(string userId, string currentrole, string targetRole)
         {
             var user = await this.userManager.FindByIdAsync(userId);
-            await this.userManager.RemoveFromRoleAsync(user, currentrole);
+            if (currentrole != null)
+            {
+                await this.userManager.RemoveFromRoleAsync(user, currentrole);
+            }
             await this.userManager.AddToRoleAsync(user, targetRole);
             return RedirectToAction("RoleControl");
         }
