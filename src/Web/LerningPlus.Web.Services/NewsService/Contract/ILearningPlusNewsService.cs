@@ -17,11 +17,11 @@ namespace LerningPlus.Web.Services.NewsService.Contract
 
         List<NewsLoggedInViewModel> GetParentChildNews();
 
-        void EditNews(NewsCreateEditPostViewModel model, LearningPlusUser creator);
+        LearningPlusNews EditNews(NewsCreateEditPostViewModel model, LearningPlusUser creator);
 
-        void CreateNews(NewsCreateEditPostViewModel model, LearningPlusUser creator);
+        LearningPlusNews CreateNews(NewsCreateEditPostViewModel model, LearningPlusUser creator);
 
-        void FakeDelete(string id);
+        LearningPlusNews FakeDelete(string id);
 
         ICollection<NewsArchiveViewModel> GetArchivedNews();
     }

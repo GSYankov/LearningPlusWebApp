@@ -35,7 +35,7 @@ namespace LearningPlus.Web.Hubs
 
         public async Task SendAsync(string message)
         {
-            await this.Clients.Groups("Teachers").SendAsync("NewMessage", new Message
+            await this.Clients.Groups("Teachers").SendAsync("NewMessage", new ChatMessage
             {
                 User = this.Context.User.Identity.Name,
                 Text = message

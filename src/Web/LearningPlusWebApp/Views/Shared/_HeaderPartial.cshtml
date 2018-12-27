@@ -30,7 +30,7 @@
                 @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
                 {
                     <li><a asp-controller="Classes" asp-action="Schedule">График</a></li>
-                    <li><a asp-controller="Home" asp-action="Chat">Chat</a></li>
+                    <li><a asp-controller="Chat" asp-action="Start">Chat</a></li>
                     <li class="menu-has-children">
                         <a>Ученици</a>
                         <ul>

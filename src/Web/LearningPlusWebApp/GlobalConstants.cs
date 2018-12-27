@@ -21,5 +21,6 @@ namespace LearningPlus.Web
 
         public static string BlobStorageUrl = @"https://lpwebstorage.blob.core.windows.net/lpblobs/";
 
+        public static int ChatMessagesToShow = 5;
     }
 }

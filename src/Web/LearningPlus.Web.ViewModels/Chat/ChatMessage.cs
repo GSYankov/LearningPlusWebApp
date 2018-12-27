@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LearningPlus.Web.ViewModels.Chat
 {
-    public class Message
+    public class ChatMessage
     {
         public string User { get; set; }
 

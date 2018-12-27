@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<LearningPlus.Web.ViewModels.Chat.ChatMessage>
+
+@{
     ViewBag.Title = "Chat";
 }
 
@@ -6,7 +8,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 
 <div class="container">
     <div class="input-holder">
@@ -20,6 +22,10 @@
     </div>
     <hr style="height: 5px;" class="bg-dark" />
     <div id="messagesList" style="font-size: 32px;">
+        @foreach (var message in Model)
+        {
+            <div>@message.User: @message.Text</div>
+        }
     </div>
 </div>
 

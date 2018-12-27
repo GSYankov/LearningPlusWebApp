@@ -24,8 +24,8 @@ namespace LearningPlus.Models
 
         public string Message { get; set; }
 
-        public ICollection<LearningPlusNewsTargetRole> TargetRoles { get; set; }
+        public virtual ICollection<LearningPlusNewsTargetRole> TargetRoles { get; set; }
 
-        public DateTime ExpiresOn { get; set; } = DateTime.UtcNow.AddDays(14);
+        public virtual DateTime ExpiresOn { get; set; } = DateTime.UtcNow.AddDays(14);
     }
 }

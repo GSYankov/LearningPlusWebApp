@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using LearningPlus.Data.DbRepository.Contract;
 using LearningPlus.Models;
-using LearningPlus.Web.Models;
 using LearningPlus.Web.ViewModels.News;
 using LerningPlus.Web.Services.NewsService.Contract;
 using Microsoft.AspNetCore.Authorization;

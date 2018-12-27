@@ -9,7 +9,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using LearningPlus.Web.ViewModels.News;
 using LearningPlus.Web.Models.Enums;
-using Microsoft.AspNetCore.Identity;
 
 namespace LerningPlus.Web.Services.NewsService
 {
@@ -41,7 +40,7 @@ namespace LerningPlus.Web.Services.NewsService
         public List<NewsLoggedInViewModel> GetAdminNews()
         {
             return this.newsRepo.All()
-                          .Where(n => n.ExpiresOn > DateTime.UtcNow)
+                          .Where(n => n.ExpiresOn >= DateTime.UtcNow)
                           .Take(newsToShow)
                           .Select(n => this.mapper.Map<NewsLoggedInViewModel>(n))
                           .ToList();
@@ -68,9 +67,9 @@ namespace LerningPlus.Web.Services.NewsService
                           .ToList();
         }
 
-        public void EditNews(NewsCreateEditPostViewModel model, LearningPlusUser creator)
+        public LearningPlusNews EditNews(NewsCreateEditPostViewModel model, LearningPlusUser creator)
         {
-            var news = this.GetById(model.Id).FirstOrDefault();
+            var news = this.GetById(model.Id).SingleOrDefault();
             List<LearningPlusNewsTargetRole> targetRoles = AddTargetRolesToANews(model);
 
             news.Message = model.Message;
@@ -79,9 +78,11 @@ namespace LerningPlus.Web.Services.NewsService
             news.TargetRoles = targetRoles;
 
             this.newsRepo.SaveChangesAsync().GetAwaiter().GetResult();
+
+            return news;
         }
 
-        public void CreateNews(NewsCreateEditPostViewModel model, LearningPlusUser creator)
+        public LearningPlusNews CreateNews(NewsCreateEditPostViewModel model, LearningPlusUser creator)
         {
             List<LearningPlusNewsTargetRole> targetRoles = AddTargetRolesToANews(model);
 
@@ -95,6 +96,8 @@ namespace LerningPlus.Web.Services.NewsService
 
             this.newsRepo.AddAsync(news).GetAwaiter().GetResult();
             this.newsRepo.SaveChangesAsync().GetAwaiter().GetResult();
+
+            return news;
         }
 
         private static List<LearningPlusNewsTargetRole> AddTargetRolesToANews(NewsCreateEditPostViewModel model)
@@ -136,11 +139,13 @@ namespace LerningPlus.Web.Services.NewsService
             return targetRoles;
         }
 
-        public void FakeDelete(string id)
+        public LearningPlusNews FakeDelete(string id)
         {
-            var news = this.GetById(id).FirstOrDefault();
+            var news = this.GetById(id).SingleOrDefault();
             news.ExpiresOn = DateTime.UtcNow.AddDays(-1);
             this.newsRepo.SaveChangesAsync().GetAwaiter().GetResult();
+
+            return news;
         }
 
         public ICollection<NewsArchiveViewModel> GetArchivedNews()
