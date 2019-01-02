@@ -1,4 +1,5 @@
-﻿using LearningPlus.Web.ViewModels.Home;
+﻿using LearningPlus.Web.Services.EmailService;
+using LearningPlus.Web.ViewModels.Home;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,9 +9,9 @@ namespace LearningPlus.Web.Controllers
 {
     public class EmailController : Controller
     {
-        private readonly IEmailSender emailSender;
+        private readonly IEmailService emailSender;
 
-        public EmailController(IEmailSender emailSender)
+        public EmailController(IEmailService emailSender)
         {
             this.emailSender = emailSender;
         }
@@ -19,7 +20,7 @@ namespace LearningPlus.Web.Controllers
         public async Task<string> SendFromHome(EmailHomeViewModel model)
         {
             string result;
-            try
+           try
             {
                 await emailSender.SendEmailAsync(model.Email, model.Subject, model.Message);
                 result = "OK";
@@ -27,7 +28,7 @@ namespace LearningPlus.Web.Controllers
             catch (Exception)
             {
 
-                result = "Something went wrong. Please call our mobile.";
+                result = "Нещо се обърка! Моля, обадете се на посочения телефон.";
             }
 
 

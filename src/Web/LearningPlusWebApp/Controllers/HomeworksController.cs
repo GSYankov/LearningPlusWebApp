@@ -96,5 +96,17 @@ namespace LearningPlus.Web.Controllers
 
             return Redirect("/");
         }
+
+        [Authorize(Roles = "Parent, Child")]
+        public IActionResult Assessed(string id)
+        {
+            var homework = this.homeworkRepo.All()
+                .Include(hw => hw.Student).Include(hw => hw.Course)
+                .SingleOrDefault(hw => hw.Id.ToString() == id);
+
+            var model = this.mapper.Map<HomeworkAssessmentViewModel>(homework);
+
+            return View("AssessedHomework", model);
+        }
     }
 }

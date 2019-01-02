@@ -23,7 +23,7 @@
                 <span>@homework.UploadedOn</span>
                 @if (User.IsInRole("Parent") || User.IsInRole("Child"))
                 {
-                    <a asp-controller="Homeworks" asp-action="UploadHomework" asp-route-id="@homework.Id.ToString()">@homework.Student</a>
+                    <a asp-controller="Homeworks" asp-action="Assessed" asp-route-id="@homework.Id.ToString()">@homework.Student</a>
                 }
                 else if (User.IsInRole("Teacher"))
                 {
