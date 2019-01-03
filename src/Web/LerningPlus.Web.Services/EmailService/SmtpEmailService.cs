@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
@@ -36,7 +37,7 @@ namespace LearningPlus.Web.Services.EmailService
             msg.To.Add(new MailAddress(email));
             msg.From = new MailAddress(sender);
             msg.Subject = subject;
-            msg.Body = htmlMessage;
+            msg.Body = "<h1>От " + sender + "</h1><br/><p>" + htmlMessage + "<p>";
             msg.IsBodyHtml = true;
 
             SmtpClient client = new SmtpClient

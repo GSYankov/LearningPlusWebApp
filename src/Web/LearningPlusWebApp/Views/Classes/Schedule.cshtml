@@ -6,68 +6,62 @@
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
-<div class="row d-flex justify-content-center">
-    <div class="col col-md-1"></div>
-    @for (int d = 0; d < 5; d++)
+@for (int d = 0; d < 7; d++)
+{
+    @if (d == 0)
     {
-        <div class="col col-md-2 text-center">
-            <h5>@ViewBag.Days[d]</h5>
-            <hr />
-            @for (int i = 0; i < 7; i++)
-            {
-                <div class="row ml-1 mr-1">
-                    <div class="col col-md-2 pl-0">@ViewBag.Hours[i]</div>
+        @:<div class="row d-flex justify-content-center mb-3">
+            <div class="col col-md-1"></div>
+        }
+    @if (d == 5)
+    {
+        @:<div class="row d-flex justify-content-center mb-3">
+            <div class="col col-md-4"></div>
+        }
+    <div class="col col-md-2 text-center">
+        <h5>@ViewBag.Days[d]</h5>
+        <hr />
+        @for (int i = 0; i < 7; i++)
+        {
+            <div class="row ml-1 mr-1">
+                <div class="col col-md-2 pl-0">@ViewBag.Hours[i]</div>
 
-                    @{ var lpClass = Model.Where(c => c.DayOfWeek == ViewBag.Days[d]
-                                    && c.TimeOfDay == ViewBag.Hours[i]);
-                        @if (lpClass.Count() != 0)
-                        {
-                            var room1 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_1");
-                            var room2 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_2");
-                            var students = string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Length > 8 ?
-                                string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Substring(0, 8) + "..." :
-                                string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort);
-                            <div class="col col-md-1">
-                                <a asp-controller="Classes" asp-action="Details" asp-route-id="@room1?.Id" class="text-dark"><b>@room1?.Discipline</b></a>
-                            </div>
-                            <div class="col col-md-1 ">
-                                <a asp-controller="Classes" asp-action="Details" asp-route-id="@room2?.Id" class="text-dark"><b>@room2?.Discipline</b></a>
-                            </div>
-                            <div class="col col-md-5 pr-0 text-right">@students</div>
-                        }
-                        else
-                        {
-                            <div class="col col-md-10 pr-0 text-right">
-                                <a asp-controller="Classes" asp-action="Create" asp-route-day="@ViewBag.Days[d]" asp-route-hour="@ViewBag.Hours[i]">Свободен час</a>
-                            </div>
-                        }
+                @{ var lpClass = Model.Where(c => c.DayOfWeek == ViewBag.Days[d]
+                                                  && c.TimeOfDay == ViewBag.Hours[i]);
+                    @if (lpClass.Count() != 0)
+                    {
+                        var room1 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_1");
+                        var room2 = lpClass.FirstOrDefault(lpc => lpc.Room == "Стая_2");
+                        var students = string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Length > 8 ?
+                            string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort).Substring(0, 8) + "..." :
+                            string.Join(", ", room1?.StudentNamesShort + room2?.StudentNamesShort);
+                        <div class="col col-md-1">
+                            <a asp-controller="Classes" asp-action="Details" asp-route-id="@room1?.Id" class="text-dark"><b>@room1?.Discipline</b></a>
+                        </div>
+                        <div class="col col-md-1 ">
+                            <a asp-controller="Classes" asp-action="Details" asp-route-id="@room2?.Id" class="text-dark"><b>@room2?.Discipline</b></a>
+                        </div>
+                        <div class="col col-md-5 pr-0 text-right">@students</div>
                     }
-                </div>
-                <hr class="mt-1 mb-1" />
-            }
-        </div>
-    }
-    <div class="col col-md-1"></div>
-</div>
-<hr />
-<div class="row d-flex justify-content-center">
-    <div class="col col-md-4"></div>
-    @for (int d = 5; d < 7; d++)
+                    else
+                    {
+                        <div class="col col-md-10 pr-0 text-right">
+                            <a asp-controller="Classes" asp-action="Create" asp-route-day="@ViewBag.Days[d]" asp-route-hour="@ViewBag.Hours[i]">Свободен час</a>
+                        </div>
+                    }
+                }
+            </div>
+            <hr class="mt-1 mb-1" />
+        }
+    </div>
+    @if (d == 4)
     {
-        <div class="col col-md-2 text-center">
-            <h5>@ViewBag.Days[d]</h5>
-            <hr />
-            @for (int i = 0; i < 7; i++)
-            {
-                <div class="row ml-1 mr-1 justify-content-between">
-                    <div>@ViewBag.Hours[i]</div>
-                    <div><b>М</b></div>
-                    <div>Иван5678906666</div>
-                </div>
-                <hr class="mt-1 mb-1" />
-            }
-        </div>
+        <div class="col col-md-1"></div>
+    @:</div>
     }
-    <div class="col col-md-4 "></div>
-</div>
-
+    @if (d == 6)
+    {
+        <div class="col col-md-4 "></div>
+    @:</div>
+    }
+}
