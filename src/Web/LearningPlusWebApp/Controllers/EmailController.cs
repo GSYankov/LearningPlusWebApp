@@ -1,6 +1,5 @@
 ﻿using LearningPlus.Web.Services.EmailService;
 using LearningPlus.Web.ViewModels.Home;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -30,7 +29,6 @@ namespace LearningPlus.Web.Controllers
 
                 result = "Нещо се обърка! Моля, обадете се на посочения телефон.";
             }
-
 
             return result;
         }

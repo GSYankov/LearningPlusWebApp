@@ -86,19 +86,21 @@ namespace LearningPlus.Web.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+        public IActionResult BgLangAndLitr() => View("Educations/BgLangAndLitr");
 
-            return View();
-        }
+        public IActionResult Math() => View("Educations/Math");
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+        public IActionResult History() => View("Educations/History");
 
-            return View();
-        }
+        public IActionResult English() => View("Educations/English");
+
+        public IActionResult Consults() => View("EducationalPortal/Consults");
+
+        public IActionResult Profesion() => View("EducationalPortal/Profesion");
+
+        public IActionResult Development() => View("EducationalPortal/Development");
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

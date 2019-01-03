@@ -12,7 +12,6 @@
 
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active"><a href="/">Home</a></li>
 
                 @if (User.IsInRole("Admin"))
                 {
@@ -44,19 +43,17 @@
                 }
                 else
                 {
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
+                    <li><a href="/#services">Обучения</a></li>
+                    <li><a href="/#team">Преподаватели</a></li>
                     <li class="menu-has-children">
-                        <a href="">Drop Down</a>
+                        <a>Образователен портал</a>
                         <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                            <li><a href="#">Drop Down 5</a></li>
+                            <li><a asp-controller="Home" asp-action="Consults">Образователни консултации</a></li>
+                            <li><a asp-controller="Home" asp-action="Profesion">Избор на професия</a></li>
+                            <li><a asp-controller="Home" asp-action="Development">Личностно развитие</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/#contact">Контакт</a></li>
                 }
 
                 @if (User.Identity.IsAuthenticated)
