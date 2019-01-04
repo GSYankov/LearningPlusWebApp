@@ -37,6 +37,17 @@
                         </ul>
                     </li>
                 }
+                else if (User.IsInRole("Parent") || User.IsInRole("Child"))
+                {
+                    <li class="menu-has-children">
+                        <a>Образователен портал</a>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Consults">Образователни консултации</a></li>
+                            <li><a asp-controller="Home" asp-action="Profesion">Избор на професия</a></li>
+                            <li><a asp-controller="Home" asp-action="Development">Личностно развитие</a></li>
+                        </ul>
+                    </li>
+                }
                 else
                 {
                     <li><a href="/#services">Обучения</a></li>

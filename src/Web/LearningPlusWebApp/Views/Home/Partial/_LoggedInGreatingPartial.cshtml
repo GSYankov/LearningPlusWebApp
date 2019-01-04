@@ -9,7 +9,7 @@
 }
 else if (User.IsInRole("Teacher"))
 {
-    <h2>Здравей, <span>@User.Identity.Name!</span><br>Покажи им важните неща!</h2>
+    <h2>Здравей, <span>@User.Identity.Name!</span><br>Преподавай забавно!</h2>
 }
 else if (User.IsInRole("Parent"))
 {
@@ -19,14 +19,3 @@ else if (User.IsInRole("Child"))
 {
     <h2>Здравей, <span>@User.Identity.Name!</span><br>Подготви се за днес!</h2>
 }
-<div>
-    @if (User.IsInRole("Parent") || User.IsInRole("Child"))
-    {
-        <a asp-controller="Homeworks" asp-action="UploadHomework" class="btn-get-started scrollto">Предай домашно</a>
-    }
-    else
-    {
-        <a href="#about" class="btn-get-started scrollto">Get Strated</a>
-    }
-    <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
-</div>

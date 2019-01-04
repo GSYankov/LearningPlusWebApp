@@ -42,15 +42,20 @@ User.IsInRole("Child"))
 
         <partial name="Partial/_NewsPartial" model="Model.NewsViewModel" />
 
-        <!--==========================
-             Classes box
-           ============================-->
-        <partial name="Partial/_ClassesPartial" model="Model.ClassesViewModel" />
+        @if (!User.IsInRole("Admin"))
+        {
+            <!--==========================
+                 Classes box
+               ============================-->
 
-        <!--==========================
-          Homeworks box
-        ============================-->
-        <partial name="Partial/_HomeworksPartial" model="Model.HomeworksViewModel" />
+            <partial name="Partial/_ClassesPartial" model="Model.ClassesViewModel" />
+
+            <!--==========================
+              Homeworks box
+            ============================-->
+
+            <partial name="Partial/_HomeworksPartial" model="Model.HomeworksViewModel" />
+        }
 
     }
     else
