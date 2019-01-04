@@ -4,14 +4,16 @@ using LearningPlus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningPlus.Web.Migrations
 {
     [DbContext(typeof(LearningPlusDbContext))]
-    partial class LearningPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190104134434_AssessmentsAdded")]
+    partial class AssessmentsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace LearningPlus.Web.Migrations
                     b.Property<string>("ChildId")
                         .IsRequired();
 
-                    b.Property<int>("Course");
+                    b.Property<Guid>("CourseId");
 
                     b.Property<DateTime>("Date");
 
@@ -39,6 +41,8 @@ namespace LearningPlus.Web.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChildId");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Assessments");
                 });
@@ -329,6 +333,11 @@ namespace LearningPlus.Web.Migrations
                     b.HasOne("LearningPlus.Models.LearningPlusUser", "Child")
                         .WithMany("Assesments")
                         .HasForeignKey("ChildId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("LearningPlus.Models.LearningPlusClass", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

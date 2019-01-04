@@ -37,8 +37,8 @@ namespace LearningPlus.Web.Infrastructure.Extensions
             if (db.News.Count() == 0)
             {
                 var holidays = new string[] {
-                "3rd of March",
-                "1st of June",
+                "3-ти март",
+                "1-ви юни",
             };
 
                 var newsRange = new List<LearningPlusNews>();
@@ -48,7 +48,7 @@ namespace LearningPlus.Web.Infrastructure.Extensions
                     var news = new LearningPlusNews
                     {
                         Creator = db.Users.FirstOrDefault(u => u.UserName == "Admin"),
-                        Message = $"{day} will be vacation for all in the center!",
+                        Message = $"{day} е национален празник и центърът ще почива!",
                         TargetRoles = new List<LearningPlusNewsTargetRole>()
                                     {
                                      new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Admin},
@@ -63,7 +63,7 @@ namespace LearningPlus.Web.Infrastructure.Extensions
                 var adminNews = new LearningPlusNews
                 {
                     Creator = db.Users.FirstOrDefault(u => u.UserName == "Admin"),
-                    Message = $"Admins work from home today.",
+                    Message = $"Администраторите ще работят от вкъщи.",
                     TargetRoles = new List<LearningPlusNewsTargetRole>()
                                     {
                                      new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Admin}
@@ -73,7 +73,7 @@ namespace LearningPlus.Web.Infrastructure.Extensions
                 var teacherNews = new LearningPlusNews
                 {
                     Creator = db.Users.FirstOrDefault(u => u.UserName == "Teacher"),
-                    Message = $"Teachers work till noon today.",
+                    Message = $"Учителите ще работят днес до обяд.",
                     TargetRoles = new List<LearningPlusNewsTargetRole>()
                                     {
                                      new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Teacher}
@@ -83,7 +83,7 @@ namespace LearningPlus.Web.Infrastructure.Extensions
                 var childParentNews = new LearningPlusNews
                 {
                     Creator = db.Users.FirstOrDefault(u => u.UserName == "Admin"),
-                    Message = $"Kids will attend origami workshop today.",
+                    Message = $"Децата ще посетят клас по оригами.",
                     TargetRoles = new List<LearningPlusNewsTargetRole>()
                                     {
                                      new LearningPlusNewsTargetRole{ TargetRole = UserRoles.Parent},
@@ -126,12 +126,12 @@ namespace LearningPlus.Web.Infrastructure.Extensions
                         user = new LearningPlusUser
                         {
                             UserName = username,
-                            FirstName = $"First{user}",
-                            LastName = $"{user}LastName",
+                            FirstName = $"First{username}",
+                            LastName = $"{username}LastName",
                             Email = $"{username}@{username}world.som"
                         };
+
                         await userManager.CreateAsync(user, "123456");
-                        //var userCreated = await userManager.FindByNameAsync(username);
                         await userManager.AddToRoleAsync(user, username);
                     }
                 }

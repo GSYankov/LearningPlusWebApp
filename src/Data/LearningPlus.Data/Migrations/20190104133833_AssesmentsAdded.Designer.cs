@@ -4,14 +4,16 @@ using LearningPlus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningPlus.Web.Migrations
 {
     [DbContext(typeof(LearningPlusDbContext))]
-    partial class LearningPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190104133833_AssesmentsAdded")]
+    partial class AssesmentsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace LearningPlus.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("LearningPlus.Models.LearningPlusAssessment", b =>
+            modelBuilder.Entity("LearningPlus.Models.LearningPlusAssesment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -27,7 +29,7 @@ namespace LearningPlus.Web.Migrations
                     b.Property<string>("ChildId")
                         .IsRequired();
 
-                    b.Property<int>("Course");
+                    b.Property<Guid>("CourseId");
 
                     b.Property<DateTime>("Date");
 
@@ -40,7 +42,9 @@ namespace LearningPlus.Web.Migrations
 
                     b.HasIndex("ChildId");
 
-                    b.ToTable("Assessments");
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Assesments");
                 });
 
             modelBuilder.Entity("LearningPlus.Models.LearningPlusChat", b =>
@@ -324,11 +328,16 @@ namespace LearningPlus.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LearningPlus.Models.LearningPlusAssessment", b =>
+            modelBuilder.Entity("LearningPlus.Models.LearningPlusAssesment", b =>
                 {
                     b.HasOne("LearningPlus.Models.LearningPlusUser", "Child")
                         .WithMany("Assesments")
                         .HasForeignKey("ChildId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("LearningPlus.Models.LearningPlusClass", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

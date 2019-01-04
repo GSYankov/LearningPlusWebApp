@@ -1,0 +1,59 @@
+﻿@model LearningPlus.Web.ViewModels.Assessment.DoAssessmentViewModel
+
+@{
+    ViewData["Title"] = "CreateAssessment";
+}
+
+@section Head{
+    <link href="~/css/site.css" rel="stylesheet">
+}
+
+<div class="text-center mt-3">
+    <h1>Постави оценка</h1>
+    <hr />
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <form asp-action="CreateAssessment">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="ChildId" class="form-control" value="@ViewBag.Id" hidden />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" type="date" class="form-control" id="mydate" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mark" class="control-label"></label>
+                    <input asp-for="Mark" class="form-control" />
+                    <span asp-validation-for="Mark" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Notes" class="control-label"></label>
+                    <input asp-for="Notes" class="form-control" />
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discipline" class="control-label"></label>
+                    <input asp-for="Discipline" class="form-control" />
+                    <span asp-validation-for="Discipline" class="text-danger"></span>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="form-group">
+                        <input type="submit" value="Оцени" class="btn logo-btn" />
+                    </div>
+                    <div>
+                        <a asp-controller="Classes" asp-action="Schedule">Към график</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("mydate").value = "@DateTime.Now.ToString("yyyy-MM-dd")";
+    </script>
+    }

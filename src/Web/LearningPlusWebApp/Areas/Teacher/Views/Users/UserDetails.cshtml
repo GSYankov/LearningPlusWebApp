@@ -5,7 +5,7 @@
 
 <div class="text-center">
 
-    <h4>@ViewData["Title"]</h4>
+    <h4 class="mt-3">@ViewData["Title"]</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -42,5 +42,6 @@
 </div>
 <div class="text-center">
     @Html.ActionLink("Коригирай", "UserEdit", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Бележник", "Markbook","Assessment", new { id = Model.Id }) |
+    <a asp-controller="Classes" asp-action="Schedule">Към график</a>
 </div>

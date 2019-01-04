@@ -26,6 +26,8 @@ using LerningPlus.Web.Services.HomeworkService;
 using LearningPlus.Web.Services.EmailService;
 using LerningPlus.Web.Services.ChatService.Contract;
 using LerningPlus.Web.Services.ChatService;
+using LerningPlus.Web.Services.AssessmentService.Contract;
+using LerningPlus.Web.Services.AssessmentService;
 
 namespace LearningPlus.Web
 {
@@ -89,6 +91,7 @@ namespace LearningPlus.Web
             services.AddScoped<IBlobService, BlobService>();
             services.AddScoped<IHomeworkService, HomeworkService>();
             services.AddScoped<IChatService, ChatService>();
+            services.AddScoped<IAssessmentService, AssesmentService>();
 
         }
 

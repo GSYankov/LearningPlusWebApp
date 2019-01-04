@@ -1,0 +1,47 @@
+﻿@model LearningPlus.Web.ViewModels.Assessment.MarkbookViewModel
+
+@{
+    ViewData["Title"] = "Бележник";
+}
+
+<h1 class="text-center mt-3">Бележник на @Model.ChildName</h1>
+
+<p>
+    <a asp-action="CreateAssessment" asp-route-id="@Model.ChildId">Оцени</a>
+</p>
+<table class="table w-75 mx-auto table-hover">
+    <thead>
+        <tr class="row">
+            <th class="col-md-1">#</th>
+            <th class="col-md-4">Дата</th>
+            <th class="col-md-3">Предмет</th>
+            <th class="col-md-2">Оценка</th>
+            <th class="col-md-2">Забележка</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{if (Model.Assessments != null)
+            {
+                var i = 1;
+                foreach (var assesment in Model.Assessments)
+                {
+                    <tr class="row">
+                        <td class="col-md-1">@i</td>
+                        <td class="col-md-4">@assesment.Date</td>
+                        <td class="col-md-3">@assesment.Discipline</td>
+                        <td class="col-md-2">@assesment.Mark</td>
+                        <td class="col-md-2">@assesment.Notes</td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr class="row">
+                    <td class="col-md-12 text-center">Все още няма нанесени оценки</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
