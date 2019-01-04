@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -29,6 +30,7 @@
 
     <!-- Main Stylesheet File -->
     <link href="/css/style.css" rel="stylesheet">
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
 <body id="body" class="pt-0">

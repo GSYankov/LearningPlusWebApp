@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-LearningPlusWebApp-C7D1CA92-B41D-4A2C-BCE7-5DE2F1BF2671</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/232b4359-95fd-4ff7-8f89-92c7e1a80644/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/LearningPlus.Web</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/232b4359-95fd-4ff7-8f89-92c7e1a80644/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/LearningPlus.Web</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -38,6 +41,10 @@
     <Content Update="Views\Home\IndexLoggedIn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
