@@ -1,13 +1,15 @@
-﻿using LearningPlus.Web.ViewModels.Assessment;
+﻿using LearningPlus.Models.Enums;
+using LearningPlus.Web.ViewModels.Assessment;
 using LerningPlus.Web.Services.AssessmentService.Contract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LearningPlus.Web.Controllers
 {
+    [Authorize]
     public class AssessmentController : Controller
     {
         private readonly IAssessmentService assessmentService;
@@ -24,18 +26,24 @@ namespace LearningPlus.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Teacher")]
         public IActionResult CreateAssessment(string id)
         {
             ViewBag.Id = id;
+            ViewBag.Disciplines = Enum.GetValues(typeof(Disciplines))
+                .Cast<Disciplines>()
+                .Select(d => new SelectListItem(d.ToString(), d.ToString()));
+
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public IActionResult CreateAssessment(DoAssessmentViewModel model)
         {
             this.assessmentService.CreateAssessment(model);
 
-            return RedirectToAction("Markbook", "Assessment", new { id = model.ChildId });
+            return RedirectToAction("Markbook", new { id = model.ChildId });
         }
     }
 }

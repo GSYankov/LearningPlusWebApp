@@ -4,25 +4,23 @@ using LearningPlus.Models;
 using LearningPlus.Models.Enums;
 using LearningPlus.Web.ViewModels.Assessment;
 using LerningPlus.Web.Services.AssessmentService.Contract;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LerningPlus.Web.Services.AssessmentService
 {
     public class AssesmentService : IAssessmentService
     {
-        private readonly UserManager<LearningPlusUser> userManager;
+        private readonly IRepository<LearningPlusUser> userRepo;
         private readonly IMapper mapper;
         private readonly IRepository<LearningPlusAssessment> assessmentRepo;
 
-        public AssesmentService(UserManager<LearningPlusUser> userManager, 
-            IMapper mapper, 
+        public AssesmentService(IRepository<LearningPlusUser> userRepo,
+            IMapper mapper,
             IRepository<LearningPlusAssessment> assessmentRepo)
         {
-            this.userManager = userManager;
+            this.userRepo = userRepo;
             this.mapper = mapper;
             this.assessmentRepo = assessmentRepo;
             MapperConfiguration config = MapperConfiguration();
@@ -40,7 +38,7 @@ namespace LerningPlus.Web.Services.AssessmentService
 
         public MarkbookViewModel GetMarkbookById(string id)
         {
-            var child = userManager.FindByIdAsync(id).GetAwaiter().GetResult();
+            var child = userRepo.All().Include(u => u.Assesments).SingleOrDefault(u => u.Id == id);
             var assessments = child.Assesments?.Select(a => this.mapper.Map<AssessmentViewModel>(a)).ToList();
             var model = new MarkbookViewModel()
             {
@@ -56,9 +54,11 @@ namespace LerningPlus.Web.Services.AssessmentService
         {
             return new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<LearningPlusAssessment, AssessmentViewModel>();
+                cfg.CreateMap<LearningPlusAssessment, AssessmentViewModel>()
+                .ForMember(dest => dest.Discipline, opt => opt.MapFrom(src => src.Course.ToString()));
                 cfg.CreateMap<DoAssessmentViewModel, LearningPlusAssessment>()
-                .ForMember(dest => dest.Child,opt=> opt.MapFrom(src => this.userManager.FindByIdAsync(src.ChildId).GetAwaiter().GetResult()));
+                .ForMember(dest => dest.Child, opt => opt.MapFrom(src => this.userRepo.All().SingleOrDefault(u => u.Id == src.ChildId)))
+                .ForMember(dest => dest.Course, opt => opt.MapFrom(src => Enum.Parse<Disciplines>(src.Discipline)));
             });
         }
     }

@@ -6,9 +6,15 @@
 
 <h1 class="text-center mt-3">Бележник на @Model.ChildName</h1>
 
-<p>
-    <a asp-action="CreateAssessment" asp-route-id="@Model.ChildId">Оцени</a>
-</p>
+@if (User.IsInRole("Teacher"))
+{
+    <div class="w-75 mx-auto">
+        <p>
+            <a asp-action="CreateAssessment" asp-route-id="@Model.ChildId">Оцени</a>
+        </p>
+    </div>
+}
+
 <table class="table w-75 mx-auto table-hover">
     <thead>
         <tr class="row">
@@ -27,7 +33,7 @@
                 {
                     <tr class="row">
                         <td class="col-md-1">@i</td>
-                        <td class="col-md-4">@assesment.Date</td>
+                        <td class="col-md-4">@assesment.Date.ToString("MM/dd/yyyy")</td>
                         <td class="col-md-3">@assesment.Discipline</td>
                         <td class="col-md-2">@assesment.Mark</td>
                         <td class="col-md-2">@assesment.Notes</td>
@@ -42,6 +48,6 @@
                 </tr>
             }
         }
-
     </tbody>
 </table>
+

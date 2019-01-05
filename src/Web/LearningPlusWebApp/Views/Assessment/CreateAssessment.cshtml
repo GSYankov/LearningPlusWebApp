@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Discipline" class="control-label"></label>
-                    <input asp-for="Discipline" class="form-control" />
+                    <select asp-for="Discipline" asp-items="ViewBag.Disciplines" class="form-control"></select>
                     <span asp-validation-for="Discipline" class="text-danger"></span>
                 </div>
                 <div class="row justify-content-between">
