@@ -4,7 +4,7 @@ namespace LearningPlus.Web.ViewModels.Users
 {
     public class RegisterStudentViewModel
     {
-        [RegularExpression("[A-Za-z0-9]+")]
+        [RegularExpression("[A-Za-z0-9]+",ErrorMessage ="Потребителсото име може да бъде се състои от латински букви и цифри!")]
         [Display(Name = "Потребителско име на латиница")]
         [Required(ErrorMessage = "Полето 'Потребителско име' е задължително")]
         public string ParentUserName { get; set; }
@@ -36,7 +36,7 @@ namespace LearningPlus.Web.ViewModels.Users
         [Compare("ParentPassword", ErrorMessage = "Паролите на родителя не съвпадат")]
         public string ParentConfirmPassword { get; set; }
 
-        [RegularExpression("[A-Za-z0-9]+")]
+        [RegularExpression("[A-Za-z0-9]+", ErrorMessage = "Потребителсото име може да бъде се състои от латински букви и цифри!")]
         [Display(Name = "Потребителско име на латиница")]
         [Required(ErrorMessage = "Полето 'Потребителско име' е задължително")]
         public string ChildUserName { get; set; }

@@ -59,7 +59,7 @@ namespace Eventures.Areas.Teacher.Controllers
             await this.userManager.AddToRoleAsync(parent, "Parent");
             await this.userManager.AddToRoleAsync(child, "Child");
 
-            return Redirect("/");
+            return RedirectToAction("UserApprovals");
         }
 
         [HttpGet]

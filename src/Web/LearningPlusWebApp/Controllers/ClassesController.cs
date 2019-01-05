@@ -75,7 +75,12 @@ namespace LearningPlus.Web.Controllers
         [Authorize(Roles = "Admin, Teacher")]
         public IActionResult Create(ClassesCreateViewModel model)
         {
-            this.classesService.Create(model);
+            if (ModelState.IsValid)
+            {
+                this.classesService.Create(model);
+                return RedirectToAction("Schedule", "Classes");
+            }
+
             return RedirectToAction("Schedule", "Classes");
         }
 
@@ -90,10 +95,11 @@ namespace LearningPlus.Web.Controllers
         [Authorize(Roles = "Admin, Teacher")]
         public IActionResult Edit(ClassesCreateViewModel model)
         {
+            //TODO: Implement editing
             CreateEditViewBag();
 
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]

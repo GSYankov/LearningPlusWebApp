@@ -37,7 +37,7 @@ namespace LearningPlus.Web.Services.EmailService
             msg.To.Add(new MailAddress(email));
             msg.From = new MailAddress(sender);
             msg.Subject = subject;
-            msg.Body = "<h1>От " + sender + "</h1><br/><p>" + htmlMessage + "<p>";
+            msg.Body = "<h1>От " + email + "</h1><br/><p>" + htmlMessage + "<p>";
             msg.IsBodyHtml = true;
 
             SmtpClient client = new SmtpClient

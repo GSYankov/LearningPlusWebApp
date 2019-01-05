@@ -9,7 +9,7 @@
 }
 else if (User.IsInRole("Teacher"))
 {
-    <h2>Здравей, <span>@User.Identity.Name!</span><br>Преподавай забавно!</h2>
+    <h2>Здравей, <span>@User.Identity.Name!</span><br>Преподавай със забава!</h2>
 }
 else if (User.IsInRole("Parent"))
 {
@@ -19,3 +19,8 @@ else if (User.IsInRole("Child"))
 {
     <h2>Здравей, <span>@User.Identity.Name!</span><br>Подготви се за днес!</h2>
 }
+else
+{
+    <h2>Здравей, <span>@User.Identity.Name!</span><br>Изчакай одобрение!</h2>
+}
+
