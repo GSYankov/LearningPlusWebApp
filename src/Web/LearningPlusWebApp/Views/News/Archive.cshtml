@@ -1,4 +1,7 @@
-﻿@model IEnumerable<LearningPlus.Web.ViewModels.News.NewsArchiveViewModel>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Common
+@model IEnumerable<LearningPlus.Web.ViewModels.News.NewsArchiveViewModel>
 
 @{
     ViewData["Title"] = "Архив новини";
@@ -8,7 +11,7 @@
     <link href="~/css/site.css" rel="stylesheet">
 }
 
-<h1 class="text-center">@ViewData["Title"]</h1>
+<h1 class="text-center mt-3">@ViewData["Title"]</h1>
 
 
 
@@ -76,6 +79,9 @@
                 }
             </tbody>
         </table>
-            <hr class="mt-0" />
+        <div class="d-flex justify-content-center">
+            @Html.PagedListPager((IPagedList)Model, id => Url.Action("Archive", new { id = id }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+        </div>
+        <hr class="mt-0" />
     </div>
 </div>

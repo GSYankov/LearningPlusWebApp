@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using X.PagedList;
 
 namespace LearningPlus.Web.Controllers
 {
@@ -82,12 +83,15 @@ namespace LearningPlus.Web.Controllers
         }
 
         [Authorize(Roles = "Admin, Teacher")]
-        public IActionResult Archive()
+        public IActionResult Archive(int? id)
         {
             //TODO: Improve news delete. Insert Pagination
             var model = this.newsService.GetArchivedNews();
+            var nextPage = id ?? 1;
+            var recordsPerPage = 3;
+            var pagedModel = model.ToPagedList(nextPage, recordsPerPage);
 
-            return View(model);
+            return View(pagedModel);
         }
     }
 }
