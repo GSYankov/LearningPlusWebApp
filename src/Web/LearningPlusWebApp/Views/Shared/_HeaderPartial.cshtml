@@ -2,16 +2,14 @@
     <!--==========================
          Header
        ============================-->
-    <header id="header">
+    <header>
         <div class="container">
 
-            <div id="logo" class="pull-left">
+            <div class="logo">
                 <h1><a asp-controller="Home" asp-action="Index" class="scrollto">Научи<span>Повече</span></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
             </div>
 
-            <nav id="nav-menu-container">
+            <nav class="nav-menu-container">
                 <ul class="nav-menu">
 
                     @if (User.IsInRole("Admin"))

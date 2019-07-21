@@ -19,26 +19,26 @@
     @*<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">*@
 
     <!-- Libraries CSS Files -->
-    @*<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/lib/magnific-popup/magnific-popup.css" rel="stylesheet">
-    <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">*@
+    <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    @*<link href="/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+        <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="/lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+        <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">*@
 
     @RenderSection("Head", false)
 
     <!-- Main Stylesheet File -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/site.css" rel="stylesheet">
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
-<body id="body" class="pt-0">
+<body class="pt-0">
 
     <!--==========================
       Top Bar
     ============================-->
-    <section id="topbar" class="d-none d-lg-block">
+    <section class="topbar">
         <div class="container clearfix">
             <div class="contact-info float-left">
                 <i class="fa fa-envelope-o"></i> <a href="mailto:svetleto_gb@abv.bg">svetleto_gb@abv.bg</a>
@@ -60,7 +60,7 @@
     <!--==========================
       Footer
     ============================-->
-    <footer id="footer">
+    <footer class="footer">
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong>Reveal</strong>. All Rights Reserved
