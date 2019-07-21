@@ -3,13 +3,13 @@
          Header
        ============================-->
     <header>
-        <div class="container">
+        <div class="wrapper">
 
             <div class="logo">
                 <h1><a asp-controller="Home" asp-action="Index" class="scrollto">Научи<span>Повече</span></a></h1>
             </div>
 
-            <nav class="nav-menu-container">
+            <nav>
                 <ul class="nav-menu">
 
                     @if (User.IsInRole("Admin"))
@@ -74,6 +74,6 @@
                         <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></li>
                     }
                 </ul>
-            </nav><!-- #nav-menu-container -->
+            </nav>
         </div>
-    </header><!-- #header -->
+    </header>
