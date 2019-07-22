@@ -49,58 +49,46 @@
       Services Section
     ============================-->
     <section class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Обучения</h2>
-                <p>Качествени курсове за подготовка на кандидат-студенти, матури, изпити след 7 клас и чуждоезиково обучение.</p>
+        <div class="section-header">
+            <h2>Обучения</h2>
+            <p>Качествени курсове за подготовка на кандидат-студенти, матури, изпити след 7 клас и чуждоезиково обучение.</p>
+        </div>
+        <div class="wrapper">
+
+            <div class="box">
+                <div class="icon"><i class="fa fa-book"></i></div>
+                <h4 class="title"><a asp-controller="Home" asp-action="BgLangAndLitr">Матура по български език и литература</a></h4>
+                <p class="description">
+                    Матурата по български език е оценка на първата ключова компетентност за
+                    всеки български (европейски) гражданин.
+                </p>
             </div>
 
-            <div class="row">
+            <div class="box">
+                <div class="icon"><i class="fa fa-calculator"></i></div>
+                <h4 class="title"><a asp-controller="Home" asp-action="Math">Кандидатстване с математика</a></h4>
+                <p class="description">
+                    Учебните материали отговарят на формата на изпита –
+                    писмен изпит по математика, тестови изпит или формат за матура по математика.
+                </p>
+            </div>
 
-                <div class="col-lg-6">
-                    <div class="box wow fadeInLeft">
-                        <div class="icon"><i class="fa fa-book"></i></div>
-                        <h4 class="title"><a asp-controller="Home" asp-action="BgLangAndLitr">Матура по български език и литература</a></h4>
-                        <p class="description">
-                            Матурата по български език е оценка на първата ключова компетентност за
-                            всеки български (европейски) гражданин.
-                        </p>
-                    </div>
-                </div>
+            <div class="box">
+                <div class="icon"><i class="fa fa-university"></i></div>
+                <h4 class="title"><a asp-controller="Home" asp-action="History">Кандидатстване с история</a></h4>
+                <p class="description">
+                    Разработени подробни теми по история в 3 части за
+                    кандидатстване в университети и полагане на държавен зрелостен изпит.
+                </p>
+            </div>
 
-                <div class="col-lg-6">
-                    <div class="box wow fadeInRight">
-                        <div class="icon"><i class="fa fa-calculator"></i></div>
-                        <h4 class="title"><a asp-controller="Home" asp-action="Math">Кандидатстване с математика</a></h4>
-                        <p class="description">
-                            Учебните материали отговарят на формата на изпита –
-                            писмен изпит по математика, тестови изпит или формат за матура по математика.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="box wow fadeInLeft" data-wow-delay="0.2s">
-                        <div class="icon"><i class="fa fa-university"></i></div>
-                        <h4 class="title"><a asp-controller="Home" asp-action="History">Кандидатстване с история</a></h4>
-                        <p class="description">
-                            Разработени подробни теми по история в 3 части за
-                            кандидатстване в университети и полагане на държавен зрелостен изпит.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="box wow fadeInRight" data-wow-delay="0.2s">
-                        <div class="icon"><i class="fa fa-language"></i></div>
-                        <h4 class="title"><a asp-controller="Home" asp-action="English">Матура по английски език</a></h4>
-                        <p class="description">
-                            Присъствени едногодишни и двугодишни курсове за подготовка за матура и
-                            кандидатстване в университет.
-                        </p>
-                    </div>
-                </div>
-
+            <div class="box">
+                <div class="icon"><i class="fa fa-language"></i></div>
+                <h4 class="title"><a asp-controller="Home" asp-action="English">Матура по английски език</a></h4>
+                <p class="description">
+                    Присъствени едногодишни и двугодишни курсове за подготовка за матура и
+                    кандидатстване в университет.
+                </p>
             </div>
 
         </div>
