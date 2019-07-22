@@ -253,7 +253,7 @@
         </div>
 
         <div class="google-map">
-            <iframe src="https://www.google.com/maps/embed/v1/place?q=42.6621927,23.3151003&key=@Configuration[" GoogleApiKey"]"></iframe>
+            <iframe src="https://www.google.com/maps/embed/v1/place?q=42.6621927,23.3151003&key=@Configuration["GoogleApiKey"]"></iframe>
         </div>
 
         <div class="form">
@@ -261,20 +261,20 @@
             <div id="errormessage"></div>
             <form asp-controller="Email" asp-action="SendFromHome" method="post" role="form" class="contactForm">
                 <div class="name">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Вашето име" data-rule="minlen:4" data-msg="Моля, въведете поне четири символа!" />
+                    <input type="text" name="name" id="name" placeholder="Вашето име" data-rule="minlen:4" data-msg="Моля, въведете поне четири символа!" />
                     <div class="validation"></div>
                 </div>
                 <div class="email">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Вашият имейл" data-rule="email" data-msg="Моля, виведете валиден имейл!" />
+                    <input type="email" name="email" id="email" placeholder="Вашият имейл" data-rule="email" data-msg="Моля, виведете валиден имейл!" />
                     <div class="validation"></div>
                 </div>
                 <div class="subject">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Относно" data-rule="minlen:4" data-msg="Моля, въведете текст от поне четири символа!" />
+                    <input type="text" name="subject" id="subject" placeholder="Относно" data-rule="minlen:4" data-msg="Моля, въведете текст от поне четири символа!" />
                     <div class="validation"></div>
                 </div>
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Напишете ни нещо" placeholder="Съобщение..."></textarea>
+                <textarea name="message" rows="5" data-rule="required" data-msg="Напишете ни нещо" placeholder="Съобщение..."></textarea>
                 <div class="validation"></div>
-                <div class="text-center"><button type="submit">Изпрати запитване</button></div>
+                <button type="submit">Изпрати запитване</button>
             </form>
 
         </div>
