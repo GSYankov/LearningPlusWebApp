@@ -13,6 +13,5 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: cd LearningPlusWebApp/src/Web/LearningPlusWebApp
-- script: dotnet build --configuration $(buildConfiguration)
+- script: dotnet build src/Web/LearningPlusWebApp/LearningPlus.Web.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
