@@ -20,6 +20,7 @@ namespace LearningPlus.Web
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseApplicationInsights()
+                .UseUrls("http://*:5001")
                 .UseStartup<Startup>();
     }
 }

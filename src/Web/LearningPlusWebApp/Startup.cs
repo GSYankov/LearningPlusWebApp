@@ -79,8 +79,8 @@ namespace LearningPlus.Web
             services.AddAuthentication()
             .AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                facebookOptions.AppId = Configuration["AppId"];
+                facebookOptions.AppSecret = Configuration["AppSecret"];
             });
 
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
