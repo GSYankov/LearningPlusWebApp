@@ -1,0 +1,47 @@
+﻿.login {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.page-title {
+    text-align: center;
+    border-bottom: 2px solid #000000;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+    form .field-name {
+        flex: 0 0 100%;
+        text-align: center;
+    }
+
+    form input {
+        flex: 0 0 80%;
+        border: none;
+        border: 2px solid #0094ff;
+        border-left: none;
+        outline: none;
+    }
+
+    form .icon:focus,
+    form .icon:hover {
+        border: 2px solid #ff0000;
+        border-right: none;
+    }
+
+        form .icon:focus + input,
+        form .icon:hover + input {
+            border: 2px solid #ff0000;
+            border-left: none;
+        }
+
+    form label.icon {
+        flex: 0 0 5%;
+        padding: 0.4em;
+        border: 2px solid #0094ff;
+        border-right: none;
+    }
