@@ -1,25 +1,25 @@
 ﻿.login {
     width: 30%;
     margin: 1em auto;
-}
 
-    .login .page-title {
+    .page-title {
         text-align: center;
         border-bottom: 2px solid #000000;
     }
 
-    .login form {
+    form {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-    }
 
-        .login form .field-name {
+
+        .field-name {
             flex: 0 0 100%;
             text-align: center;
-        }
+            }
 
-        .login form > input {
+
+         > input {
             flex: 0 0 80%;
             border: none;
             border: 2px solid #0094ff;
@@ -27,30 +27,30 @@
             outline: none;
             border-top-right-radius: 0.3em;
             border-bottom-right-radius: 0.3em;
-        }
+            }
 
-        .login form .icon:focus,
-        .login form .icon:hover {
+        .icon:focus,
+        .icon:hover {
             border: 2px solid #ff0000;
             border-right: none;
-        }
+            }
 
-        .login form .icon + input:focus,
-        .login form .icon + input:hover {
+        .icon + input:focus,
+        .icon + input:hover {
             border: 2px solid #ff0000;
             border-left: none;
-        }
+            }
 
-        .login form label.icon {
+        label.icon {
             flex: 0 0 5%;
             padding: 0.4em;
             border: 2px solid #0094ff;
             border-right: none;
             border-top-left-radius: 0.3em;
             border-bottom-left-radius: 0.3em;
-        }
+            }
 
-        .login form .rememberme {
+        .rememberme {
             flex: 0 0 89%;
             margin-top: 1em;
             border-top: 1px solid #000000;
@@ -59,33 +59,32 @@
             justify-content: center;
             align-content: center;
             padding: 1em 0;
-        }
-
-            .login form .rememberme label {
             }
 
-            .login form .rememberme input {
-                margin-top: 0.4em;
-                margin-right: 0.4em;
+        .rememberme input {
+            margin-top: 0.4em;
+            margin-right: 0.4em;
             }
-
-        .login form button {
+          
+        button {
             flex: 0 0 30%;
             margin: 1em;
-        }
+            }
 
-        .login form::after {
+        &::after {
             padding-left: 89%;
             content: "";
             border-bottom: 1px solid #000000;
+            }
         }
 
-    .login .text-center {
-        text-align: center;
-    }
+    .text-center {
+       text-align: center;
+        }
 
-    .login div + form::before {
+    div + form::before {
         padding-left: 89%;
         content: "";
         border-bottom: 1px solid #000000;
     }
+}
