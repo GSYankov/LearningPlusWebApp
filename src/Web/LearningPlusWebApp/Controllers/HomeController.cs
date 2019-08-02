@@ -100,6 +100,8 @@ namespace LearningPlus.Web.Controllers
 
         public IActionResult Development() => View("EducationalPortal/Development");
 
+        public IActionResult Gallery() => View("Gallery");
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
