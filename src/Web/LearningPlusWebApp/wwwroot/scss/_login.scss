@@ -12,43 +12,49 @@
         flex-wrap: wrap;
         justify-content: center;
 
-
-        .field-name {
+        .field {
+            display: flex;
+            flex-wrap: wrap;
             flex: 0 0 100%;
-            text-align: center;
+            justify-content: center;
+
+            .field-name {
+                flex: 0 0 100%;
+                text-align: center;
             }
 
-
-         > input {
-            flex: 0 0 80%;
-            border: none;
-            border: 2px solid #0094ff;
-            border-left: none;
-            outline: none;
-            border-top-right-radius: 0.3em;
-            border-bottom-right-radius: 0.3em;
+            > input {
+                flex: 0 0 80%;
+                border: none;
+                border: 2px solid #0094ff;
+                border-left: none;
+                outline: none;
+                border-top-right-radius: 0.3em;
+                border-bottom-right-radius: 0.3em;
+                order: 2;
             }
 
-        .icon:focus,
-        .icon:hover {
-            border: 2px solid #ff0000;
-            border-right: none;
+            input:focus,
+            input:hover {
+                border: 2px solid var(--color-theme, #50d8af);
+                border-left: none;
+
+                + label,
+                + label {
+                    border: 2px solid var(--color-theme, #50d8af);
+                    border-right: none;
+                }
             }
 
-        .icon + input:focus,
-        .icon + input:hover {
-            border: 2px solid #ff0000;
-            border-left: none;
+            label.icon {
+                flex: 0 0 5%;
+                padding: 0.4em;
+                border: 2px solid #0094ff;
+                border-right: none;
+                border-top-left-radius: 0.3em;
+                border-bottom-left-radius: 0.3em;
             }
-
-        label.icon {
-            flex: 0 0 5%;
-            padding: 0.4em;
-            border: 2px solid #0094ff;
-            border-right: none;
-            border-top-left-radius: 0.3em;
-            border-bottom-left-radius: 0.3em;
-            }
+        }
 
         .rememberme {
             flex: 0 0 89%;
@@ -59,28 +65,28 @@
             justify-content: center;
             align-content: center;
             padding: 1em 0;
-            }
+        }
 
         .rememberme input {
             margin-top: 0.4em;
             margin-right: 0.4em;
-            }
-          
+        }
+
         button {
             flex: 0 0 30%;
             margin: 1em;
-            }
+        }
 
         &::after {
             padding-left: 89%;
             content: "";
             border-bottom: 1px solid #000000;
-            }
         }
+    }
 
     .text-center {
-       text-align: center;
-        }
+        text-align: center;
+    }
 
     div + form::before {
         padding-left: 89%;

@@ -7,14 +7,18 @@
 <div class="login">
     <h1 class="page-title">@ViewData["Title"]</h1>
     <form method="post" asp-controller="Users" asp-action="Login">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <label asp-for="Username" class="field-name">Потребителско име</label>
-        <label asp-for="Username" class="icon"><i class="fa fa-user"></i></label>
-        <input type="text" id="Username" name="username" placeholder="Портебителско име...">
-        <span asp-validation-for="Username" class="text-danger"></span>
-        <label asp-for="Password" class="field-name">Парола</label>
-        <label asp-for="Password" class="icon"><i class="fa fa-key"></i></label>
-        <input type="password" name="password" id="Password" placeholder="Парола..." />
+        <p class="field">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label asp-for="Username" class="field-name">Потребителско име</label>
+            <input type="text" id="Username" name="username" placeholder="Портебителско име...">
+            <label asp-for="Username" class="icon"><i class="fa fa-user"></i></label>
+        </p>
+        <p class="field">
+            <span asp-validation-for="Username" class="text-danger"></span>
+            <label asp-for="Password" class="field-name">Парола</label>
+            <input type="password" name="password" id="Password" placeholder="Парола..." />
+            <label asp-for="Password" class="icon"><i class="fa fa-key"></i></label>
+        </p>
         <span asp-validation-for="Password" class="text-danger"></span>
         <div class="rememberme">
             <input type="checkbox" id="rememberme" name="RememberMe" value="true">
@@ -30,5 +34,5 @@
 </div>
 
 @section Scripts{
-<partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
 }
