@@ -39,8 +39,9 @@ namespace LerningPlus.Web.Services.NewsService
 
         public List<NewsLoggedInViewModel> GetAdminNews()
         {
+            //TODO: Handele exception if n==null "n.ExpiresOn >= DateTime.UtcNow"
             return this.newsRepo.All()
-                          .Where(n => n.ExpiresOn >= DateTime.UtcNow)
+                          .Where(n => n.ExpiresOn <= DateTime.UtcNow)
                           .Take(newsToShow)
                           .Select(n => this.mapper.Map<NewsLoggedInViewModel>(n))
                           .ToList();

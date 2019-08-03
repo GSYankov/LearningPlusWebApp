@@ -12,5 +12,3 @@ function onclickPhoto(e) {
 function onclickModal() {
     document.querySelector(".modal").style.display = "none"
 }
-
-
