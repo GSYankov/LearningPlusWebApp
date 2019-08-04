@@ -534,6 +534,7 @@ body.mobile-nav-active {
 }
 
     .services .wrapper {
+        margin-top: 1em;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
@@ -548,6 +549,7 @@ body.mobile-nav-active {
         background: #fff;
         transition: 0.4s;
         flex: 0 0 45%;
+        display:block;
     }
 
         .services .box:hover {
@@ -705,6 +707,7 @@ body.mobile-nav-active {
         min-height: 350px;
         box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
         flex: 0 0 20%;
+        display:block;
     }
 
         .testimonials .testimonial-item .testimonial-img {
@@ -821,6 +824,7 @@ body.mobile-nav-active {
         text-align: center;
         margin-bottom: 1.5em;
         flex: 0 0 20%;
+        display: block;
     }
 
         .team .member .pic {
@@ -889,6 +893,7 @@ body.mobile-nav-active {
         .contact .contact-info p {
             margin-bottom: 0;
             color: #000;
+            display: block;
         }
 
         .contact .contact-info h3 {
@@ -911,6 +916,7 @@ body.mobile-nav-active {
     .contact .contact-phone,
     .contact .contact-email {
         margin-bottom: 20px;
+        display: block;
     }
 
     .contact .google-map iframe {

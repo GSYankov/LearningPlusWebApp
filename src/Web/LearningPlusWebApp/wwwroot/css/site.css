@@ -558,6 +558,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 2em 0 0 0; }
 
 .services .wrapper {
+  margin-top: 1em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
@@ -568,7 +569,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   box-shadow: 10px 10px 15px rgba(73, 78, 92, 0.1);
   background: #fff;
   transition: 0.4s;
-  flex: 0 0 45%; }
+  flex: 0 0 45%;
+  display: block; }
 
 .services .box:hover {
   box-shadow: 0px 0px 30px rgba(73, 78, 92, 0.15);
@@ -698,7 +700,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-align: center;
   min-height: 350px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
-  flex: 0 0 20%; }
+  flex: 0 0 20%;
+  display: block; }
 
 .testimonials .testimonial-item .testimonial-img {
   width: 90px;
@@ -795,7 +798,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .team .member {
   text-align: center;
   margin-bottom: 1.5em;
-  flex: 0 0 20%; }
+  flex: 0 0 20%;
+  display: block; }
 
 .team .member .pic {
   overflow: hidden;
@@ -850,7 +854,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .contact .contact-info address,
 .contact .contact-info p {
   margin-bottom: 0;
-  color: #000; }
+  color: #000;
+  display: block; }
 
 .contact .contact-info h3 {
   font-size: 18px;
@@ -868,7 +873,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .contact .contact-address,
 .contact .contact-phone,
 .contact .contact-email {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  display: block; }
 
 .contact .google-map iframe {
   height: 290px;
