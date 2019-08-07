@@ -5,9 +5,8 @@
     overflow: hidden;
     padding: 10px;
     font-family: Helvetica;
-}
 
-    .holder .mask {
+    .mask {
         position: relative;
         left: 0px;
         top: 10px;
@@ -16,18 +15,19 @@
         overflow: hidden;
     }
 
-    .holder ul {
+    ul {
         list-style: none;
         margin: 0;
         padding: 0;
         position: relative;
-    }
 
-        .holder ul li {
+        li {
             padding: 10px 0px;
         }
 
-            .holder ul li a {
-                color: forestgreen;
-                text-decoration: none;
-            }
+        li a {
+            color: forestgreen;
+            text-decoration: none;
+        }
+    }
+}

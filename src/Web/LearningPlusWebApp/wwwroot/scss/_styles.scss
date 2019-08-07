@@ -5,19 +5,19 @@
 body {
     background: #fff;
     color: #444;
-    width: 1300px;
+    max-width: 1300px;
+    width: 100vw;
     margin: 0 auto;
-    /*font-family: "Open Sans", sans-serif;*/
 }
 
 a {
-    color: #50d8af;
+    color: var(--color-theme, var(--color-theme, #50d8af));
     transition: 0.5s;
 
     &:hover,
     &:active,
     &:focus {
-        color: #51d8af;
+        color: var(--color-theme-focus, #51d8af);
         outline: none;
         text-decoration: none;
     }
@@ -25,7 +25,7 @@ a {
 
 p {
     padding: 0;
-    margin: 0 0 30px 0;
+    margin: 0 0 2em 0;
 }
 
 h1,
@@ -36,7 +36,7 @@ h5,
 h6 {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    margin: 0 0 20px 0;
+    margin: 0 0 1.2em 0;
     padding: 0;
 }
 
@@ -45,18 +45,18 @@ h6 {
 .back-to-top {
     position: fixed;
     display: block;
-    background: #50d8af;
+    background: var(--color-theme, var(--color-theme, #50d8af));
     color: #fff;
-    padding: 6px 12px 9px 12px;
-    font-size: 16px;
+    padding: 0.4em 0.8em 0.5em 0.8em;
+    font-size: 1em;
     border-radius: 2px;
-    right: 15px;
-    bottom: 15px;
+    right: 1em;
+    bottom: 1em;
     transition: background 0.5s;
 
 
     &:focus {
-        background: #50d8af;
+        background: var(--color-theme, var(--color-theme, #50d8af));
         color: #fff;
         outline: none;
     }
@@ -89,12 +89,12 @@ h6 {
             color: #555;
 
             &:hover {
-                color: #50d8af;
+                color: var(--color-theme, var(--color-theme, #50d8af));
             }
         }
 
         i {
-            color: #50d8af;
+            color: var(--color-theme, var(--color-theme, #50d8af));
             padding: 4px;
         }
 
@@ -113,7 +113,7 @@ h6 {
         border-left: 1px solid #e9e9e9;
 
         &:hover {
-            color: #50d8af;
+            color: var(--color-theme, var(--color-theme, #50d8af));
         }
 
         &:first-child {
@@ -150,7 +150,7 @@ header {
             display: inline-block;
 
             span {
-                color: #50d8af;
+                color: var(--color-theme, var(--color-theme, #50d8af));
             }
         }
     }
@@ -187,7 +187,7 @@ header {
             font-weight: 700;
 
             span {
-                color: #50d8af;
+                color: var(--color-theme, #50d8af);
                 text-decoration: underline;
             }
         }
@@ -246,7 +246,7 @@ header {
 
     li:hover > a,
     .menu-active > a {
-        color: #50d8af;
+        color: var(--color-theme, #50d8af);
     }
 
     ul {
@@ -270,7 +270,7 @@ header {
     }
 
     ul li:hover > a {
-        color: #50d8af;
+        color: var(--color-theme, #50d8af);
     }
 
     ul ul {
@@ -304,7 +304,7 @@ header {
             display: block;
             /*width: 4em;*/
             height: 3px;
-            background: #50d8af;
+            background: var(--color-theme, #50d8af);
             bottom: 0;
             left: 0;
             right: 0%;
@@ -318,18 +318,44 @@ header {
     margin: 1em 0;
     display: flex;
     justify-content: space-between;
+    padding: 0 2em 0 1em;
 
 
-    h2 {
+    h2, h5 {
         text-align: center;
+        margin: 0;
     }
 
     ul {
         padding: 1em;
+        list-style: armenian;
+        padding: 0 5em;
+        margin-top: 1em;
     }
 
     > div {
-        flex: 0 0 48%;
+        flex: 0 0 50%;
+    }
+
+    .img-container {
+        position: relative;
+        overflow: hidden;
+
+        img {
+            border-radius: 0.5rem;
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .text-container {
+        background-color: azure;
+        text-align: center;
     }
 }
 /* Services Section
@@ -342,6 +368,7 @@ header {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        padding: 0 2em 0 1em;
     }
 
 
@@ -373,7 +400,7 @@ header {
 
             &:before {
                 background: #0c2e8a;
-                background: linear-gradient(45deg, #50d8af 0%, #a3ebd5 100%);
+                background: linear-gradient(45deg, var(--color-theme, #50d8af) 0%, #a3ebd5 100%);
                 background-clip: border-box;
             }
         }
@@ -405,6 +432,7 @@ header {
     .wrapper {
         display: flex;
         justify-content: space-between;
+        padding: 0 2em 0 1em;
     }
 
     .testimonial-item {
@@ -475,6 +503,7 @@ header {
         display: flex;
         justify-content: space-between;
         margin-top: 1em;
+        padding: 0 2em 0 1em;
     }
 
     .member {
@@ -486,7 +515,7 @@ header {
         transition: 0.3s ease-in-out;
 
         &:hover {
-            outline: solid 0.2em var(--color-theme, #50d8af);
+            outline: solid 0.2em var(--color-theme, var(--color-theme, #50d8af));
             transform: translateY(-1em);
         }
 
@@ -500,7 +529,7 @@ header {
         }
 
         .details {
-            background: #50d8af;
+            background: var(--color-theme, #50d8af);
             color: #fff;
             padding: 15px;
             border-radius: 0 0 3px 3px;
@@ -537,17 +566,22 @@ header {
 .contact {
     padding: 30px 0;
 
+    .section-header p {
+        padding-right: 0.5em;
+    }
+
     .contact-info {
         display: flex;
         margin-bottom: 1.2em;
         text-align: center;
         justify-content: space-between;
+        padding: 0 2em 0 1em;
 
         i {
             font-size: 48px;
             display: inline-block;
             margin-bottom: 10px;
-            color: #50d8af;
+            color: var(--color-theme, #50d8af);
         }
 
         address,
@@ -570,7 +604,7 @@ header {
         }
 
         a:hover {
-            color: #50d8af;
+            color: var(--color-theme, #50d8af);
         }
     }
 
@@ -591,6 +625,7 @@ header {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        padding: 0 2em 0 1em;
 
         .name,
         .email {
@@ -612,32 +647,6 @@ header {
             margin: 0.2em 0;
         }
 
-        #sendmessage {
-            color: #50d8af;
-            border: 1px solid #50d8af;
-            display: none;
-            text-align: center;
-            padding: 15px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        #errormessage {
-            color: red;
-            display: none;
-            border: 1px solid red;
-            text-align: center;
-            padding: 15px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        #sendmessage.show,
-        #errormessage.show,
-        .show {
-            display: block;
-        }
-
         .validation {
             color: red;
             display: none;
@@ -656,7 +665,7 @@ header {
         }
 
         button[type="submit"] {
-            background: #50d8af;
+            background: var(--color-theme, #50d8af);
             border: 0;
             border-radius: 3px;
             padding: 10px 30px;
@@ -669,6 +678,32 @@ header {
             background: #2dc899;
         }
     }
+}
+
+#sendmessage {
+    color: var(--color-theme, #50d8af);
+    border: 1px solid var(--color-theme, #50d8af);
+    display: none;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#errormessage {
+    color: red;
+    display: none;
+    border: 1px solid red;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#sendmessage.show,
+#errormessage.show,
+.show {
+    display: block;
 }
 /*--------------------------------------------------------------
 # Footer
@@ -698,7 +733,7 @@ header {
 # Media queries
 --------------------------------------------------------------*/
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     .contact .contact-address,
     .contact .contact-phone,
     .contact .contact-email {
@@ -742,13 +777,28 @@ header {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
     .intro .intro-content h2 {
         font-size: 34px;
     }
 
-    .services .box .box {
+    .services {
+        text-align: center;
+    }
+
+    .services .wrapper {
+        width: 80vw;
+        margin: 1em auto;
+    }
+
+    .services .subtitle {
+        width: 60vw;
+        margin: auto;
+    }
+
+    .services .box {
         margin-bottom: 20px;
+        flex: 0 0 100%
     }
 
     .services .box .icon {
@@ -763,14 +813,96 @@ header {
         text-align: center;
     }
 
+    .testimonials {
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+    .testimonials .wrapper {
+        flex-wrap: wrap;
+        padding: 0 2em 0 1em;
+    }
+
+    .testimonials .section-header {
+        text-align: center;
+    }
+
     .testimonials .testimonial-item {
+        flex: 0 0 45%;
         margin: 30px 10px;
+    }
+
+    .team .wrapper {
+        width: 50vw;
+        flex-wrap: wrap;
+        margin: 0 auto;
+
+        .member {
+            flex: 0 0 100%;
+        }
+    }
+
+    .team .section-header {
+        text-align: center;
+    }
+
+    .contact .section-header {
+        text-align: center;
+
+        p {
+            width: 90vw;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .about {
+        display: block;
+        position: relative;
+        color: var(--color-theme-bold, #0c2e8a);
+
+        .img-container {
+            margin: 0 auto;
+            width: 80vw;
+            height: auto;
+
+            img {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: translate(0, 0);
+                opacity: 0.7;
+            }
+        }
+
+        .text-container {
+            background-color: transparent;
+            margin: 0 auto;
+            width: 80vw;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     }
 }
 
 @media (max-width: 576px) {
     .contact .google-map {
         margin-top: 20px;
+    }
+
+    .about {
+        .img-container {
+            display: none;
+        }
+
+        .text-container {
+            position: relative;
+        }
     }
 }
 /*--------------------------------------------------------------
