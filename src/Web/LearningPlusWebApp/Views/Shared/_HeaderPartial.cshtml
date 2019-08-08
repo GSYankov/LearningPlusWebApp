@@ -1,80 +1,83 @@
 ﻿@using System.Security.Claims
-    <!--==========================
-         Header
-       ============================-->
-    <header>
-        <div class="wrapper">
+<!--==========================
+     Header
+   ============================-->
+<header>
+    <div class="wrapper">
 
-            <div class="logo">
-                <h1><a asp-controller="Home" asp-action="Index">Научи<span>Повече</span></a></h1>
-            </div>
-
-            <nav>
-                <ul class="nav-menu">
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li class="menu-has-children">
-                            <a>Контрол на</a>
-                            <ul>
-                                <li><a asp-area="Administrator" asp-controller="Users" asp-action="RoleControl">Роли</a></li>
-                            </ul>
-                        </li>
-                    }
-
-                    @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
-                    {
-                        <li><a asp-controller="Classes" asp-action="Schedule">График</a></li>
-                        <li><a asp-controller="Chat" asp-action="Start">Chat</a></li>
-                        <li class="menu-has-children">
-                            <a>Ученици</a>
-                            <ul>
-                                <li>
-                                <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай ученик</a></li>
-                                <li><a asp-area="Teacher" asp-controller="Users" asp-action="UserApprovals">Одобрение регистрации</a></li>
-                                <li><a asp-controller="Classes" asp-action="Create">Запиши за урок</a></li>
-                            </ul>
-                        </li>
-                    }
-                    else if (User.IsInRole("Parent") || User.IsInRole("Child"))
-                    {
-                        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                        <li><a asp-controller="Assessment" asp-action="Markbook" asp-route-id="@userId">Бележник</a></li>
-                        <li class="menu-has-children">
-                            <a>Образователен портал</a>
-                            <ul>
-                                <li><a asp-controller="Home" asp-action="Consults">Образователни консултации</a></li>
-                                <li><a asp-controller="Home" asp-action="Profesion">Избор на професия</a></li>
-                                <li><a asp-controller="Home" asp-action="Development">Личностно развитие</a></li>
-                            </ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li><a href="/#services">Обучения</a></li>
-                        <li><a href="/#team">Преподаватели</a></li>
-                        <li class="menu-has-children">
-                            <a>Образователен портал</a>
-                            <ul>
-                                <li><a asp-controller="Home" asp-action="Consults">Образователни консултации</a></li>
-                                <li><a asp-controller="Home" asp-action="Profesion">Избор на професия</a></li>
-                                <li><a asp-controller="Home" asp-action="Development">Личностно развитие</a></li>
-                                <li><a asp-controller="Home" asp-action="Gallery">Галерия</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/#contact">Контакт</a></li>
-                    }
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-area="" asp-controller="Users" asp-action="Logout">Изход</a></li>
-                    }
-                    else
-                    {
-                        <li><a asp-controller="Users" asp-action="Login">Вход</a></li>
-                        <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></li>
-                    }
-                </ul>
-            </nav>
+        <div class="logo">
+            <h1><a asp-controller="Home" asp-action="Index">Научи<span>Повече</span></a></h1>
         </div>
-    </header>
+
+        <label for="hamburger"><i class="fa fa-bars"></i></label>
+        <input id="hamburger" type="checkbox" />
+
+        <nav>
+            <ul class="nav-menu">
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="menu-has-children">
+                        <a>Контрол на</a>
+                        <ul>
+                            <li><a asp-area="Administrator" asp-controller="Users" asp-action="RoleControl">Роли</a></li>
+                        </ul>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                {
+                    <li><a asp-controller="Classes" asp-action="Schedule">График</a></li>
+                    <li><a asp-controller="Chat" asp-action="Start">Chat</a></li>
+                    <li class="menu-has-children">
+                        <a>Ученици</a>
+                        <ul>
+                            <li>
+                            <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай ученик</a></li>
+                            <li><a asp-area="Teacher" asp-controller="Users" asp-action="UserApprovals">Одобрение регистрации</a></li>
+                            <li><a asp-controller="Classes" asp-action="Create">Запиши за урок</a></li>
+                        </ul>
+                    </li>
+                }
+                else if (User.IsInRole("Parent") || User.IsInRole("Child"))
+                {
+                    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    <li><a asp-controller="Assessment" asp-action="Markbook" asp-route-id="@userId">Бележник</a></li>
+                    <li class="menu-has-children">
+                        <a>Образователен портал</a>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Consults">Образователни консултации</a></li>
+                            <li><a asp-controller="Home" asp-action="Profesion">Избор на професия</a></li>
+                            <li><a asp-controller="Home" asp-action="Development">Личностно развитие</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li><a href="/#services">Обучения</a></li>
+                    <li><a href="/#team">Преподаватели</a></li>
+                    <li class="menu-has-children">
+                        <a>Образователен портал</a>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Consults">Образователни консултации</a></li>
+                            <li><a asp-controller="Home" asp-action="Profesion">Избор на професия</a></li>
+                            <li><a asp-controller="Home" asp-action="Development">Личностно развитие</a></li>
+                            <li><a asp-controller="Home" asp-action="Gallery">Галерия</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/#contact">Контакт</a></li>
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-area="" asp-controller="Users" asp-action="Logout">Изход</a></li>
+                }
+                else
+                {
+                    <li><a asp-controller="Users" asp-action="Login">Вход</a></li>
+                    <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></li>
+                }
+            </ul>
+        </nav>
+    </div>
+</header>

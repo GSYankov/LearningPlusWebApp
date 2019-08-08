@@ -208,14 +208,16 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 header {
-  padding: 1em 0;
-  height: 84px;
+  padding-top: 1em;
   transition: all 0.5s;
   z-index: 997;
   background: #fff; }
   header .wrapper {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-around;
+    flex-wrap: wrap; }
+    header .wrapper label, header .wrapper input {
+      display: none; }
   header .logo h1 {
     font-size: 4em;
     margin: 0;
@@ -239,7 +241,7 @@ header {
   position: relative;
   background: url("../img/intro-carousel/1.jpg") no-repeat;
   background-size: cover;
-  margin-top: 1em; }
+  margin-top: 0.3em; }
   .intro .intro-content {
     position: absolute;
     bottom: 0;
@@ -300,7 +302,7 @@ header {
   .nav-menu .menu-active > a {
     color: var(--color-theme, #50d8af); }
   .nav-menu ul {
-    margin: 4px 0 0 0;
+    margin: -4px 0 0 0;
     padding: 10px;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
     background: #fff; }
@@ -652,14 +654,35 @@ header {
   .contact .contact-email {
     padding: 20px 0; } }
 
+@media (min-width: 769px) {
+  .logo {
+    flex: 0 0 100%;
+    text-align: center; }
+  nav {
+    display: block;
+    margin: 0 auto; } }
+
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 15px; }
-  header {
-    padding: 20px 0;
-    height: 74px; }
-  header .logo h1 {
-    font-size: 34px; }
+  header .wrapper .logo {
+    flex: 0 0 80%; }
+  header .wrapper label {
+    flex: 0 0 15%;
+    color: var(--color-theme-bold, #0c2e8a);
+    font-size: 3em; }
+  header .wrapper nav {
+    display: none; }
+    header .wrapper nav li {
+      float: none;
+      text-align: center;
+      border: 2px solid #fff; }
+      header .wrapper nav li:hover {
+        border: 2px solid var(--color-theme-bold, #0c2e8a); }
+  header .wrapper input:checked + nav {
+    display: block; }
+  header .wrapper label {
+    display: block; }
   header .logo img {
     max-height: 40px; }
   .nav-menu-container {
@@ -719,7 +742,13 @@ header {
       width: 90vw;
       margin: 0 auto; } }
 
+@media (min-width: 1101px) {
+  header .wrapper .logo {
+    flex: 0 0 48%; } }
+
 @media (max-width: 1100px) {
+  header .wrapper {
+    flex-wrap: wrap; }
   .about {
     display: block;
     position: relative;
@@ -851,8 +880,7 @@ header {
 
 .page-gallery {
   background: url("https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60") no-repeat;
-  background-size: cover;
-  margin-top: 2em; }
+  background-size: cover; }
   .page-gallery .gallery {
     padding: 0;
     margin: 0;
