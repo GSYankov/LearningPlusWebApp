@@ -207,29 +207,29 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-header {
+.site-header {
   padding-top: 1em;
   transition: all 0.5s;
   z-index: 997;
   background: #fff; }
-  header .wrapper {
+  .site-header .wrapper {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap; }
-    header .wrapper label, header .wrapper input {
+    .site-header .wrapper label, .site-header .wrapper input {
       display: none; }
-  header .logo h1 {
+  .site-header .logo h1 {
     font-size: 4em;
     margin: 0;
     padding: 0;
     line-height: 1;
     font-family: "Montserrat", sans-serif;
     font-weight: 700; }
-    header .logo h1 a {
+    .site-header .logo h1 a {
       color: #0c2e8a;
       line-height: 1;
       display: inline-block; }
-      header .logo h1 a span {
+      .site-header .logo h1 a span {
         color: var(--color-theme, var(--color-theme, #50d8af)); }
 
 /*--------------------------------------------------------------
@@ -665,25 +665,25 @@ header {
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 15px; }
-  header .wrapper .logo {
+  .site-header .wrapper .logo {
     flex: 0 0 80%; }
-  header .wrapper label {
+  .site-header .wrapper label {
     flex: 0 0 15%;
     color: var(--color-theme-bold, #0c2e8a);
     font-size: 3em; }
-  header .wrapper nav {
+  .site-header .wrapper nav {
     display: none; }
-    header .wrapper nav li {
+    .site-header .wrapper nav li {
       float: none;
       text-align: center;
       border: 2px solid #fff; }
-      header .wrapper nav li:hover {
+      .site-header .wrapper nav li:hover {
         border: 2px solid var(--color-theme-bold, #0c2e8a); }
-  header .wrapper input:checked + nav {
+  .site-header .wrapper input:checked + nav {
     display: block; }
-  header .wrapper label {
+  .site-header .wrapper label {
     display: block; }
-  header .logo img {
+  .site-header .logo img {
     max-height: 40px; }
   .nav-menu-container {
     display: none; }
@@ -743,11 +743,11 @@ header {
       margin: 0 auto; } }
 
 @media (min-width: 1101px) {
-  header .wrapper .logo {
+  .site-header .wrapper .logo {
     flex: 0 0 48%; } }
 
 @media (max-width: 1100px) {
-  header .wrapper {
+  .site-header .wrapper {
     flex-wrap: wrap; }
   .about {
     display: block;
@@ -879,8 +879,11 @@ header {
     border-color: rgba(0, 0, 0, 0.2); }
 
 .page-gallery {
-  background: url("https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60") no-repeat;
-  background-size: cover; }
+  /*background: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') no-repeat;
+    background-size: cover;*/ }
+  .page-gallery h1 {
+    margin: 0 auto;
+    text-align: center; }
   .page-gallery .gallery {
     padding: 0;
     margin: 0;
@@ -931,6 +934,28 @@ header {
         left: 0;
         right: 0;
         bottom: 0; }
+
+.loaded .page-gallery h1 {
+  animation: jump 0.5s ease; }
+
+/*-------------------------------
+    Animations
+-------------------------------*/
+@keyframes jump {
+  0% {
+    transform: translateY(0); }
+  20% {
+    transform: translateY(-1em); }
+  40% {
+    transform: translateY(0em); }
+  60% {
+    transform: translateY(-0.5em); }
+  80% {
+    transform: translateY(0em); }
+  90% {
+    transform: translateY(-0.3em); }
+  100% {
+    transform: translateX(0); } }
 
 .modal {
   position: fixed;
