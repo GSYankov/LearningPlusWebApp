@@ -124,7 +124,7 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-header {
+.site-header {
     padding-top: 1em;
     transition: all 0.5s;
     z-index: 997;
@@ -763,7 +763,7 @@ header {
         bottom: 15px;
     }
 
-    header {
+    .site-header {
         .wrapper {
             .logo {
                 flex: 0 0 80%;
@@ -799,7 +799,7 @@ header {
         }
     }
 
-    header .logo img {
+    .site-header .logo img {
         max-height: 40px;
     }
 
@@ -901,14 +901,14 @@ header {
 }
 
 @media (min-width: 1101px) {
-    header .wrapper .logo {
+    .site-header .wrapper .logo {
         flex: 0 0 48%;
     }
 }
 
 @media (max-width: 1100px) {
 
-    header .wrapper {
+    .site-header .wrapper {
         flex-wrap: wrap;
     }
 

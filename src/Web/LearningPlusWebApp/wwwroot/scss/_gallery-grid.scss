@@ -1,7 +1,10 @@
 .page-gallery {
-    background: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') no-repeat;
-    background-size: cover;
-
+    /*background: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') no-repeat;
+    background-size: cover;*/
+    h1 {
+        margin: 0 auto;
+        text-align: center;
+    }
 
     .gallery {
         padding: 0;
@@ -81,5 +84,43 @@
                 bottom: 0;
             }
         }
+    }
+}
+
+.loaded .page-gallery h1 {
+    animation: jump 0.5s ease;
+}
+
+/*-------------------------------
+    Animations
+-------------------------------*/
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-1em);
+    }
+
+    40% {
+        transform: translateY(0em);
+    }
+
+    60% {
+        transform: translateY(-0.5em);
+    }
+
+    80% {
+        transform: translateY(0em);
+    }
+
+    90% {
+        transform: translateY(-0.3em);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }
