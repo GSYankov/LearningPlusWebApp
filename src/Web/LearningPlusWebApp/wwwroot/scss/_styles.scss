@@ -11,7 +11,7 @@ body {
 }
 
 a {
-    color: var(--color-theme, var(--color-theme, #50d8af));
+    color: var(--color-theme, #50d8af);
     transition: 0.5s;
 
     &:hover,
@@ -45,7 +45,7 @@ h6 {
 .back-to-top {
     position: fixed;
     display: block;
-    background: var(--color-theme, var(--color-theme, #50d8af));
+    background: var(--color-theme, #50d8af);
     color: #fff;
     padding: 0.4em 0.8em 0.5em 0.8em;
     font-size: 1em;
@@ -56,7 +56,7 @@ h6 {
 
 
     &:focus {
-        background: var(--color-theme, var(--color-theme, #50d8af));
+        background: var(--color-theme, #50d8af);
         color: #fff;
         outline: none;
     }
@@ -89,12 +89,12 @@ h6 {
             color: #555;
 
             &:hover {
-                color: var(--color-theme, var(--color-theme, #50d8af));
+                color: var(--color-theme, #50d8af);
             }
         }
 
         i {
-            color: var(--color-theme, var(--color-theme, #50d8af));
+            color: var(--color-theme, #50d8af);
             padding: 4px;
         }
 
@@ -113,7 +113,7 @@ h6 {
         border-left: 1px solid #e9e9e9;
 
         &:hover {
-            color: var(--color-theme, var(--color-theme, #50d8af));
+            color: var(--color-theme, #50d8af);
         }
 
         &:first-child {
@@ -154,7 +154,7 @@ h6 {
             display: inline-block;
 
             span {
-                color: var(--color-theme, var(--color-theme, #50d8af));
+                color: var(--color-theme, #50d8af);
             }
         }
     }
@@ -169,7 +169,7 @@ h6 {
     position: relative;
     background: url("../img/intro-carousel/1.jpg") no-repeat;
     background-size: cover;
-    margin-top:0.3em;
+    margin-top: 0.3em;
 
     .intro-content {
         position: absolute;
@@ -519,7 +519,7 @@ h6 {
         transition: 0.3s ease-in-out;
 
         &:hover {
-            outline: solid 0.2em var(--color-theme, var(--color-theme, #50d8af));
+            outline: solid 0.2em var(--color-theme, #50d8af);
             transform: translateY(-1em);
         }
 
@@ -736,16 +736,7 @@ h6 {
 /*--------------------------------------------------------------
 # Media queries
 --------------------------------------------------------------*/
-
-@media (min-width: 767px) {
-    .contact .contact-address,
-    .contact .contact-phone,
-    .contact .contact-email {
-        padding: 20px 0;
-    }
-}
-
-@media (min-width: 769px) {
+@include bp( laptop ) {
 
     .logo {
         flex: 0 0 100%;
@@ -756,9 +747,15 @@ h6 {
         display: block;
         margin: 0 auto;
     }
+
+    .contact .contact-address,
+    .contact .contact-phone,
+    .contact .contact-email {
+        padding: 20px 0;
+    }
 }
 
-@media (max-width: 768px) {
+@include bp(mobile) {
     .back-to-top {
         bottom: 15px;
     }
@@ -821,7 +818,43 @@ h6 {
     }
 }
 
-@media (max-width: 1000px) {
+@include bp(desktop-large) {
+    .site-header .wrapper {
+        flex-wrap: wrap;
+    }
+
+    .about {
+        display: block;
+        position: relative;
+        color: var(--color-theme-bold, #0c2e8a);
+
+        .img-container {
+            margin: 0 auto;
+            width: 80vw;
+            height: auto;
+
+            img {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: translate(0, 0);
+                opacity: 0.7;
+            }
+        }
+
+        .text-container {
+            background-color: transparent;
+            margin: 0 auto;
+            width: 80vw;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
     .intro .intro-content h2 {
         font-size: 34px;
     }
@@ -865,6 +898,7 @@ h6 {
     .testimonials .wrapper {
         flex-wrap: wrap;
         padding: 0 2em 0 1em;
+        justify-content: center;
     }
 
     .testimonials .section-header {
@@ -900,52 +934,14 @@ h6 {
     }
 }
 
-@media (min-width: 1101px) {
+@include bp(desktop) {
     .site-header .wrapper .logo {
         flex: 0 0 48%;
     }
 }
 
-@media (max-width: 1100px) {
 
-    .site-header .wrapper {
-        flex-wrap: wrap;
-    }
-
-    .about {
-        display: block;
-        position: relative;
-        color: var(--color-theme-bold, #0c2e8a);
-
-        .img-container {
-            margin: 0 auto;
-            width: 80vw;
-            height: auto;
-
-            img {
-                position: relative;
-                top: 0;
-                left: 0;
-                transform: translate(0, 0);
-                opacity: 0.7;
-            }
-        }
-
-        .text-container {
-            background-color: transparent;
-            margin: 0 auto;
-            width: 80vw;
-            height: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-    }
-}
-
-@media (max-width: 576px) {
+@include bp(phone) {
     .contact .google-map {
         margin-top: 20px;
     }

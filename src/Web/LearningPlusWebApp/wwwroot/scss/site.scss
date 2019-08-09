@@ -1,5 +1,7 @@
 @import 'variables';
 
+@import '_mixins.scss';
+
 @import 'typography';
 
 @import 'layout';
@@ -11,11 +13,3 @@
 @import 'gallery-grid';
 
 @import 'modal';
-/*@import url('site-footer.css');*/
-
-/*@import url('navigation.css');*/
-
-/* @import url('transtions.css'); */
-/*@import url('animations.css');*/
-
-/*@import url('gallery.css');*/
