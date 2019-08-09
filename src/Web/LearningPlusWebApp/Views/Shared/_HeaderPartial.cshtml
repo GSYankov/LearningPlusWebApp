@@ -74,8 +74,22 @@
                 }
                 else
                 {
-                    <li><a asp-controller="Users" asp-action="Login">Вход</a></li>
-                    <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></li>
+                    @if (Context.Request.Path.Value == "/Users/Login")
+                    {
+                        <li><a asp-controller="Users" asp-action="Login" class="onit">Вход</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Users" asp-action="Login">Вход</a></li>
+                    }
+                    @if (Context.Request.Path.Value == "/Users/RegisterStudent")
+                    {
+                        <li><a asp-controller="Users" asp-action="RegisterStudent" class="onit">Регистрирай се</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></li>
+                    }
                 }
             </ul>
         </nav>

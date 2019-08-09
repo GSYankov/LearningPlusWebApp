@@ -130,6 +130,12 @@ h6 {
     z-index: 997;
     background: #fff;
 
+    .onit {
+        color: var(--color-theme, #50d8af);
+        border: 2px solid var(--color-theme-bold, #0c2e8a);
+        border-radius: 1em;
+    }
+
     .wrapper {
         display: flex;
         justify-content: space-around;
