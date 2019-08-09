@@ -1,36 +1,39 @@
 ﻿@model LearningPlus.Web.ViewModels.DoLoginViewModel
 
 @{
-    ViewData["Title"] = "Вписване";
+    ViewData["Title"] = "Вход";
     Layout = "_Layout-CSS";
 }
 
 <div class="login">
     <h1 class="page-title">@ViewData["Title"]</h1>
     <form method="post" asp-controller="Users" asp-action="Login">
-        <p class="field">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <label asp-for="Username" class="field-name">Потребителско име</label>
-            <input type="text" id="Username" name="username" placeholder="Портебителско име...">
-            <label asp-for="Username" class="icon"><i class="fa fa-user"></i></label>
-        </p>
-        <p class="field">
-            <span asp-validation-for="Username" class="text-danger"></span>
-            <label asp-for="Password" class="field-name">Парола</label>
-            <input type="password" name="password" id="Password" placeholder="Парола..." />
-            <label asp-for="Password" class="icon"><i class="fa fa-key"></i></label>
-        </p>
-        <span asp-validation-for="Password" class="text-danger"></span>
-        <div class="rememberme">
-            <input type="checkbox" id="rememberme" name="RememberMe" value="true">
-            <label for="rememberme">Запомни ме</label>
-        </div>
-        <button type="submit" class="btn logo-btn">Вход</button>
+        <fieldset>
+            <legend>Вписване</legend>
+            <p class="field">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label asp-for="Username" class="field-name">Потребителско име</label>
+                <input type="text" id="Username" name="username" placeholder="Портебителско име...">
+                <label asp-for="Username" class="icon"><i class="fa fa-user"></i></label>
+            </p>
+            <p class="field">
+                <span asp-validation-for="Username" class="text-danger"></span>
+                <label asp-for="Password" class="field-name">Парола</label>
+                <input type="password" name="password" id="Password" placeholder="Парола..." />
+                <label asp-for="Password" class="icon"><i class="fa fa-key"></i></label>
+            </p>
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="rememberme">
+                <input type="checkbox" id="rememberme" name="RememberMe" value="true">
+                <label for="rememberme">Запомни ме</label>
+            </div>
+            <button type="submit" class="logo-btn">Вход</button>
+            <div class="text-center"><a href="/#contact">Забравена парола</a></div>
+            <div class="text-center"><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></div>
+        </fieldset>
     </form>
-    <div class="text-center"><a href="/#contact">Забравена парола</a></div>
-    <div class="text-center"><a asp-controller="Users" asp-action="RegisterStudent">Регистрирай се</a></div>
     <form asp-action="FacebookLogin" method="post">
-        <button type="submit" class="btn btn-facebook" name="provider" value="Facebook" title="Влез с Facebook">Facebook</button>
+        <button type="submit" class="btn-facebook" name="provider" value="Facebook" title="Влез с Facebook">Facebook</button>
     </form>
 </div>
 

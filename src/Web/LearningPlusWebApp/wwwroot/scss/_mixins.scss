@@ -12,6 +12,12 @@
         }
     }
 
+    @else if $point == login {
+        @media (max-width: 700px) {
+            @content;
+        }
+    }
+
     @else if $point == laptop {
         @media (min-width: 769px) {
             @content;
