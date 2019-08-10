@@ -988,3 +988,31 @@ h6 {
       display: block;
       width: 100%;
       height: auto; }
+
+.profesion-container {
+  padding: 2em;
+  background-color: #fff; }
+  .profesion-container > h2 {
+    text-align: center; }
+  .profesion-container > p {
+    font-style: italic; }
+  .profesion-container .profis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 0.5fr);
+    align-items: center; }
+    .profesion-container .profis .profi {
+      list-style: none; }
+      .profesion-container .profis .profi h2 {
+        padding-left: 0.3em;
+        margin-bottom: 0.8em; }
+    .profesion-container .profis li:nth-child(even) {
+      background-color: var(--color-theme-focus, #51d8af);
+      border-radius: 0.3em; }
+
+/*--------------------------------
+    Media querys
+--------------------------------*/
+@media (max-width: 576px) {
+  .profesion-container .profis {
+    display: block; } }

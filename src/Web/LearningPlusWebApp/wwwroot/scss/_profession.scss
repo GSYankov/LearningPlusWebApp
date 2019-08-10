@@ -1,0 +1,46 @@
+﻿.profesion-container {
+    padding: 2em;
+    background-color: #fff;
+
+    > h2 {
+        text-align: center;
+    }
+
+    > p {
+        font-style: italic;
+    }
+
+    .profis {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 0.5fr);
+        align-items: center;
+
+        .profi {
+            list-style: none;
+
+            h2 {
+                padding-left: 0.3em;
+                margin-bottom: 0.8em;
+            }
+        }
+
+        & li:nth-child(even) {
+            background-color: var(--color-theme-focus, #51d8af);
+            border-radius: 0.3em;
+        }
+    }
+}
+
+/*--------------------------------
+    Media querys
+--------------------------------*/
+
+
+@include bp(phone) {
+    .profesion-container {
+        .profis {
+            display: block;
+        }
+    }
+}
