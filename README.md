@@ -18,4 +18,4 @@ Gallery page - https://github.com/GSYankov/LearningPlusWebApp/blob/CSS-Advanced/
 
 Loggin page - https://github.com/GSYankov/LearningPlusWebApp/blob/CSS-Advanced/src/Web/LearningPlusWebApp/Views/Users/Login.cshtml
 
-
+Profession page - https://github.com/GSYankov/LearningPlusWebApp/blob/CSS-Advanced/src/Web/LearningPlusWebApp/Views/Home/EducationalPortal/Profesion.cshtml
