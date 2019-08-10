@@ -650,7 +650,8 @@ h6 {
       .site-header .wrapper nav li:hover {
         border: 2px solid var(--color-theme-bold, #0c2e8a); }
   .site-header .wrapper input:checked + nav {
-    display: block; }
+    display: block;
+    flex: 0 0 100%; }
   .site-header .wrapper label {
     display: block; }
   .site-header .logo img {

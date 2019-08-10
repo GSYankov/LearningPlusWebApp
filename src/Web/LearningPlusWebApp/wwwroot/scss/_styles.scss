@@ -793,7 +793,8 @@ h6 {
             }
 
             input:checked + nav {
-                display: block
+                display: block;
+                flex: 0 0 100%;
             }
 
             label {
