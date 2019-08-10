@@ -11,18 +11,18 @@
         <fieldset>
             <legend>Вписване</legend>
             <p class="field">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly" class="error"></div>
                 <label asp-for="Username" class="field-name">Потребителско име</label>
                 <input type="text" id="Username" name="username" placeholder="Портебителско име...">
                 <label asp-for="Username" class="icon"><i class="fa fa-user"></i></label>
             </p>
             <p class="field">
-                <span asp-validation-for="Username" class="text-danger"></span>
+                <span asp-validation-for="Username" class="error"></span>
                 <label asp-for="Password" class="field-name">Парола</label>
                 <input type="password" name="password" id="Password" placeholder="Парола..." />
                 <label asp-for="Password" class="icon"><i class="fa fa-key"></i></label>
             </p>
-            <span asp-validation-for="Password" class="text-danger"></span>
+            <span asp-validation-for="Password" class="error"></span>
             <div class="rememberme">
                 <input type="checkbox" id="rememberme" name="RememberMe" value="true">
                 <label for="rememberme">Запомни ме</label>
